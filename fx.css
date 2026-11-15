@@ -55,16 +55,23 @@
 }
 
 
-/* A composition: a colour area holding words, bars, rules and small text placed on the page's grid, as on a poster.
+/* A composition: a colour area holding words, bars, rules and small text on a grid of its own, as on a poster. The page's grid
+   again (columns of 3 units, gutters of 2, a line between two grid lines), laid out 58 units wide, the type area's twelve columns
+   (--composition-units for another width); on a narrower area it scales with it, as a poster printed smaller: the unit is the
+   area's width over 58, and the line, the cap height and every size follow.
    On a picture's image area (figure-image composition); what runs past its edge is cut, as by the poster's edge.
-   Each part starts on a crossing of the page grid, --x units from the left edge and --y grid lines below the first one
-   (the area's top edge is on a cap line, the first grid line its cap height lower). Flat by default, as on Müller-Brockmann's
-   "der Film" poster (1960): a bar's length whole steps of 3 units, its thickness and the small text's leading whole lines.
-   Laid out 33 units wide (the text's 7 columns); on a narrower area its grid scales with it, as a poster printed smaller:
-   the unit is the area's width over 33, and the line, the cap height, the steps and every size follow. */
-.figure:has(> .composition) { container-type: inline-size; }
+   Each part starts on a crossing of that grid, --x units from the left edge and --y grid lines below the first one (the area's
+   top edge is on a cap line, the first grid line its cap height lower). Flat by default, as on Müller-Brockmann's "der Film"
+   poster (1960); turned, a turn-1-2 class, as on his Tonhalle poster (1955): the whole grid turned around its origin (the left edge,
+   on the first grid line), columns and lines together, a line down for every 3 units across. */
+.figure:has(> .composition) {
+  container-type: inline-size;
+  /* its depth (--depth lines, at the width it's laid out for) scaled with it, rounded to whole lines of the page, so its bottom
+     edge stays on the page's grid: the scale is the units its span has now (5 a column and a gutter, less a gutter) over its own */
+  --figure-depth: round(nearest, calc(var(--depth) * var(--line) * (5 * var(--figure-span) - 2) / var(--composition-units, 58)), var(--line));
+}
 .composition {
-  --unit: calc(100cqw / 33);
+  --unit: calc(100cqw / var(--composition-units, 58));
   --line: calc(var(--unit) * var(--line-height));
   font-size: var(--unit);
   /* the cap height at the composition's unit, for its first grid line */
@@ -74,32 +81,23 @@
   /* its own stacking context: an overprinting part combines with the area and the parts below it, not the page */
   isolation: isolate;
   --turn: 0deg;
-  --step: calc(3 * var(--unit));
-  --across: var(--line);
-  --leading: var(--line);
 }
-/* turned, a turn-1-2 class, as on Müller-Brockmann's Tonhalle poster (1955): the grid a line down for every 3 units across
-   (48px and 24px: the next crossing of units and grid lines, about 26.6° at 16px / 1.5). A step is 3 units across and a line
-   down (√5 · 1.5 units), so a bar's ends are on crossings too; thicknesses whole spacings of the turned lines that go through
-   crossings (a unit across, times the sine of the turn), the small text's leading three of them */
-.composition.turn-1-2 {
-  --turn: atan2(var(--line), calc(3 * var(--unit)));
-  --step: hypot(calc(3 * var(--unit)), var(--line));
-  --across: calc(var(--unit) * sin(var(--turn)));
-  --leading: calc(3 * var(--across));
-}
+.composition.turn-1-2 { --turn: atan2(var(--line), calc(3 * var(--unit))); }
+/* turned the other way, a turn-rise-1-2 class: a line up for every 3 units across, rising from the bottom left */
+.composition.turn-rise-1-2 { --turn: calc(-1 * atan2(var(--line), calc(3 * var(--unit)))); }
 /* its parts in the page's colour, as on the posters' black, unless a text- class says otherwise (:where(): weaker than it) */
 :where(.composition) { color: var(--color-ground); }
+/* placed on the flat grid, then turned with it around its origin: the origin as seen from the part.
+   A visual shift, --shift-x (and --shift-w for a bar's or rule's width), in units: a part fitted to the ink of a word by eye
+   or by measure, off the grid on purpose; kept apart from --x and --w, so the grid position stays whole and the correction shows */
 .composition > * {
+  --placed-x: calc(var(--x, 0) + var(--shift-x, 0));
   position: absolute;
-  left: calc(var(--x, 0) * var(--unit));
+  left: calc(var(--placed-x) * var(--unit));
   top: calc(var(--body-cap) + var(--y, 0) * var(--line));
   margin: 0;
-  transform-origin: 0 0;
-  --angle: var(--turn);
+  transform-origin: calc(-1 * var(--placed-x) * var(--unit)) calc(-1 * var(--y, 0) * var(--line));
 }
-/* a part across the grid, at a right angle to it, rising to the right */
-.composition > .composition-steep { --angle: calc(var(--turn) - 90deg); }
 /* a word: its baseline from the crossing on; bold, as on the posters; sized by a size- class. Aligned by its ink, not its box:
    moved back along its baseline by a side bearing (the font's margin left of a letter, about 3% of the size in Inter, from
    0.9% for a t to 5.4% for an H), so the letter itself stands near the crossing, as the small text's letters, whose bearing
@@ -114,35 +112,73 @@
   line-height: 1;
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
-  transform: rotate(var(--angle)) translateX(calc(-1 * (var(--side-bearing) + var(--hang, 0em)))) translateY(-100%);
+  transform: rotate(var(--turn)) translateX(calc(-1 * (var(--side-bearing) + var(--hang, 0em)))) translateY(-100%);
 }
 .hang-round { --hang: calc(2.5 * 0.011em); }
-/* a bar: its edge from the crossing on, --length steps long, --thick spacings thick (a steep bar also half spacings:
-   along the turned lines the steep lines through crossings lie twice as close) */
+/* a bar: a field from the crossing on, --w units wide and --h lines deep: a column strip, or a band along the lines */
 .composition-bar {
-  width: calc(var(--length, 1) * var(--step));
-  height: calc(var(--thick, 3) * var(--across));
+  width: calc((var(--w, 3) + var(--shift-w, 0)) * var(--unit));
+  height: calc(var(--h, 1) * var(--line));
   background: currentColor;
-  transform: rotate(var(--angle));
+  transform: rotate(var(--turn));
 }
-/* a rule: a thin rule's thickness, centred on the grid line through the crossing */
+/* a rule: a thin rule's thickness, centred on the grid line through the crossing, --w units long; with composition-steep,
+   on the column edge through it, down the columns, --h lines long */
 .composition-rule {
-  width: calc(var(--length, 1) * var(--step));
+  width: calc((var(--w, 3) + var(--shift-w, 0)) * var(--unit));
   height: round(nearest, calc(var(--unit) / 8), 1px);
   background: currentColor;
-  transform: rotate(var(--angle)) translateY(-50%);
+  transform: rotate(var(--turn)) translateY(-50%);
 }
-/* a small text: the text's size, each baseline on a line of the grid through crossings; the first baseline from the crossing on */
+.composition-rule.composition-steep {
+  width: round(nearest, calc(var(--unit) / 8), 1px);
+  height: calc(var(--h, 1) * var(--line));
+  transform: rotate(var(--turn)) translateX(-50%);
+}
+/* a small text: the text's size, or a size- class's; its lines whole half baselines apart (a line at the text's size), as a
+   heading's; its first baseline from the crossing on. Weight 500, which a weight- class overrides (:where(): weaker than it) */
+:where(.composition-text) { font-weight: 500; }
 .composition-text {
-  font-size: var(--unit);
-  font-weight: 500;
-  line-height: var(--leading);
+  font-size: round(nearest, calc(var(--unit) * var(--heading-ratio, 1)), 1px);
+  line-height: round(up, calc(1em * 1.2), calc(var(--line) / 2));
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
-  transform: rotate(var(--angle)) translateY(-1cap);
+  transform: rotate(var(--turn)) translateY(-1cap);
 }
 
 /* Overprint: a part printed over another as a second ink, not covering it. Multiplied with what is below: on the page's ground
    a red part stays red, on black it is black, so the black shows through it, as where two inks overlap on a poster. */
 .overprint { mix-blend-mode: multiply; }
 
+
+/* The grid shown over a composition, with the page's grid (the "Grid" checkbox): its own columns (fields), grid lines (red,
+   from its first grid line) and half baselines (blue), scaled with it; turned with it where it's turned: a layer far larger
+   than the area, its corner moved back by whole periods from the grid's origin, so the pattern stays in phase; the area cuts it.
+   In srgb: with a color-mix() colour Firefox otherwise fills the gradients' transparent parts. */
+.composition::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  display: none;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(in srgb to bottom,
+      transparent 0 calc(var(--line) - 1px),
+      color-mix(in srgb, var(--color-guide) 60%, transparent) calc(var(--line) - 1px) var(--line)),
+    repeating-linear-gradient(in srgb to bottom,
+      transparent 0 calc(var(--line) / 2 - 1px),
+      color-mix(in srgb, var(--color-guide-half) 60%, transparent) calc(var(--line) / 2 - 1px) calc(var(--line) / 2),
+      transparent calc(var(--line) / 2) var(--line)),
+    repeating-linear-gradient(in srgb to right,
+      color-mix(in srgb, var(--color-guide) 15%, transparent) 0 calc(3 * var(--unit)),
+      transparent calc(3 * var(--unit)) calc(5 * var(--unit)));
+  left: calc(-20 * 5 * var(--unit));
+  top: calc(var(--body-cap) - 40 * var(--line));
+  width: calc(60 * 5 * var(--unit));
+  height: calc(100 * var(--line));
+  transform-origin: calc(20 * 5 * var(--unit)) calc(40 * var(--line));
+  transform: rotate(var(--turn));
+}
+:root:has(.grid-toggle input:checked) .composition::after { display: block; }
+/* above the page's overlay: over a composition only its own grid shows */
+:root:has(.grid-toggle input:checked) .composition { z-index: 11; }

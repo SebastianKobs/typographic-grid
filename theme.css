@@ -16,6 +16,9 @@
   --color-picture: #cfcfcf;
   /* the ink faded, for what can't be used: a disabled field, choice or button */
   --color-disabled: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  /* the grid shown over the page: the grid lines in the red, the half baselines in a blue, the only colour used nowhere else */
+  --color-guide: var(--color-red);
+  --color-guide-half: #1f6fd1;
   /* the ink lightened, for an example in an empty field: a grey that still reads on the tint */
   --color-example: color-mix(in srgb, var(--color-ink) 60%, transparent);
 }

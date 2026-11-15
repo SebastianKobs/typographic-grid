@@ -27,7 +27,10 @@
   /* the colours are in theme.css */
 }
 
-/* registered, so a length set as 1cap is resolved where it's declared and inherited as px */
+/* registered, so a length set as 1cap is resolved where it's declared and inherited as px; the unit and the line too,
+   so a composition's own (from its width) reaches its overlay as pixels */
+@property --unit { syntax: "<length>"; inherits: true; initial-value: 16px; }
+@property --line { syntax: "<length>"; inherits: true; initial-value: 24px; }
 @property --body-cap { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @property --rule-gap { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @property --rule-lift { syntax: "<length>"; inherits: true; initial-value: 0px; }
@@ -304,7 +307,8 @@ code {
   --cap-height: 1cap;
 
   /* less the empty line the paragraph above already keeps */
-  margin-top: calc(max(var(--nearest), var(--least)) - 1cap - var(--paragraph-margin));
+  /* plus whole lines, --lines-above in its style, for a heading set lower on purpose (as on a poster) */
+  margin-top: calc(max(var(--nearest), var(--least)) - 1cap - var(--paragraph-margin) + var(--lines-above, 0) * var(--line));
   margin-bottom: calc(var(--rule-gap) + var(--to-next) - var(--body-cap));
 }
 /* A pull quote: a few words from the text, set larger, between two paragraphs. Sized, led and spaced
@@ -387,7 +391,10 @@ code {
   --figure-cap: var(--beside-cap, var(--body-cap));
   --figure-shift: var(--beside-shift, 0px);
   /* first line's baseline → bottom edge: whole lines, as text would take them (Müller-Brockmann: never half baselines), the height nearest to the ratio; the image is cropped to it */
-  --figure-depth: round(nearest, calc(var(--figure-width) / var(--figure-ratio) - var(--figure-cap)), var(--line));
+  --figure-depth-ratio: round(nearest, calc(var(--figure-width) / var(--figure-ratio) - var(--figure-cap)), var(--line));
+  /* or a number of lines, --depth in its style, as a colour area cut to the text beside it rather than to a ratio
+     (min(): 1 where --depth is set, 0 where it isn't) */
+  --figure-depth: calc(var(--depth, 0) * var(--line) + (1 - min(var(--depth, 0), 1)) * var(--figure-depth-ratio));
   --figure-height: calc(var(--figure-cap) + var(--figure-depth));
   grid-column: var(--col-start, 1) / span var(--figure-span);
   /* one empty line above, kept by the paragraph: the top edge where a capital two lines below its last baseline would be */
@@ -952,6 +959,7 @@ textarea.field-input {
 .size-phi-3 { --heading-ratio: 4.236; }
 .size-phi-4 { --heading-ratio: 6.854; }
 .size-phi-5 { --heading-ratio: 11.09; }
+.size-phi-6 { --heading-ratio: 17.944; }
 .size-sqrt2-1 { --heading-ratio: 1.414; }
 .size-sqrt2-2 { --heading-ratio: 2; }
 .size-sqrt2-3 { --heading-ratio: 2.828; }
@@ -1009,6 +1017,10 @@ textarea.field-input {
 .fill-tint { --fill: var(--color-tint); }
 /* fill-hatch: in fx.css */
 
+/* a colour area reaching over the gutter after it, up to a hairline before the next column: areas side by side then lie
+   a hairline apart, as on a poster's printed fields; the hairline a sixteenth of the unit, whole pixels */
+.fill-gutter { margin-right: calc(-1 * (var(--gutter) - round(nearest, calc(var(--unit) / 16), 1px))); }
+
 /* a vertical rule's colour, red unless it says otherwise */
 .rule-ink { --rule-color: var(--color-ink); }
 
@@ -1021,6 +1033,10 @@ textarea.field-input {
 .text-light { color: var(--color-ground); }
 /* text in ink, for a button on the tint */
 .text-ink { color: var(--color-ink); }
+/* text set right, against the end of its columns */
+.text-right { text-align: right; }
+/* text in a heading's weight, much heavier than the body's light one, as small text on a poster */
+.weight-semibold { font-weight: 600; }
 /* text in the red of the rules */
 .text-red { color: var(--color-red); }
 /* text in the grey of a picture not yet there: an ornament more than text to read */
@@ -1036,6 +1052,13 @@ textarea.field-input {
   .figure-stack.figure-hanging {
     height: 0;
     margin-bottom: 0;
+  }
+  /* a hanging figure moved down by whole lines, --lines-above in its style: moved, not pushed, so it takes no room
+     in its row (a margin would); on fewer columns it follows its paragraph instead. Behind the text that runs over it:
+     moved, it would be painted above it otherwise */
+  .figure.figure-side.figure-hanging {
+    translate: 0 calc(var(--lines-above, 0) * var(--line));
+    z-index: -1;
   }
 }
 
@@ -1166,3 +1189,44 @@ textarea.field-input {
   :root { --columns: 4; --text-span: 4; }
   .col-span-5, .col-span-6, .col-span-7, .col-span-8, .col-span-9, .col-span-10, .col-span-11, .col-span-12 { --col-span: 4; }
 }
+
+/* ---------- The grid shown: an overlay of the columns and the grid lines, switched by a floating checkbox ----------
+   Drawn from the grid's own measures, so it follows the steps on narrow screens; it doesn't catch the pointer.
+   Columns as fields in a tint of the red, a grid line (a baseline's place) as a thin red line, each a line apart from the
+   type area's top, and the half baseline between two as a thin blue line. No script: the checkbox's state is read with :has().
+   The gradients are interpolated in srgb: with a color-mix() colour Firefox otherwise fills their transparent parts. */
+.type-area::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(in srgb to bottom,
+      transparent 0 calc(var(--line) - 1px),
+      color-mix(in srgb, var(--color-guide) 60%, transparent) calc(var(--line) - 1px) var(--line)),
+    repeating-linear-gradient(in srgb to bottom,
+      transparent 0 calc(var(--half) - 1px),
+      color-mix(in srgb, var(--color-guide-half) 50%, transparent) calc(var(--half) - 1px) var(--half),
+      transparent var(--half) var(--line)),
+    repeating-linear-gradient(in srgb to right,
+      color-mix(in srgb, var(--color-guide) 12%, transparent) 0 var(--column),
+      transparent var(--column) calc(var(--column) + var(--gutter)));
+}
+:root:has(.grid-toggle input:checked) .type-area::after { display: block; }
+.grid-toggle {
+  position: fixed;
+  right: var(--unit);
+  bottom: var(--unit);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--unit) / 2) var(--unit);
+  font: 700 calc(var(--font-size) * 1px) / 1 "Inter", sans-serif;
+  color: var(--color-ink);
+  background: var(--color-tint);
+  cursor: pointer;
+  user-select: none;
+}
+.grid-toggle .choice-input { --choice-fill: var(--color-ground); margin: 0 calc(var(--unit) / 2) 0 0; vertical-align: 0; }

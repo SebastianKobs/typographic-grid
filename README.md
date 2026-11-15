@@ -14,6 +14,8 @@ A web page where every part sits on one grid: text, headings, pictures, rules, b
 - **Pictures:** a number of columns wide; the top edge on a cap line, the depth whole lines, cropped to the nearest ratio.
 - **Boxes:** padding of one column on the right and one unit less on the left; the background starts and stops on grid lines, adding half a baseline when the content ends between two.
 
+The "Grid" checkbox at the bottom right shows the columns and the grid lines over the page.
+
 Change `--font-size` or `--line-height` in `:root` and every distance follows. The page is tuned for 16px / 1.5; at other settings Chromium can drift by a fraction of a pixel.
 
 ## Narrow screens
@@ -48,9 +50,9 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 
 Classes are named for their effect, for example:
 
-- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`, `hide-unpulled`
-- Headings: `size-phi-n` (golden-section sizes, up to `size-phi-5`), `ratio-a-b` (margins below : above, in half baselines), `rule-left`
-- Colour: `fill-red`, `fill-ink`, `fill-tint`, `fill-hatch`, `fill-hatch-red`, `fill-hatch-tint`, `hatch-falling`, `text-up`, `text-down`, `composition` (`composition-word`, `composition-bar`, `composition-rule`, `composition-text`, `composition-steep`, `turn-1-2`, `hang-round`), `overprint`, `text-light`, `text-ink`, `text-red`, `text-grey`, `text-mid`, `outline-ink`, `outline-red`, `outline-tint`
+- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`, `hide-unpulled`; in a style: `--depth` (a colour area's depth in lines), `--lines-above` (a heading or hanging figure set lower by whole lines)
+- Headings: `size-phi-n` (golden-section sizes, up to `size-phi-6`), `ratio-a-b` (margins below : above, in half baselines), `rule-left`
+- Colour: `fill-red`, `fill-ink`, `fill-tint`, `fill-gutter`, `fill-hatch`, `fill-hatch-red`, `fill-hatch-tint`, `hatch-falling`, `text-up`, `text-down`, `composition` (`composition-word`, `composition-bar`, `composition-rule`, `composition-text`, `composition-steep`, `turn-1-2`, `turn-rise-1-2`, `hang-round`; in a style: `--x`, `--y`, `--w`, `--h`, and `--shift-x`, `--shift-w` for a visual shift off the grid), `overprint`, `text-light`, `text-ink`, `text-right`, `weight-semibold`, `text-red`, `text-grey`, `text-mid`, `outline-ink`, `outline-red`, `outline-tint`
 - Elements: `paragraph`, `heading`, `quote`, `figure`, `float-left`, `box` (`outline-narrow`), `note`, `rule`, `list`, `table` (`row-gap-1`, `row-gap-2`), `code`, `icon` (`icon-arrow-right`, `icon-arrow-down`, `icon-plus`), `dropcap`, `badge`, `field`, `fields`, `choice`, `choices`, `button`, `buttons`
 
 ## Browsers

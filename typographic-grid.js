@@ -1,10 +1,15 @@
 // What CSS can't know or hand over, taken from the layout: how many lines each heading wraps to,
 // and for figures beside a text block, its heading's margin above, cap height and baseline position.
 
+// the text's own lines, not the boxes of elements in it: Firefox gives a line break (<br>) a box of its own, off the line's top
 function countLines(heading) {
   const range = document.createRange();
-  range.selectNodeContents(heading);
-  const lineTops = new Set([...range.getClientRects()].filter((rect) => rect.height > 0).map((rect) => Math.round(rect.top)));
+  const lineTops = new Set();
+  const text = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+  while (text.nextNode()) {
+    range.selectNodeContents(text.currentNode);
+    for (const rect of range.getClientRects()) if (rect.height > 0) lineTops.add(Math.round(rect.top));
+  }
   heading.style.setProperty("--lines", lineTops.size);
 }
 

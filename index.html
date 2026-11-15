@@ -46,6 +46,7 @@
     <li><a href="#badges">The badges</a></li>
     <li><a href="#forms">The form elements</a></li>
     <li><a href="#effects">The effects</a></li>
+    <li><a href="#full-width">A full-width example</a></li>
     <li><a href="#narrow-screens">The narrow screens</a></li>
   </ol>
 
@@ -621,58 +622,86 @@ the grid arrived. Could you send the second volume as well?</textarea>
     </figure>
   </div>
 
-  <p class="paragraph">A colour area can also hold a grid that is turned, as on a concert poster by Josef Müller-Brockmann from 1955. The turned grid goes one line down for each three units to the right, so it goes through the crossings of the page grid. Each word, bar and rule starts at such a crossing. The length of a bar is a number of steps of three units and one line, so its end is on a crossing too. Some bars go across the turned grid, at a right angle. The start of each part is a number of units from the left edge of the area and a number of grid lines below its first grid line. The length of a bar is a number of steps, and its thickness is a number of spacings between the lines of the turned grid.</p>
-  <!-- each element of the turned grid, set in its style, in grid units:
-       --x       units from the left edge of the area (the text size, 16px); a unit crossing, not a column edge
-       --y       grid lines below the first grid line of the area (24px each; the first is the cap height below the top edge)
-       --length  steps of the turned grid, each 3 units across and 1 line down (53.7px), so a bar ends on a crossing too
-       --thick   spacings of the turned grid's lines, a unit times the sine of the turn (7.2px)
-       composition-steep turns an element at a right angle to the turned grid, rising to the right; turn-1-2 turns the grid -->
-  <figure class="figure col-span-7 aspect-3-4 fill-ink">
+  <p class="paragraph">A colour area can also hold a grid that is turned, as on a concert poster by Josef Müller-Brockmann from 1955. The turned grid is the grid of the page: columns of three units, gutters of two units, and a line between two grid lines. It turns around the first grid line at the left edge of the area, so that it goes one line down for each three units to the right. Each word, bar and rule starts at a crossing of the turned grid, a number of units along it and a number of grid lines across it. The words stand on its grid lines, and the bars fill its columns or go along its lines. Thus each part is on the turned columns.</p>
+  <!-- each part, set in its style, on the composition's grid (the page's grid again, turned with turn-1-2):
+       --x  units from the left edge (a column's left edge every 5, its right edge 3 later)
+       --y  grid lines below the first grid line (the first is the cap height below the top edge)
+       --w  a bar's width or a rule's length, in units      --h  a bar's depth, or a steep rule's length, in lines
+       composition-steep: a rule down the columns, on a column edge -->
+  <figure class="figure col-span-12 fill-ink" style="--depth: 28">
     <div class="figure-image composition turn-1-2">
-      <span class="composition-word size-phi-3 hang-round" style="--x: 1; --y: 2">column</span>
-      <span class="composition-rule" style="--x: 10; --y: 1; --length: 6"></span>
-      <span class="composition-bar" style="--x: 12; --y: 6; --length: 5; --thick: 4"></span>
-      <span class="composition-rule" style="--x: 3; --y: 9; --length: 5"></span>
-      <span class="composition-word size-phi-3" style="--x: 2; --y: 15">unit</span>
-      <span class="composition-word size-phi-3" style="--x: 21; --y: 17">line</span>
-      <span class="composition-rule" style="--x: 15; --y: 16; --length: 6"></span>
-      <span class="composition-bar composition-steep" style="--x: 1; --y: 30; --length: 12; --thick: 6"></span>
-      <span class="composition-bar composition-steep" style="--x: 9; --y: 30; --length: 8; --thick: 2"></span>
-      <span class="composition-bar composition-steep" style="--x: 26; --y: 15; --length: 4; --thick: 2"></span>
-      <span class="composition-bar composition-steep" style="--x: 24; --y: 7; --length: 5; --thick: 5"></span>
-      <!-- the broken rule through the middle of the i of "unit": the steep line through crossings nearest to the i's centre -->
-      <span class="composition-rule composition-steep" style="--x: -1; --y: 27; --length: 5"></span>
-      <!-- starts where the line of the rule under "line" crosses it: 6.53 steps up the steep line, 8.8 units and 13.93 lines -->
-      <span class="composition-rule composition-steep" style="--x: 8.8; --y: 13.933; --length: 3.467"></span>
-      <span class="composition-rule composition-steep" style="--x: 21; --y: 11; --length: 6"></span>
-      <p class="composition-text" style="--x: 19; --y: 22">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
+      <span class="composition-rule" style="--x: 20; --y: 0; --w: 25"></span>
+      <span class="composition-word size-phi-4 hang-round" style="--x: 5; --y: 5">column</span>
+      <span class="composition-bar" style="--x: 35; --y: -25; --w: 8; --h: 65"></span>
+      <span class="composition-bar" style="--x: 28; --y: 6; --w: 20; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 55; --y: -25; --w: 3; --h: 31"></span>
+      <!-- the rule through the middle of the i of "unit", with gaps for "column" and "unit": from the column edge at 25 units
+           shifted off the grid to the i's middle, measured at 23.66 units (Chromium 23.64, Firefox 23.69) -->
+      <span class="composition-rule composition-steep" style="--x: 25; --y: -20; --h: 21; --shift-x: -1.35"></span>
+      <span class="composition-rule composition-steep" style="--x: 25; --y: 6; --h: 4; --shift-x: -1.35"></span>
+      <span class="composition-word size-phi-4" style="--x: 15; --y: 14">unit</span>
+      <span class="composition-rule composition-steep" style="--x: 25; --y: 15; --h: 25; --shift-x: -1.35"></span>
+      <span class="composition-bar" style="--x: 15; --y: 17; --w: 3; --h: 28"></span>
+      <span class="composition-word size-phi-4" style="--x: 50; --y: 10">line</span>
+      <span class="composition-rule" style="--x: 45; --y: 11; --w: 30"></span>
+      <p class="composition-text" style="--x: 45; --y: -5">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
     </div>
   </figure>
   <p class="paragraph">Two colours can overprint, as two inks on a printed poster. Where a red part is on black, the black shows through. Where it is on the grey, it stays red. In the area below, the red bar goes across the black word, and the word stays easy to read on it. The red word goes across a grey bar, and its letters are dark red there: the two colours together.</p>
-  <figure class="figure col-span-7 aspect-3-2 fill-tint">
-    <div class="figure-image composition turn-1-2 text-ink">
-      <span class="composition-word size-phi-3 hang-round" style="--x: 1; --y: 4">overprint</span>
-      <!-- the red bar ends with the t: its right edge on the steep line through crossings nearest to the end of the t;
-           the grey bar over "k": both edges on the steep lines nearest to the letter's ink
-           (along a word those lines are 3.6px apart, half a thickness step: so a steep bar may be a half step thick) -->
-      <span class="composition-bar composition-steep text-red overprint" style="--x: 8; --y: 15; --length: 6; --thick: 9"></span>
-      <span class="composition-bar composition-steep text-mid" style="--x: 18; --y: 15; --length: 7; --thick: 5"></span>
-      <span class="composition-word size-phi-3 text-red overprint" style="--x: 20; --y: 7">ink</span>
-      <span class="composition-rule" style="--x: 0; --y: 8; --length: 3"></span>
+  <figure class="figure col-span-12 fill-tint" style="--depth: 16">
+    <div class="figure-image composition turn-rise-1-2 text-ink">
+      <span class="composition-word size-phi-4 hang-round" style="--x: -5; --y: 13">overprint</span>
+      <span class="composition-rule" style="--x: -5; --y: 15; --w: 20"></span>
+      <!-- the red bar over "nt", the grey bar over "k": shifted off the grid to the letters' ink, measured
+           ("nt" 17.4 to 23.5 units, "k" 40.8 to 44.35, the same in Chromium and Firefox to 0.07) -->
+      <span class="composition-bar text-red overprint" style="--x: 17; --y: -30; --w: 6; --h: 70; --shift-x: 0.4; --shift-w: 0.1"></span>
+      <span class="composition-bar text-mid" style="--x: 41; --y: -30; --w: 4; --h: 70; --shift-x: -0.2; --shift-w: -0.45"></span>
+      <span class="composition-word size-phi-4 text-red overprint" style="--x: 35; --y: 22">ink</span>
     </div>
   </figure>
   <p class="paragraph">A colour area can also hold words at a very large size, as on the poster “der Film” by Josef Müller-Brockmann from 1960. There the grid is not turned. The first word is grey, and the left edge of the area cuts it. The second word has the colour of the page and covers the end of the first word. The small red text starts at the same column edge as the second word, and each of its baselines is on a grid line.</p>
-  <figure class="figure col-span-7 aspect-3-4 fill-ink">
+  <figure class="figure col-span-12 fill-ink" style="--depth: 32">
     <div class="figure-image composition">
-      <p class="composition-text text-red" style="--x: 10; --y: 2">Typographic<br>Grid Effects</p>
-      <span class="composition-word size-phi-5 text-mid" style="--x: -2; --y: 22">the</span>
-      <span class="composition-word size-phi-5 hang-round" style="--x: 10; --y: 22">Grid</span>
-      <p class="composition-text text-red" style="--x: 10; --y: 25">Unit 16, baseline grid 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
+      <p class="composition-text weight-semibold text-red" style="--heading-ratio: 1.25; --x: 15; --y: 2.5">Typographic<br>Grid Effects</p>
+      <!-- 372px (23.25 units): the size at which the ink of "Grid" ends on the area's right edge, the right edge of column 12 -->
+      <span class="composition-word text-mid" style="--heading-ratio: 23.25; --x: -16; --y: 24">the</span>
+      <span class="composition-word hang-round" style="--heading-ratio: 23.25; --x: 15; --y: 24">Grid</span>
+      <p class="composition-text weight-semibold text-red" style="--heading-ratio: 1.25; --x: 15; --y: 27">Unit 16, baseline grid 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
     </div>
   </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens">Each part of the page is on one grid: the narrow screens</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="full-width">Each part of the page is on one grid: a full-width example</h2>
+  <p class="paragraph">The grid of the page can also hold a layout as on a poster, over the full width of the twelve columns. The example below follows a concert poster by Josef Müller-Brockmann from 1957. The red areas are colour areas, a number of columns wide and a number of lines deep, and some move down by whole lines. Each area also fills the gutter after it, so that only a hairline is between two areas. The names are on the red area, in the colour of the page. The small names are aligned on the right, against the gutter before the large names, and each of them is on a baseline of a large name. The details below start at the same column edge as the large names.</p>
+  <!-- the colour areas hang in the row after the paragraph above: each its columns, --lines-above lower, --depth lines deep -->
+  <!-- the poster's paper: all twelve columns, from the block's top edge to the lowest bar's end, behind the other areas -->
+  <figure class="figure figure-side figure-hanging col-start-1 col-span-12 fill-tint" style="--depth: 32">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-1 col-span-7 fill-red fill-gutter" style="--depth: 17">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-8 col-span-2 fill-red fill-gutter" style="--lines-above: 7; --depth: 18">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-10 col-span-1 fill-red fill-gutter" style="--lines-above: 12; --depth: 20">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-11 col-span-1 fill-red fill-gutter" style="--lines-above: 4; --depth: 18">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-12 col-span-1 fill-red" style="--depth: 18">
+    <div class="figure-image"></div>
+  </figure>
+  <!-- the names: two headings side by side, both a line and a half apart; the same rule puts their first baselines on one line -->
+  <p class="heading size-phi-0 leading-2 ratio-3-5 col-start-1 col-span-3 text-right text-light" style="--lines-above: 6">karl<br>josef<br>emil<br>armin<br>max</p>
+  <p class="heading size-phi-1 ratio-3-5 col-start-4 col-span-4 text-light" style="--lines-above: 6">gerstner<br>müller-brockmann<br>ruder<br>hofmann<br>bill<br>grid systems<br>in graphic design</p>
+  <p class="paragraph col-start-4 col-span-4 weight-semibold">swiss typography<br>1950 to 1970</p>
+  <p class="paragraph col-start-1 col-span-3 text-right weight-semibold">4. poster</p>
+  <p class="paragraph col-start-4 col-span-4 weight-semibold">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>baseline grid 24 pixels<br>twelve columns<br>type area 928 pixels</p>
+  <p class="paragraph col-start-4 col-span-4 weight-semibold">made with css<br>text-box, round, mod<br>no pictures</p>
+
+  <!-- set lower by the lines the poster's paper hangs past its last paragraph -->
+  <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens" style="--lines-above: 2">Each part of the page is on one grid: the narrow screens</h2>
   <p class="paragraph">The other sections of this page describe the grid on a wide screen, with twelve columns. On a narrower screen, the grid has fewer columns. The columns and the gutters keep their widths, and only the number of columns changes. Thus each baseline stays on a grid line.</p>
   <table class="table">
     <colgroup>
@@ -695,6 +724,9 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph">A pull quote moves into the page margin only when the page margin is wide enough for its columns and one gutter. When the page margin is narrower, the quote moves by fewer columns, or it stays in the text width. Text that runs up or down in the page margin then goes above its paragraph, in the first column, or a class hides it.</p>
   <p class="paragraph">With five columns or fewer, a picture inside a paragraph is not wider than two columns, so the text beside it has at least half of the columns. The columns of a table are not on the columns of the page. Their widths come from their content, and one unit is between two columns. Fields and buttons that are side by side go to the next row when they do not fit. A box with no field and no button has a padding of two units at its left and at its right. In a box, the marks of a list go into the padding, as they go into the page margin outside a box. A colour area with words, bars and rules becomes smaller as a whole. Its grid, its words and its small text get smaller with the width of the area, so that the layout and all of the text stay the same. A class can show a box as a dashed outline, with no background. The box with the table has this class, with a black outline.</p>
 </main>
+
+<!-- shows the columns and the grid lines over the page; pure CSS, read with :has() -->
+<label class="grid-toggle"><input class="choice-input" type="checkbox">Grid</label>
 
 <script src="typographic-grid.js"></script>
 </body>
