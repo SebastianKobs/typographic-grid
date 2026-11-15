@@ -172,6 +172,45 @@
   <p class="paragraph">A pull quote can also be moved out of the text's columns, by whole columns to the left or to the right. It keeps its width and the steps of the column grid, but its edges no longer line up with the paragraphs around it, so it stands apart from them.</p>
   <blockquote class="quote size-phi-1 pull-left-1 first-letter-bold">A quote moved one column to the left stands out into the margin of the page.</blockquote>
   <p class="paragraph">Here the text starts in the first column, so the quote moves past the edge of the type area into the margin of the page, by one step of a column and its gutter, as if the grid ran on beyond its edge. Moved to the right, it would go into the columns beside the text. Either way the white above and below the quote stays the same as for a quote within the text's columns.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, the form elements as well</h2>
+  <p class="paragraph">A text field is a line of text in a field. Its label is a line of text above it, and the text typed into the field stands on the full line two lines below the label's, so a form keeps the lines of the page and of every column beside it.</p>
+  <div class="field">
+    <label class="field-label" for="field-name">Name</label>
+    <input class="field-input" id="field-name" type="text" value="Karl Gerstner">
+  </div>
+  <div class="field">
+    <label class="field-label" for="field-email">Email</label>
+    <p class="field-description" id="field-email-description">Only used to reply to you.</p>
+    <input class="field-input" id="field-email" type="email" placeholder="name@example.com" aria-describedby="field-email-description">
+  </div>
+  <p class="paragraph">Between two fields a paragraph is just a paragraph. It starts two lines below the field's edge, and the next label follows one empty line below its last baseline, as any paragraph would.</p>
+  <div class="field">
+    <label class="field-label" for="field-street">Street</label>
+    <p class="field-description" id="field-street-description">The street and the house number, as they are written on the door; a second address line, such as a floor or a company, can follow after a comma.</p>
+    <input class="field-input" id="field-street" type="text" placeholder="Spalenberg 20" aria-describedby="field-street-description">
+  </div>
+  <div class="field">
+    <label class="field-label" for="field-postcode">Postcode</label>
+    <input class="field-input" id="field-postcode" type="text" value="4051">
+  </div>
+  <div class="field">
+    <label class="field-label" for="field-city">City</label>
+    <input class="field-input" id="field-city" type="text" value="Basel">
+  </div>
+  <p class="paragraph">The field is two and a half lines deep: its top edge a line and a half above the baseline of its text, its bottom edge a line below, so the capitals sit in its middle. The label stands half a line above the field, closer to it than to anything else. A description of what to enter goes on the lines below the label, set as a caption is, and the field follows its last line the same half line below. An empty field can show an example of what goes in it, set as the description is, until something is typed. Its width is a run of columns, its text set in by one unit, as in a box. Below it the page keeps the white it keeps below a box, two lines from the field's edge to the next baseline.</p>
+  <div class="box">
+    <h2 class="heading size-phi-1 ratio-3-5">Your address</h2>
+    <div class="field">
+      <label class="field-label" for="box-name">Name</label>
+      <input class="field-input" id="box-name" type="text" value="Karl Gerstner">
+    </div>
+    <div class="field">
+      <label class="field-label" for="box-city">City</label>
+      <input class="field-input" id="box-city" type="text" value="Basel">
+    </div>
+  </div>
+  <p class="paragraph">In a box the fields take the colour of the page, so they show as openings in the grey. A box that holds a form sets its contents in further than a box of text, by a column on the right and a unit less on the left: a field has a hard edge, and a narrower band of grey beside it would read as a thin frame. Below its last field the box takes two lines of grey: never less white than above its first label, and its edge on a full line.</p>
 </main>
 
 <script src="typographic-grid.js"></script>

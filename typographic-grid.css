@@ -281,6 +281,69 @@ sup {
   line-height: 0;
 }
 
+/* A text field and its label: the label a line of text, the field below it a line of text in a field.
+   The field's text stands on the full line two lines below the label's, so it's in register with the text
+   in every other column. The field is two and a half lines deep, its top edge a line and a half above
+   that baseline, its bottom edge a line below: the depth that keeps both edges on the grid and the capitals
+   in its middle (two lines would set them 6px off it). */
+.field {
+  grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
+  align-self: start;
+  /* as after a box: two lines from the field's bottom edge, on a full line, to the next baseline */
+  margin: 0 0 var(--paragraph-white);
+}
+.field-label {
+  display: block;
+  font-weight: 700;
+  text-box: trim-both cap alphabetic;
+  /* from the label's baseline to the field's top edge: half a line */
+  margin-bottom: var(--half);
+}
+/* A description: what to enter, on the lines below the label, set apart as a caption is.
+   Label and description read as one block of text; the field follows its last baseline as it follows the label's. */
+.field-label:has(+ .field-description) {
+  /* the description's first baseline a line below the label's */
+  margin-bottom: calc(var(--line) - var(--body-cap));
+}
+.field-description {
+  text-box: trim-both cap alphabetic;
+  font-style: italic;
+  font-weight: var(--caption-weight);
+  margin: 0 0 var(--half);
+}
+.field-input {
+  display: block;
+  width: 100%;
+  height: calc(5 * var(--half));
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  /* the text set in by a unit, as in a box; one line of text, centred in the field by the browser */
+  padding: 0 var(--unit);
+  font: inherit;
+  line-height: var(--line);
+  color: inherit;
+  background: var(--color-tint);
+}
+/* an example in an empty field, set as the description is, in the ink lightened to a grey that still reads on the tint */
+.field-input::placeholder {
+  font-style: italic;
+  font-weight: var(--caption-weight);
+  color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+  opacity: 1;
+}
+/* focus: an outline in the red of the rules, drawn inside the field so it stays within its columns */
+.field-input:focus-visible {
+  --focus-thickness: calc(var(--unit) / 8);
+  outline: var(--focus-thickness) solid var(--color-rule);
+  outline-offset: calc(-1 * var(--focus-thickness));
+}
+/* in a box, whose field is the same tint, or red or black: the colour of the page, an opening in the field */
+.box .field-input {
+  color: var(--color-ink);
+  background: var(--color-ground);
+}
+
 /* A picture inside a paragraph, the text running round it. The same box as a figure: from the capitals
    of the line it starts on to a baseline, whole lines so the text beside it ends on its bottom;
    its col-span reaching one unit into the gutter, so one unit of white beside it and the text stays on its column line. */
@@ -373,6 +436,17 @@ sup {
 .box:has(> .heading:first-child) {
   --box-inner-top: calc(2 * var(--line));
   --box-inner-bottom: var(--line);
+}
+/* holding a form: set in by a column, not a unit; a field has a hard edge, and a narrow band of the box's field
+   beside it reads as a thin frame against the lines of white above and below */
+.box:has(.field) {
+  /* a unit less on the left */
+  padding-inline: calc(var(--column) - var(--unit)) var(--column);
+}
+/* ending on a text field: its bottom edge is on a full line, so the box's field below it is whole lines;
+   two, as one would leave less white below the field than above the first label (2 lines − its capitals) */
+.box:has(> .field:last-child) {
+  --box-inner-bottom: calc(2 * var(--line));
 }
 /* straight after a heading: the field starts at the half line nearest the capitals the text would have,
    so the white between heading and field is the heading's own white below */
