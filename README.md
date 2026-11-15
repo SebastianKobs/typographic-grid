@@ -43,7 +43,7 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 | `typographic-grid/theme.css` | The colours, as tokens on `:root`. Swap it for another theme. |
 | `typographic-grid/grid.css` | The grid and its elements: the base on `:root`, then each element, then utility classes. |
 | `typographic-grid/fx.css` | Effects laid on the grid, such as the hatch. |
-| `typographic-grid.js` | What CSS cannot know: how many lines a heading wraps to, where a float's line box starts, the width of a drop cap's letter, the half baseline a box may need at its bottom, and where a hatch starts. |
+| `typographic-grid/grid.js` | What CSS cannot know: how many lines a heading wraps to, where a float's line box starts, the width of a drop cap's letter, the half baseline a box may need at its bottom, and where a hatch starts. |
 | `.github/workflows/pages.yml` | Deploys the page to GitHub Pages on each push to `main`, with the commit in the URLs of the stylesheets and the script, so a browser loads a new version at once. |
 
 ## Classes
