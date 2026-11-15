@@ -392,6 +392,44 @@ textarea.field-input {
   margin: calc(var(--body-cap) - var(--half)) 0 var(--paragraph-white);
 }
 .buttons > .button { margin: 0; }
+/* Fields side by side: the row takes a field's place and white, its fields a gutter apart. A field with
+   a col-span class is that many columns wide, the others share the rest. All are as deep as the deepest:
+   the labels share the top line, the fields themselves the bottom, and a description or a message in one
+   only widens the gap above its own field. That gap is whole lines, so every field keeps the grid. */
+.fields {
+  grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
+  align-self: start;
+  display: flex;
+  gap: var(--gutter);
+  margin: 0 0 var(--paragraph-white);
+}
+.fields > .field {
+  flex: 1 1 0;
+  /* as deep as the row, not as its own content, which align-self: start for the page's grid would keep */
+  align-self: stretch;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.fields > .field > .field-input { margin-top: auto; }
+/* Several fields under one label, as one question: a row of them a gutter apart where a single field would be.
+   Each is named for the eye by the label and for a screen reader by its own aria-label. */
+.field-row {
+  display: flex;
+  gap: var(--gutter);
+}
+.field-row > .field-input {
+  flex: 1 1 0;
+  width: auto;
+}
+.field-row > .field-input[class*="col-span-"] {
+  flex: none;
+  width: calc(var(--col-span) * var(--column) + (var(--col-span) - 1) * var(--gutter));
+}
+.fields > .field[class*="col-span-"] {
+  flex: none;
+  width: calc(var(--col-span) * var(--column) + (var(--col-span) - 1) * var(--gutter));
+}
 /* a tint button in a box, whose field is the same tint: the colour of the page, as a text field there */
 .box .button.fill-tint { --fill: var(--color-ground); }
 /* focus: the red outline, outside, a gap of the same width between, so it shows against the red */
@@ -609,7 +647,8 @@ textarea.field-input {
    two, as one would leave less white below the field than above the first label (2 lines − its capitals) */
 .box:has(> .field:last-child),
 .box:has(> .button:last-child),
-.box:has(> .buttons:last-child) {
+.box:has(> .buttons:last-child),
+.box:has(> .fields:last-child) {
   --box-inner-bottom: calc(2 * var(--line));
 }
 /* ending on checkboxes or radio buttons: the last choice is a line of text on a half line, so as below text,
