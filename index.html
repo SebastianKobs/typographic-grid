@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typographic grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="typographic-grid.css">
+</head>
+<body>
+
+<main class="type-area">
+  <div class="grid-overlay" aria-hidden="true" hidden>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+  <p class="heading page-title size-phi-3 ratio-3-5 col-start-1 col-span-12">Every part of the page answers to the same line</p>
+
+  <h1 class="heading size-phi-2 ratio-3-5">Every part of the page answers to the same line</h1>
+  <p class="paragraph">A grid is a promise that every part of the page answers to the same few numbers. The body's size and its leading come first; the line they make sets the step for everything below it, the space between paragraphs, the height of a field, the distance from a heading to its text. The columns follow from the same unit, so a measure of five columns holds a comfortable line of reading, and a picture or a box placed beside the text keeps to the edges the text already draws. Change the first two numbers and the whole page moves with them, without one gap being nudged by eye.</p>
+  <figure class="figure figure-side col-start-8 col-span-3 aspect-3-2">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Three columns, beside the paragraph.</figcaption>
+  </figure>
+  <figure class="figure figure-side col-start-11 col-span-2 aspect-3-2">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Two columns.</figcaption>
+  </figure>
+
+  <figure class="figure col-start-1 col-span-7 aspect-3-2">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">A placeholder field seven columns wide, cut to the height of a capital plus whole lines, the nearest it comes to three by two.</figcaption>
+  </figure>
+  <p class="paragraph">A picture keeps to the same promise. Its width is a run of columns, its top edge stands where the capitals of a line would stand, and its bottom edge rests on a baseline, so the text after it picks up the grid where the picture leaves it.</p>
+  <!-- one column is too narrow for a caption -->
+  <figure class="figure figure-side figure-hanging col-start-8 col-span-1 aspect-1-3">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-9 col-span-2 aspect-1-1">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Square.</figcaption>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-11 col-span-2 aspect-3-4">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Three by four.</figcaption>
+  </figure>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, the heading as well as the text</h2>
+  <p class="paragraph">A grid is a promise that every part of the page answers to the same few numbers. The body's size and its leading come first; the line they make sets the step for everything below it, the space between paragraphs, the height of a field, the distance from a heading to its text. The columns follow from the same unit, so a measure of five columns holds a comfortable line of reading, and a picture or a box placed beside the text keeps to the edges the text already draws. Change the first two numbers and the whole page moves with them, without one gap being nudged by eye.</p>
+  <figure class="figure figure-side figure-hanging col-start-8 col-span-5 aspect-9-8">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">A field five columns wide beside its paragraph, its top edge on the paragraph's capitals.</figcaption>
+  </figure>
+
+  <h3 class="heading size-phi-0 ratio-3-5">Every part of the page answers to the same line, the smallest heading's as well as the paragraph's below it</h3>
+  <p class="paragraph">A grid is a promise that every part of the page answers to the same few numbers. The body's size and its leading come first; the line they make sets the step for everything below it, the space between paragraphs, the height of a field, the distance from a heading to its text. The columns follow from the same unit, so a measure of five columns holds a comfortable line of reading, and a picture or a box placed beside the text keeps to the edges the text already draws. Change the first two numbers and the whole page moves with them, without one gap being nudged by eye.</p>
+  <!-- figures on the left come before their text block: the grid places left to right, so after it they'd drop a row -->
+  <!-- filling the text span, one height: 4 columns at 3:2, 3 columns at 13:12 (288 / 1.5 = 208 / (13/12) units of height) -->
+  <figure class="figure figure-side col-start-1 col-span-4 aspect-3-2">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Four columns, three by two.</figcaption>
+  </figure>
+  <figure class="figure figure-side col-start-5 col-span-3 aspect-13-12">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Three columns, the same height.</figcaption>
+  </figure>
+  <div class="text-block col-start-8 col-span-5">
+    <h3 class="heading size-phi-0 ratio-2-3 rule-left">Pictures on the left, text on the right</h3>
+    <p class="paragraph">Here the page turns the other way: the text takes the side columns and the pictures take the text span. Both start on the heading's capitals, so picture and text begin on one line.</p>
+  </div>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, after the pictures as well</h2>
+  <p class="paragraph"><span class="float-left col-span-2 aspect-1-1"></span>A grid is a promise that every part of the page answers to the same few numbers. The body's size and its leading come first; the line they make sets the step for everything below it, the space between paragraphs, the height of a field, the distance from a heading to its text. The columns follow from the same unit, so a measure of five columns holds a comfortable line of reading, and a picture or a box placed beside the text keeps to the edges the text already draws. Change the first two numbers and the whole page moves with them, without one gap being nudged by eye.</p>
+  <p class="paragraph"><span class="float-left col-span-1 aspect-1-1"></span>A small mark works the same way as a large one. It takes one column and reaches one unit into the gutter, starts on the capitals of the first line and ends on a baseline, so the lines next to it still start on a column line. Nothing about its size is chosen by eye: the column sets its width, the lines set its height, and the text flows on below it once it ends. A mark this small is close to a letter itself, an initial or a sign at the start of a thought.</p>
+  <p class="paragraph"><span class="float-left col-span-2 aspect-3-4"></span>A portrait picture reaches further down than it reaches across. Three by four on two columns is taller than the square above, so more lines run narrow before the text returns to its full measure. The height still comes from the lines: the picture is cut to the nearest whole line, never stretched to fit the text, and the text never waits for it. Where it ends, the next line runs the full width again, and the eye finds the left edge of the column where it found it before. A tall picture asks for a long paragraph; a short one would end beside it and leave the picture hanging.</p>
+  <p class="paragraph"><span class="float-left col-span-3 aspect-13-8"></span>A landscape picture on three columns leaves four for the text beside it. That is a narrow measure, a few words a line, and it works only for a short stretch; thirteen by eight keeps the picture low, so the narrow lines end soon and the paragraph opens up again. The proportion is one of the steps the page already uses, close to the golden section, and the width is the three columns that hold a picture elsewhere on the page, plus the unit it reaches into the gutter. Text and picture keep to the same edges, whichever of them takes more room.</p>
+  <figure class="figure col-start-1 col-span-2 aspect-1-1">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Square.</figcaption>
+  </figure>
+  <figure class="figure col-start-3 col-span-2 aspect-1-1">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Square.</figcaption>
+  </figure>
+  <figure class="figure col-start-5 col-span-3 aspect-13-8">
+    <div class="figure-image"></div>
+    <figcaption class="figure-caption">Thirteen by eight.</figcaption>
+  </figure>
+  <figure class="figure col-start-1 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-2 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-3 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-4 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-5 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-6 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-7 col-span-1 aspect-1-1">
+    <div class="figure-image"></div>
+  </figure>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, the rules as well</h2>
+  <p class="paragraph">A rule divides the text without adding a picture. It belongs to the text it closes, as a heading belongs to the text it opens, so the white around it keeps the same ratio the other way round: two half lines above it, so it is drawn centred on a full line, and the nearest the grid allows to three below it before the next capitals, never less than above. Its length is a run of columns, as a picture's width is; here it is the text's.</p>
+  <hr class="rule">
+  <p class="paragraph">Below the rule the text picks up the line where it left it. The rule is an eighth of a unit thick and drawn in the colour of the text, so it reads as a pause between two thoughts rather than as a heading.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5 rule-left rule-ink">Every part of the page answers to the same line, the colour fields as well</h2>
+  <p class="paragraph">A colour field is a picture with nothing in it. It is the same box: its width a run of columns, its top edge on the capitals of the line beside it, its bottom edge on a baseline, cut to the nearest it comes to its proportion. It carries nothing of its own to read; it gives a part of the page weight, marks where something starts, or holds a row together. Red and black are the two colours the page already uses, the red of the title's rule and the black of the text.</p>
+  <figure class="figure figure-side col-start-8 col-span-3 aspect-1-1 fill-red">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-1 col-span-2 aspect-1-1 fill-ink">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-3 col-span-2 aspect-1-1 fill-red">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure col-start-5 col-span-3 aspect-13-8">
+    <div class="figure-image"></div>
+  </figure>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, the boxes as well</h2>
+  <p class="paragraph">A box sets a piece of text apart from the paragraphs around it: a note, a definition, an example. It is not a second grid inside the first; the field keeps to the column lines like a picture, and the text in it keeps the size and the leading of every other paragraph.</p>
+  <div class="box">
+    <h2 class="heading size-phi-1 ratio-3-5">A box with its own heading</h2>
+    <p class="paragraph">The field spans its columns from column line to column line, and the text inside it is set in by one unit on either side, so it never touches the field's edge. The field starts two lines above the heading's baseline and ends a line below the last; a box of text alone takes two lines above and at least a line and a half below, to the next full line.</p>
+  </div>
+  <p class="paragraph">The white around every box is the same: a line from the text above to the field, two lines from the field to the next baseline. Inside, the text keeps its own spacing and may end on a half line; then the field takes that half line at its bottom, and after the box the page is still on its full lines.</p>
+  <p class="paragraph">Between the boxes the text runs on as usual. Each box keeps its own white above and below, so two boxes never touch, and the paragraphs in between read as the body of the page.</p>
+  <div class="box fill-red text-light">
+    <p class="paragraph">A box in red, without a heading, its text in the colour of the page. Its field starts two lines above its first baseline and ends two lines below its last, so the text keeps the full lines of the page and the white around the box stays the same as around every other box.</p>
+  </div>
+  <p class="paragraph">After the red box the page goes on with plain text, its first baseline on a full line, as after every other element on the page.</p>
+  <div class="box fill-ink text-light">
+    <h3 class="heading size-phi-0 ratio-2-3">A box in black</h3>
+    <p class="paragraph">A box that opens with a smaller heading, its text close below it. The heading's white below is half a line short of a full line, so the text ends on a half line; the field takes that half line at its bottom, and the white around the box stays the same as around every other box.</p>
+  </div>
+  <p class="paragraph">After the black box the text runs on, its first baseline on a full line again. Nothing around the box had to know how it was built: it takes its white from the paragraph above, keeps its own spacing inside, and leaves the paragraph below the same white every box leaves. Text, a box, then text again; the reader takes the box as a pause rather than as a break, and the columns and the lines carry on as they did before it.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, a box right after a heading as well</h2>
+  <div class="box">
+    <p class="paragraph">A box straight after a heading, with no paragraph between them. The field starts at the heading's own white below, as its text would, and the text inside the box keeps its own spacing; after the box the page is back on its full lines.</p>
+  </div>
+  <p class="paragraph">Straight after a heading, the field starts on the half line nearest to where the heading's text would have its capitals, so the white between heading and field is the heading's own white below. The field then starts on a half line, and takes half a line more at its bottom to end on a full one.</p>
+
+  <div class="text-block">
+    <h3 class="heading size-phi-0 ratio-3-5">A box inside a text block</h3>
+    <p class="paragraph">Here the box is not a cell of the page's grid but part of a text block, a heading and its text kept together as one grid item.</p>
+    <div class="box">
+      <p class="paragraph">A box inside the text block, between two of its paragraphs. Its white is padding, so it adds to the paragraph's white above it instead of collapsing into it, and the box spaces itself here exactly as it does in the page's grid.</p>
+    </div>
+    <p class="paragraph">The paragraph after the box, still inside the text block.</p>
+  </div>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, the margin notes as well</h2>
+  <p class="paragraph">A margin note sits in the columns beside the text, where a side picture would. It is set in the size and on the line of the text, so each of its lines stands on a baseline of the paragraph beside it; only its style and weight set it apart, as they set a caption apart. It starts on the paragraph's first line, the way a picture beside the paragraph starts on its capitals.</p>
+  <aside class="note">A note beside the text, three columns wide, its lines on the text's baselines.</aside>
+  <p class="paragraph">The note keeps the white below that a paragraph keeps. When it runs longer than its paragraph, the next one starts an empty line below the note instead, and the page stays on its full lines.</p>
+  <p class="paragraph">A note can also belong to one word further down a paragraph. Then it is written into the paragraph right after that word<sup>1</sup><span class="note"><sup>1</sup> This note belongs to the word before it and stands on that word's line.</span> and floated out into the columns beside the text, where it starts on the line the word is set on. When the text reflows, the word moves to another line and the note moves with it; nothing counts the lines. A note set this way leaves the rows of the grid, so if it runs past the end of its paragraph, the text below does not make room for it.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Every part of the page answers to the same line, the pull quotes as well</h2>
+  <p class="paragraph">A pull quote lifts a few words out of the text and sets them larger, between two paragraphs, to catch the eye of someone leafing through. It is sized and led as a heading is, its lines rounded up to whole half lines, and it takes the text's span.</p>
+  <blockquote class="quote size-phi-1">Every part of the page answers to the same line, the largest words on it as well.</blockquote>
+  <p class="paragraph">Unlike a heading, it belongs to neither the paragraph above it nor the one below, so its white is the same on both sides: the empty line a paragraph keeps, rounded so that the paragraph after the quote lands on a full line again. It is set in italic, in the light weight of the text, so it reads as quoted text and not as a heading over it; its opening mark hangs in the margin. A class can set its first letter in bold, as in the quote moved to the left below.</p>
+  <p class="paragraph">A pull quote can also be moved out of the text's columns, by whole columns to the left or to the right. It keeps its width and the steps of the column grid, but its edges no longer line up with the paragraphs around it, so it stands apart from them.</p>
+  <blockquote class="quote size-phi-1 pull-left-1 first-letter-bold">A quote moved one column to the left stands out into the margin of the page.</blockquote>
+  <p class="paragraph">Here the text starts in the first column, so the quote moves past the edge of the type area into the margin of the page, by one step of a column and its gutter, as if the grid ran on beyond its edge. Moved to the right, it would go into the columns beside the text. Either way the white above and below the quote stays the same as for a quote within the text's columns.</p>
+</main>
+
+<script>
+  // What CSS can't know or hand over, taken from the layout: how many lines each heading wraps to,
+  // and for figures beside a text block, its heading's white above, cap height and baseline position.
+
+  function countLines(heading) {
+    const range = document.createRange();
+    range.selectNodeContents(heading);
+    const lineTops = new Set([...range.getClientRects()].filter((rect) => rect.height > 0).map((rect) => Math.round(rect.top)));
+    heading.style.setProperty("--lines", lineTops.size);
+  }
+
+  // the side figures next to an element in the source, before and after it
+  function figuresBeside(element) {
+    const figures = [];
+    for (let previous = element.previousElementSibling; previous?.matches(".figure-side"); previous = previous.previousElementSibling) figures.push(previous);
+    for (let next = element.nextElementSibling; next?.matches(".figure-side"); next = next.nextElementSibling) figures.push(next);
+    return figures;
+  }
+
+  // Figures beside a text block copy its heading's white above, cap height and baseline position,
+  // so their top edge is the heading's capitals and their height counts from its first baseline.
+  function alignFiguresToHeadings() {
+    for (const block of document.querySelectorAll(".text-block")) {
+      const heading = block.firstElementChild;
+      if (!heading.matches(".heading")) continue;
+      const style = getComputedStyle(heading);
+      const capHeight = parseFloat(style.getPropertyValue("--cap-height"));
+      // where its first baseline falls between two full lines, as laid out: 0 or a half line
+      // (measured: Firefox computes the same value as a registered property as 0)
+      const half = parseFloat(getComputedStyle(block).lineHeight) / 2;
+      const firstBaseline = heading.getBoundingClientRect().top + capHeight - block.parentElement.getBoundingClientRect().top;
+      const shift = (Math.round(firstBaseline / half) % 2) * half;
+      for (const figure of figuresBeside(block)) {
+        figure.style.setProperty("--beside-white", style.marginTop);
+        figure.style.setProperty("--beside-cap", `${capHeight}px`);
+        figure.style.setProperty("--beside-shift", `${shift}px`);
+      }
+    }
+  }
+
+  // drop each float from its line box's top to the capitals of the paragraph's first line
+  function dropFloatsToCapitals() {
+    for (const float of document.querySelectorAll(".float-left")) {
+      const lineBoxTop = float.getBoundingClientRect().top - parseFloat(getComputedStyle(float).top);
+      const capitals = float.parentElement.getBoundingClientRect().top;
+      float.style.setProperty("--float-drop", `${capitals - lineBoxTop}px`);
+    }
+  }
+  dropFloatsToCapitals();
+
+  // a box whose field would end on a half line: the field takes the half line, so the page keeps its full lines;
+  // in page order, each box measured after the ones above it have taken theirs
+  function roundBoxesToFullLines() {
+    for (const box of document.querySelectorAll(".box")) {
+      const half = parseFloat(getComputedStyle(box).lineHeight) / 2;
+      const areaTop = box.closest(".type-area").getBoundingClientRect().top;
+      const tail = parseFloat(box.style.getPropertyValue("--box-tail")) || 0;
+      // the field's bottom without the half line it may already take, from the first full line of the page
+      const bottom = box.getBoundingClientRect().bottom - parseFloat(getComputedStyle(box, "::before").bottom) - tail - areaTop;
+      box.style.setProperty("--box-tail", `${(Math.round(bottom / half) % 2) * half}px`);
+    }
+  }
+  roundBoxesToFullLines();
+
+  // a heading resizes when the font loads or it rewraps: count again, then realign the figures
+  const headingLines = new ResizeObserver((entries) => {
+    for (const entry of entries) countLines(entry.target);
+    alignFiguresToHeadings();
+    dropFloatsToCapitals();
+    roundBoxesToFullLines();
+  });
+  for (const heading of document.querySelectorAll(".heading, .quote")) headingLines.observe(heading);
+</script>
+</body>
+</html>
