@@ -36,7 +36,7 @@
   </figure>
   <figure class="figure figure-side figure-hanging col-start-9 col-span-2 aspect-1-1">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">Square.</figcaption>
+    <figcaption class="figure-caption">This picture is square.</figcaption>
   </figure>
   <figure class="figure figure-side figure-hanging col-start-11 col-span-2 aspect-3-4">
     <div class="figure-image"></div>
@@ -74,15 +74,15 @@
   <p class="paragraph"><span class="float-left col-span-3 aspect-13-8"></span>A landscape picture on three columns leaves four columns for the text beside it. Four columns hold only a few words in each line, so this width is good for a few lines only. At thirteen by eight the picture is low, and the text soon has its full width again. Thirteen to eight is near the golden section, a ratio that the page also uses for the sizes of its headings. The width of the picture is three columns plus one unit of the gutter. The picture and the text use the same edges.</p>
   <figure class="figure col-start-1 col-span-2 aspect-1-1">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">Square.</figcaption>
+    <figcaption class="figure-caption">This picture is square.</figcaption>
   </figure>
   <figure class="figure col-start-3 col-span-2 aspect-1-1">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">Square.</figcaption>
+    <figcaption class="figure-caption">This picture is square.</figcaption>
   </figure>
   <figure class="figure col-start-5 col-span-3 aspect-13-8">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">Thirteen by eight.</figcaption>
+    <figcaption class="figure-caption">This picture is thirteen by eight.</figcaption>
   </figure>
   <figure class="figure col-start-1 col-span-1 aspect-1-1">
     <div class="figure-image"></div>
@@ -178,6 +178,11 @@
   <div class="field">
     <label class="field-label" for="field-name">Name</label>
     <input class="field-input" id="field-name" type="text" value="Karl Gerstner">
+  </div>
+  <div class="field">
+    <label class="field-label" for="field-customer">Customer number</label>
+    <p class="field-description" id="field-customer-description">We fill in this number for you.</p>
+    <input class="field-input" id="field-customer" type="text" value="K-1930-07" disabled aria-describedby="field-customer-description">
   </div>
   <div class="field">
     <label class="field-label" for="field-email">Email</label>
@@ -290,6 +295,7 @@
     <p class="field-label" id="contact-label">Contact me by</p>
     <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="email" checked>Email</label>
     <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="phone">Phone</label>
+    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="fax" disabled>Fax</label>
     <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="post" checked>Post</label>
   </div>
   <div class="field" role="radiogroup" aria-labelledby="newsletter-label">
@@ -318,7 +324,7 @@
     </div>
   </div>
   <div class="field">
-    <label class="field-label" for="field-message">Message</label>
+    <label class="field-label" for="field-message">Message <span class="field-optional">(optional)</span></label>
     <p class="field-description" id="field-message-description">Write anything else that we must know.</p>
     <textarea class="field-input" id="field-message" aria-describedby="field-message-description">Dear Karl,
 the grid arrived. Could you send the second volume as well?</textarea>
@@ -329,7 +335,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
   </div>
   <p class="paragraph">A text field is two and a half lines deep, and the baseline of its text is on a grid line. The label is half a line above the field, and a description or an error message can be between them. Fields can be side by side, with their labels on one baseline and the same edges. A select and a text area use the same rules as a text field.</p>
   <p class="paragraph">Checkboxes and radio buttons are lines of text, one line apart, with a square or a circle in front of each line. Many choices can be in columns of two or more grid columns, row by row, and the choices of one row start on the same baseline. A checked choice is red, as a field in focus is. From label to label, a group of choices has the same lines as a text field.</p>
-  <p class="paragraph">The submit button is red and as deep as a text field, and a second button can be beside it in grey. A field with an error has a red message above it and a red rule to its left.</p>
+  <p class="paragraph">The submit button is red and as deep as a text field, and a second button can be beside it in grey. A field with an error has a red message above it and a red rule to its left. A disabled field, choice or button has no fill, a thin grey outline and grey text. An optional field has the word optional after its label, in the style of a description.</p>
   <div class="box">
     <h2 class="heading size-phi-1 ratio-3-5">Your address</h2>
     <div class="field">
@@ -449,12 +455,12 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="never">Never</label>
     </div>
     <div class="field">
-      <label class="field-label" for="box-message">Message</label>
+      <label class="field-label" for="box-message">Message <span class="field-optional">(optional)</span></label>
       <textarea class="field-input rows-3" id="box-message"></textarea>
     </div>
     <div class="buttons">
       <button class="button" type="submit">Send</button>
-      <button class="button fill-tint text-ink" type="button">Save draft</button>
+      <button class="button fill-tint text-ink" type="button" disabled>Save draft</button>
     </div>
   </div>
   <p class="paragraph">In a box, the fields, the squares and circles of the choices, and the second button have the colour of the page. Thus they show as openings in the grey. The inset of a box is the distance from its edge to its content. A box with a form has a larger inset than a box of text. Its inset is one column on the right and one unit less on the left. A field has a hard edge, and a narrower band of grey beside it looks like a thin frame.</p>

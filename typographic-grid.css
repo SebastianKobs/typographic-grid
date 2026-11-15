@@ -30,6 +30,8 @@
   --color-red: #da291c;
   --color-rule: var(--color-red);
   --color-tint: #e4e4e4;
+  /* the ink faded, for what can't be used: a disabled field, choice or button */
+  --color-disabled: color-mix(in srgb, var(--color-ink) 45%, transparent);
 }
 
 /* registered, so a length set as 1cap is resolved where it's declared and inherited as px */
@@ -554,6 +556,28 @@ textarea.field-input {
   outline-offset: var(--focus-thickness);
 }
 .box .choice-input { --choice-fill: var(--color-ground); }
+
+/* Disabled: no fill, only a thin outline in the faded ink, and the text faded too; unlike a field in use,
+   which is filled, and unlike an error, which is red. The same on the page and in a box. */
+.field-input:disabled,
+.choice-input:disabled,
+.button:disabled,
+.button:disabled:hover {
+  color: var(--color-disabled);
+  background: transparent;
+  outline: 1px solid var(--color-disabled);
+  outline-offset: -1px;
+  cursor: not-allowed;
+}
+.field:has(> .field-input:disabled) > .field-label,
+.choice:has(> .choice-input:disabled) {
+  color: var(--color-disabled);
+}
+/* "optional" after a label, set as a description is: marking the fields that may stay empty, not the others */
+.field-optional {
+  font-style: italic;
+  font-weight: var(--caption-weight);
+}
 
 /* A picture inside a paragraph, the text running round it. The same box as a figure: from the capitals
    of the line it starts on to a baseline, whole lines so the text beside it ends on its bottom;
