@@ -37,9 +37,9 @@ function alignFiguresToHeadings() {
   }
 }
 
-// drop each float from its line box's top to the capitals of the paragraph's first line
+// drop each float (a picture or a drop cap) from its line box's top to the capitals of the paragraph's first line
 function dropFloatsToCapitals() {
-  for (const float of document.querySelectorAll(".float-left")) {
+  for (const float of document.querySelectorAll(".float-left, .dropcap")) {
     const lineBoxTop = float.getBoundingClientRect().top - parseFloat(getComputedStyle(float).top);
     const capitals = float.parentElement.getBoundingClientRect().top;
     float.style.setProperty("--float-drop", `${capitals - lineBoxTop}px`);
@@ -61,11 +61,24 @@ function roundBoxesToFullLines() {
 }
 roundBoxesToFullLines();
 
+// a drop cap's letter is as wide as the font makes it: the text beside it moves to the next half unit (an en space),
+// at least half a unit after the letter
+function alignDropcapsToUnits() {
+  for (const dropcap of document.querySelectorAll(".dropcap")) {
+    const enSpace = parseFloat(getComputedStyle(dropcap.parentElement).fontSize) / 2;
+    const width = dropcap.getBoundingClientRect().width;
+    const textStart = Math.ceil((width + enSpace) / enSpace) * enSpace;
+    dropcap.style.setProperty("--dropcap-gap", `${textStart - width}px`);
+  }
+}
+alignDropcapsToUnits();
+
 // a heading resizes when the font loads or it rewraps: count again, then realign the figures
 const headingLines = new ResizeObserver((entries) => {
   for (const entry of entries) countLines(entry.target);
   alignFiguresToHeadings();
   dropFloatsToCapitals();
   roundBoxesToFullLines();
+  alignDropcapsToUnits();
 });
 for (const heading of document.querySelectorAll(".heading, .quote")) headingLines.observe(heading);

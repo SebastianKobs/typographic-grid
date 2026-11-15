@@ -242,6 +242,29 @@ code {
 .icon-arrow-down { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M8 1V14M3 9l5 5 5-5'/%3E%3C/svg%3E"); }
 .icon-plus { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M8 1V15M1 8H15'/%3E%3C/svg%3E"); }
 
+/* A drop cap: a large first letter, three lines deep: its capitals on the first line's capitals, its baseline on
+   the third line's baseline. Its size set by its cap height, not its em: two lines and the text's cap height.
+   An element, not ::first-letter: Chromium and Firefox size and place a floated first letter differently.
+   Trimmed as a paragraph is, so its box runs from its capitals to its baseline. */
+.dropcap {
+  --dropcap-cap: calc(2 * var(--line) + var(--body-cap));
+  float: left;
+  font-size: var(--dropcap-cap);
+  font-size-adjust: cap-height 1;
+  font-weight: 600;
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+  /* a float starts at its line box's top, above the capitals the paragraph is trimmed to: moved down by the script's
+     measure, as a picture inside a paragraph is; its margin ends half a baseline short of the next line box,
+     so the third line runs beside it and the fourth runs full */
+  position: relative;
+  top: var(--float-drop, 0px);
+  margin-bottom: calc(var(--float-drop, 0px) - var(--half));
+  /* the text beside it on the next en space step (half the unit), at least an en space after the letter: the letter's
+     width is the font's, so the script measures it and hands over the rest */
+  margin-right: var(--dropcap-gap, calc(var(--unit) / 2));
+}
+
 /* Size rounded to whole px; line height rounded up to whole steps (lines or half baselines),
    so every line of a multi-line heading lands n steps below the last. */
 .heading,
