@@ -86,6 +86,19 @@ function alignHatchesToGrid() {
 }
 alignHatchesToGrid();
 
+// text turned a quarter (fx.css): its box the body's cap height and whole lines long, as a picture is deep
+function roundTurnedTextToLines() {
+  for (const turned of document.querySelectorAll(".text-up, .text-down")) {
+    const area = getComputedStyle(turned.closest(".type-area"));
+    const line = parseFloat(area.lineHeight);
+    const cap = parseFloat(area.getPropertyValue("--body-cap"));
+    turned.style.removeProperty("--turned-length");
+    const length = turned.getBoundingClientRect().height;
+    turned.style.setProperty("--turned-length", `${cap + Math.ceil((length - cap) / line) * line}px`);
+  }
+}
+roundTurnedTextToLines();
+
 // a heading resizes when the font loads or it rewraps, the type area when the grid steps to fewer columns:
 // count again, then realign the figures
 const headingLines = new ResizeObserver((entries) => {
@@ -94,6 +107,7 @@ const headingLines = new ResizeObserver((entries) => {
   dropFloatsToCapitals();
   roundBoxesToFullLines();
   alignDropcapsToUnits();
+  roundTurnedTextToLines();
   alignHatchesToGrid();
 });
 for (const heading of document.querySelectorAll(".heading, .quote")) headingLines.observe(heading);

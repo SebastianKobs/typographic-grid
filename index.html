@@ -45,6 +45,7 @@
     <li><a href="#dropcaps">The drop caps</a></li>
     <li><a href="#badges">The badges</a></li>
     <li><a href="#forms">The form elements</a></li>
+    <li><a href="#effects">The effects</a></li>
     <li><a href="#narrow-screens">The narrow screens</a></li>
   </ol>
 
@@ -148,18 +149,6 @@
   <figure class="figure col-start-5 col-span-3 aspect-13-8">
     <div class="figure-image"></div>
   </figure>
-  <p class="paragraph">A colour area can also have a hatch: thin lines at 45 degrees, in black, red or grey. Along a baseline, the distance between two lines is one unit. The hatch starts at the top-left corner of the type area, not at the corner of the colour area. Thus each line goes through the edge of each column on every second baseline, and the hatches of two colour areas continue each other. A class turns the lines the other way, from the top left to the bottom right, as in the red hatch.</p>
-  <div class="figure-stack figure-hanging col-start-8 col-span-3">
-    <figure class="figure aspect-1-1 fill-hatch">
-      <div class="figure-image"></div>
-    </figure>
-    <figure class="figure aspect-1-1 fill-hatch-red hatch-falling">
-      <div class="figure-image"></div>
-    </figure>
-    <figure class="figure aspect-1-1 fill-hatch-tint">
-      <div class="figure-image"></div>
-    </figure>
-  </div>
 
   <h2 class="heading size-phi-1 ratio-3-5" id="boxes">Each part of the page is on one grid: the boxes</h2>
   <p class="paragraph">A box separates a piece of text from the paragraphs around it, for example a note, a definition or an example. A box does not have its own grid. Its background is a number of columns wide, as a picture is. The text in the box has the same size and line height as each other paragraph.</p>
@@ -613,6 +602,25 @@ the grid arrived. Could you send the second volume as well?</textarea>
   </div>
   <p class="paragraph">In a box, the fields, the squares and circles of the choices, and the second button have the colour of the page. Thus they show as openings in the grey. The padding at the sides is the same as in each other box: one column on the right and one unit less on the left. A field has a hard edge, and a narrower band of grey beside it looks like a thin frame.</p>
   <p class="paragraph">Below its last text field or button, the box adds two lines of grey. Below its last choice, it adds one and a half lines. Thus the padding below is never less than the padding above the first line of the box. The bottom edge of the box stays on a grid line.</p>
+  <h2 class="heading size-phi-1 ratio-3-5" id="effects">Each part of the page is on one grid: the effects</h2>
+  <!-- a hanging stack left of its paragraph comes before it: the grid places left to right, so after it it'd drop a row -->
+  <div class="figure-stack figure-hanging col-start-1 col-span-1 pull-left-1 hide-unpulled">
+    <p class="text-up size-phi-2 text-grey">Each part of the page is on one grid</p>
+  </div>
+  <p class="paragraph">An effect is an ornament on the grid. The effects are in a separate style sheet, and each effect keeps the lines and the columns of the grid. Text can run up, at a right angle to the lines, as on Swiss posters. Its baseline is on the right edge of a column, and its end is at the cap line of the paragraph beside it, as the top edge of a picture. The title of the page runs up in the page margin, beside this paragraph, in grey and in a heavier weight than a heading. Its baseline is one gutter to the left of the type area, as if the grid continued into the page margin. A different class turns the text the other way, so that it runs down. When the page margin is too narrow, a class hides the text.</p>
+  <p class="paragraph">A colour area can also have a hatch: thin lines at 45 degrees, in black, red or grey. Along a baseline, the distance between two lines is one unit. The hatch starts at the top-left corner of the type area, not at the corner of the colour area. Thus each line goes through the edge of each column on every second baseline, and the hatches of two colour areas continue each other. A class turns the lines the other way, from the top left to the bottom right, as in the red hatch.</p>
+  <div class="figure-stack figure-hanging col-start-8 col-span-3">
+    <figure class="figure aspect-1-1 fill-hatch">
+      <div class="figure-image"></div>
+    </figure>
+    <figure class="figure aspect-1-1 fill-hatch-red hatch-falling">
+      <div class="figure-image"></div>
+    </figure>
+    <figure class="figure aspect-1-1 fill-hatch-tint">
+      <div class="figure-image"></div>
+    </figure>
+  </div>
+
   <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens">Each part of the page is on one grid: the narrow screens</h2>
   <p class="paragraph">The other sections of this page describe the grid on a wide screen, with twelve columns. On a narrower screen, the grid has fewer columns. The columns and the gutters keep their widths, and only the number of columns changes. Thus each baseline stays on a grid line.</p>
   <table class="table">
@@ -633,7 +641,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
   </table>
   <p class="paragraph">The values are in pixels, for a text size of 16 pixels. The type area is in the middle of the screen, and the page margins at its left and right get the width that is left. Each page margin is at least one gutter wide. With four columns, it is at least one unit wide.</p>
   <p class="paragraph">With seven columns or fewer, no columns are beside the text. A picture or a note beside a paragraph then goes below the paragraph, with the margin of a paragraph above it. A note that refers to a word goes into the line, directly after that word. It is in parentheses and keeps its italic style.</p>
-  <p class="paragraph">A pull quote moves into the page margin only when the page margin is wide enough for its columns and one gutter. When the page margin is narrower, the quote moves by fewer columns, or it stays in the text width.</p>
+  <p class="paragraph">A pull quote moves into the page margin only when the page margin is wide enough for its columns and one gutter. When the page margin is narrower, the quote moves by fewer columns, or it stays in the text width. Text that runs up or down in the page margin then goes above its paragraph, in the first column, or a class hides it.</p>
   <p class="paragraph">With five columns or fewer, a picture inside a paragraph is not wider than two columns, so the text beside it has at least half of the columns. The columns of a table are not on the columns of the page. Their widths come from their content, and one unit is between two columns. Fields and buttons that are side by side go to the next row when they do not fit. A box with no field and no button has a padding of two units at its left and at its right. In a box, the marks of a list go into the padding, as they go into the page margin outside a box. A class can show a box as a dashed outline, with no background. The box with the table has this class, with a black outline.</p>
 </main>
 

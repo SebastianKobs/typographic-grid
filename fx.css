@@ -25,3 +25,31 @@
     var(--hatch-x, 0px) var(--hatch-y, 0px) / var(--unit) var(--unit);
   --outline-color: var(--hatch-color);
 }
+
+/* Text turned a quarter, on one line, as on the posters' column edges: running up (text-up, read from the bottom, the European
+   spine) or down (text-down, read from the top, the English one). Sized as a heading (a size- class), in a weight between bold
+   and black (750), heavier than a heading's, as it stands alone in the margin; trimmed as a paragraph is, so its box runs
+   from its cap line to its baseline, and its edge toward the text stands on the right edge of its columns: running up,
+   its baseline; running down, its cap line (the baseline then off the column lines, toward the page edge).
+   Its box as long as a picture is deep, the text's cap height and whole lines (the script rounds the text's length up to them),
+   its top edge in a figure-stack beside a paragraph on that paragraph's cap line, as a side figure's; so the paragraph's margin
+   below it ends on the next capitals, where it follows its paragraph on fewer columns. Running up, the text ends at the top
+   edge; running down, it starts there. */
+.text-up,
+.text-down {
+  white-space: nowrap;
+  inline-size: var(--turned-length, max-content);
+  margin: 0 0 var(--paragraph-margin) calc(100% - 1cap);
+  font-size: round(nearest, calc(var(--font-size) * var(--heading-ratio, 1) * 1px), 1px);
+  line-height: 1;
+  font-weight: 750;
+  text-box: trim-both cap alphabetic;
+}
+.text-up {
+  writing-mode: sideways-lr;
+  text-align: end;
+}
+.text-down {
+  writing-mode: sideways-rl;
+  text-align: start;
+}

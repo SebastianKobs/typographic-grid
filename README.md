@@ -48,9 +48,9 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 
 Classes are named for their effect, for example:
 
-- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`
+- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`, `hide-unpulled`
 - Headings: `size-phi-n` (golden-section sizes), `ratio-a-b` (margins below : above, in half baselines), `rule-left`
-- Colour: `fill-red`, `fill-ink`, `fill-tint`, `fill-hatch`, `fill-hatch-red`, `fill-hatch-tint`, `hatch-falling`, `text-light`, `text-ink`, `outline-ink`, `outline-red`, `outline-tint`
+- Colour: `fill-red`, `fill-ink`, `fill-tint`, `fill-hatch`, `fill-hatch-red`, `fill-hatch-tint`, `hatch-falling`, `text-up`, `text-down`, `text-light`, `text-ink`, `text-red`, `text-grey`, `outline-ink`, `outline-red`, `outline-tint`
 - Elements: `paragraph`, `heading`, `quote`, `figure`, `float-left`, `box` (`outline-narrow`), `note`, `rule`, `list`, `table` (`row-gap-1`, `row-gap-2`), `code`, `icon` (`icon-arrow-right`, `icon-arrow-down`, `icon-plus`), `dropcap`, `badge`, `field`, `fields`, `choice`, `choices`, `button`, `buttons`
 
 ## Browsers
