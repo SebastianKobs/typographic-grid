@@ -116,9 +116,8 @@ body {
   padding-right: calc(var(--unit) / 2);
   text-align: right;
 }
-/* in a box the text is set in by only a unit, too little for the marks to hang in: they don't hang there,
-   but start at the text's edge, in line with the heading; the band narrowed to a unit and an en space,
-   room for a number and its full stop */
+/* in a box the marks don't hang: they start at the text's edge, in line with the heading;
+   the band narrowed to a unit and an en space, room for a number and its full stop */
 .box .list { --mark-band: calc(3 * var(--unit) / 2); padding-left: var(--mark-band); }
 .box .list > li::before { text-align: left; }
 /* an en dash, the Swiss mark for an item */
@@ -405,7 +404,7 @@ sup {
   margin: 0;
   border: 0;
   border-radius: 0;
-  /* the text set in by a unit, as in a box; one line of text, centred in the field by the browser */
+  /* the text set in by a unit; one line of text, centred in the field by the browser */
   padding: 0 var(--unit);
   font: inherit;
   line-height: var(--line);
@@ -725,8 +724,8 @@ textarea.field-input {
   background: var(--rule-color, var(--color-rule));
 }
 
-/* A box: text set on a field. The field keeps to the column lines of its span, the text inside it inset one unit
-   on either side. Every box has the same margin outside, whatever it holds: a line from the last baseline above
+/* A box: text set on a field. The field keeps to the column lines of its span, the text inside it padded by a column
+   on the right and a unit less on the left. Every box has the same margin outside, whatever it holds: a line from the last baseline above
    to the field, two lines from the field to the next paragraph's first baseline; straight after a heading, the heading's
    own margin below. Inside, a box that opens with a heading runs from two lines above its baseline (taller capitals reach
    up into them) to a line below the last; a box of text alone from two lines above to at least a line and a half below. The text inside
@@ -755,19 +754,13 @@ textarea.field-input {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: var(--box-pad-top) var(--unit) var(--box-pad-bottom);
+  /* a column on the right, a unit less on the left: a unit alone reads as cramped beside a field's hard edge,
+     a table's rule, or the text's ragged right */
+  padding: var(--box-pad-top) var(--column) var(--box-pad-bottom) calc(var(--column) - var(--unit));
 }
 .box:has(> .heading:first-child) {
   --box-inner-top: calc(2 * var(--line));
   --box-inner-bottom: var(--line);
-}
-/* holding a form: set in by a column, not a unit; a field has a hard edge, and a narrow band of the box's field
-   beside it reads as a thin frame against the lines of padding above and below. A table too: its rule and its columns
-   run to the edges of the text, and a unit beside them reads as cramped */
-.box:has(.field),
-.box:has(> .table) {
-  /* a unit less on the left */
-  padding-inline: calc(var(--column) - var(--unit)) var(--column);
 }
 /* ending on a text field: its bottom edge is on a full line, so the box's field below it is whole lines;
    two, as one would leave less padding below the field than above the first label (2 lines − its capitals) */
@@ -805,7 +798,7 @@ textarea.field-input {
 .box > :last-child { margin-bottom: 0; }
 /* a table's box reaches half a line less half the cap height past its last baseline: taken back, so the box ends on that baseline */
 .box > .table:last-child { margin-bottom: calc(-1 * var(--cell-trim)); }
-/* in a box the text is set in by a unit on either side: the last column takes what is left, two units less */
+/* in a box the text is padded on either side: the last column takes what is left */
 .box .table col:last-child { width: auto; }
 /* A heading as the box's first line: its baseline is the box's first, taller capitals reach up into the field
    (the box's padding keeps this margin from collapsing with anything outside); its margin below keeps its ratio. */

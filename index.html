@@ -130,7 +130,7 @@
   <p class="paragraph">A box separates a piece of text from the paragraphs around it, for example a note, a definition or an example. A box does not have its own grid. Its background is a number of columns wide, as a picture is. The text in the box has the same size and line height as each other paragraph.</p>
   <div class="box">
     <h2 class="heading size-phi-1 ratio-3-5">A box with its own heading</h2>
-    <p class="paragraph">The background of the box goes from one column edge to another. The text in the box is one unit in from each side, so it does not touch the edge. The background starts two lines above the baseline of the heading and stops one line below the last baseline. A box with no heading has two lines above its text. Below its text, it has at least one and a half lines, up to the next grid line.</p>
+    <p class="paragraph">The background of the box goes from one column edge to another. The padding at the sides of the box is one column on the right and one unit less on the left, so the text does not touch the edge. The background starts two lines above the baseline of the heading and stops one line below the last baseline. A box with no heading has two lines above its text. Below its text, it has at least one and a half lines, up to the next grid line.</p>
   </div>
   <p class="paragraph">The margin around each box is the same. The background starts one line below the last baseline of the text above it. The next baseline after the box is two lines below the background. In the box, the text can stop between two grid lines. Then the background adds half a baseline at its bottom, and the text after the box is on the grid lines again.</p>
   <p class="paragraph">Between two boxes, the text continues as usual. Each box has its own margin above and below it, so two boxes do not touch. The paragraphs between the boxes are part of the body text.</p>
@@ -551,7 +551,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <button class="button fill-tint text-ink" type="button" disabled>Save draft</button>
     </div>
   </div>
-  <p class="paragraph">In a box, the fields, the squares and circles of the choices, and the second button have the colour of the page. Thus they show as openings in the grey. The inset of a box is the distance from its edge to its content. A box with a form has a larger inset than a box of text. Its inset is one column on the right and one unit less on the left. A field has a hard edge, and a narrower band of grey beside it looks like a thin frame.</p>
+  <p class="paragraph">In a box, the fields, the squares and circles of the choices, and the second button have the colour of the page. Thus they show as openings in the grey. The padding at the sides is the same as in each other box: one column on the right and one unit less on the left. A field has a hard edge, and a narrower band of grey beside it looks like a thin frame.</p>
   <p class="paragraph">Below its last text field or button, the box adds two lines of grey. Below its last choice, it adds one and a half lines. Thus the padding below is never less than the padding above the first line of the box. The bottom edge of the box stays on a grid line.</p>
 </main>
 
