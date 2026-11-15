@@ -265,6 +265,24 @@ code {
   margin-right: var(--dropcap-gap, calc(var(--unit) / 2));
 }
 
+/* A badge: a short word or a number on a small field in a line of text. The field from a quarter unit above the
+   capitals to a quarter unit below the baseline, trimmed as a paragraph is, so it sits inside the line box
+   and the line keeps its height; its baseline the line's. An en space (half the unit) of padding at its sides.
+   Bold, as a label; figures of one width, so a count keeps its width when a digit changes. */
+.badge {
+  display: inline-block;
+  padding: calc(var(--unit) / 4) calc(var(--unit) / 2);
+  text-box: trim-both cap alphabetic;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: var(--line);
+  background: var(--color-tint);
+}
+/* its own fill- class only: a box's fill is inherited as --fill and would hide the badge on it */
+.badge[class*="fill-"] { background: var(--fill); }
+/* in a box, whose field is the same tint: the colour of the page, as a text field there */
+.box .badge:not([class*="fill-"]) { background: var(--color-ground); }
+
 /* Size rounded to whole px; line height rounded up to whole steps (lines or half baselines),
    so every line of a multi-line heading lands n steps below the last. */
 .heading,
