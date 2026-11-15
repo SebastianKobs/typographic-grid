@@ -648,14 +648,17 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <p class="composition-text" style="--x: 19; --y: 22">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
     </div>
   </figure>
-  <p class="paragraph">Two colours can overprint, as two inks on a printed poster. Where a red part is on black, the black shows through. Where it is on the grey, it stays red. In the area below, the red bar goes across the black word, and the word stays easy to read on it. The red word goes across a black bar, and its letters are black there.</p>
+  <p class="paragraph">Two colours can overprint, as two inks on a printed poster. Where a red part is on black, the black shows through. Where it is on the grey, it stays red. In the area below, the red bar goes across the black word, and the word stays easy to read on it. The red word goes across a grey bar, and its letters are dark red there: the two colours together.</p>
   <figure class="figure col-span-7 aspect-3-2 fill-tint">
     <div class="figure-image composition turn-1-2 text-ink">
       <span class="composition-word size-phi-3" style="--x: 1; --y: 4">overprint</span>
-      <span class="composition-bar composition-steep text-red overprint" style="--x: 8; --y: 15; --length: 6; --thick: 8"></span>
-      <span class="composition-bar composition-steep" style="--x: 19; --y: 14; --length: 6; --thick: 4"></span>
+      <!-- the red bar ends with the t: its right edge on the steep line through crossings nearest to the end of the t;
+           the grey bar over "k": both edges on the steep lines nearest to the letter's ink
+           (along a word those lines are 3.6px apart, half a thickness step: so a steep bar may be a half step thick) -->
+      <span class="composition-bar composition-steep text-red overprint" style="--x: 8; --y: 15; --length: 6; --thick: 9"></span>
+      <span class="composition-bar composition-steep text-mid" style="--x: 18; --y: 15; --length: 7; --thick: 5"></span>
       <span class="composition-word size-phi-3 text-red overprint" style="--x: 20; --y: 7">ink</span>
-      <span class="composition-rule" style="--x: 0; --y: 11; --length: 3"></span>
+      <span class="composition-rule" style="--x: 0; --y: 8; --length: 3"></span>
     </div>
   </figure>
   <p class="paragraph">A colour area can also hold words at a very large size, as on the poster “der Film” by Josef Müller-Brockmann from 1960. There the grid is not turned. The first word is grey, and the left edge of the area cuts it. The second word has the colour of the page and covers the end of the first word. The small red text starts at the same column edge as the second word, and each of its baselines is on a grid line.</p>
@@ -689,7 +692,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph">The values are in pixels, for a text size of 16 pixels. The type area is in the middle of the screen, and the page margins at its left and right get the width that is left. Each page margin is at least one gutter wide. With four columns, it is at least one unit wide.</p>
   <p class="paragraph">With seven columns or fewer, no columns are beside the text. A picture or a note beside a paragraph then goes below the paragraph, with the margin of a paragraph above it. A note that refers to a word goes into the line, directly after that word. It is in parentheses and keeps its italic style.</p>
   <p class="paragraph">A pull quote moves into the page margin only when the page margin is wide enough for its columns and one gutter. When the page margin is narrower, the quote moves by fewer columns, or it stays in the text width. Text that runs up or down in the page margin then goes above its paragraph, in the first column, or a class hides it.</p>
-  <p class="paragraph">With five columns or fewer, a picture inside a paragraph is not wider than two columns, so the text beside it has at least half of the columns. The columns of a table are not on the columns of the page. Their widths come from their content, and one unit is between two columns. Fields and buttons that are side by side go to the next row when they do not fit. A box with no field and no button has a padding of two units at its left and at its right. In a box, the marks of a list go into the padding, as they go into the page margin outside a box. A class can show a box as a dashed outline, with no background. The box with the table has this class, with a black outline.</p>
+  <p class="paragraph">With five columns or fewer, a picture inside a paragraph is not wider than two columns, so the text beside it has at least half of the columns. The columns of a table are not on the columns of the page. Their widths come from their content, and one unit is between two columns. Fields and buttons that are side by side go to the next row when they do not fit. A box with no field and no button has a padding of two units at its left and at its right. In a box, the marks of a list go into the padding, as they go into the page margin outside a box. A colour area with words, bars and rules becomes smaller as a whole. Its grid, its words and its small text get smaller with the width of the area, so that the layout and all of the text stay the same. A class can show a box as a dashed outline, with no background. The box with the table has this class, with a black outline.</p>
 </main>
 
 <script src="typographic-grid.js"></script>

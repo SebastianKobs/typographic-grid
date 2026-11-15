@@ -59,8 +59,16 @@
    On a picture's image area (figure-image composition); what runs past its edge is cut, as by the poster's edge.
    Each part starts on a crossing of the page grid, --x units from the left edge and --y grid lines below the first one
    (the area's top edge is on a cap line, the first grid line its cap height lower). Flat by default, as on Müller-Brockmann's
-   "der Film" poster (1960): a bar's length whole steps of 3 units, its thickness and the small text's leading whole lines. */
+   "der Film" poster (1960): a bar's length whole steps of 3 units, its thickness and the small text's leading whole lines.
+   Laid out 33 units wide (the text's 7 columns); on a narrower area its grid scales with it, as a poster printed smaller:
+   the unit is the area's width over 33, and the line, the cap height, the steps and every size follow. */
+.figure:has(> .composition) { container-type: inline-size; }
 .composition {
+  --unit: calc(100cqw / 33);
+  --line: calc(var(--unit) * var(--line-height));
+  font-size: var(--unit);
+  /* the cap height at the composition's unit, for its first grid line */
+  --body-cap: 1cap;
   position: relative;
   overflow: hidden;
   /* its own stacking context: an overprinting part combines with the area and the parts below it, not the page */
@@ -85,7 +93,7 @@
 .composition > * {
   position: absolute;
   left: calc(var(--x, 0) * var(--unit));
-  top: calc(var(--figure-cap) + var(--y, 0) * var(--line));
+  top: calc(var(--body-cap) + var(--y, 0) * var(--line));
   margin: 0;
   transform-origin: 0 0;
   --angle: var(--turn);
@@ -99,14 +107,15 @@
    as it only touches the line at one point and looks set in otherwise; two and a half times, chosen by eye: twice looked set in, three times hung out too far */
 .composition-word {
   --round-hang: 2.5;
-  font-size: round(nearest, calc(var(--font-size) * var(--heading-ratio, 1) * 1px), 1px);
+  font-size: round(nearest, calc(var(--unit) * var(--heading-ratio, 1)), 1px);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
   transform: rotate(var(--angle)) translateX(calc(-1 * var(--bearing, 0px))) translateY(-100%);
 }
-/* a bar: its edge from the crossing on, --length steps long, --thick spacings thick */
+/* a bar: its edge from the crossing on, --length steps long, --thick spacings thick (a steep bar also half spacings:
+   along the turned lines the steep lines through crossings lie twice as close) */
 .composition-bar {
   width: calc(var(--length, 1) * var(--step));
   height: calc(var(--thick, 3) * var(--across));
@@ -133,3 +142,4 @@
 /* Overprint: a part printed over another as a second ink, not covering it. Multiplied with what is below: on the page's ground
    a red part stays red, on black it is black, so the black shows through it, as where two inks overlap on a poster. */
 .overprint { mix-blend-mode: multiply; }
+
