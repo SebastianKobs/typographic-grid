@@ -1006,6 +1006,11 @@ textarea.field-input {
 /* a vertical rule's colour, red unless it says otherwise */
 .rule-ink { --rule-color: var(--color-ink); }
 
+/* a box's outline colour on narrow screens (outline-narrow), the field's colour unless it says otherwise */
+.outline-ink { --outline-color: var(--color-ink); }
+.outline-red { --outline-color: var(--color-red); }
+.outline-tint { --outline-color: var(--color-tint); }
+
 /* text in the colour of the page, for a box on red or black */
 .text-light { color: var(--color-ground); }
 /* text in ink, for a button on the tint */
@@ -1111,12 +1116,12 @@ textarea.field-input {
      is that wide, so the items' words keep the full measure */
   .box .list { --mark-band: var(--gutter); padding-left: 0; }
   .box .list > li::before { text-align: right; }
-  /* a box with a table: its narrow columns leave the field mostly empty, which reads as too much padding; only its edges,
-     dashed, in the colour the field would have and the thickness of a thin rule (whole pixels, as a border), drawn inside the field,
-     so they keep its grid lines */
-  .box:has(> .table)::before {
+  /* a box drawn as an outline, an outline-narrow class: for a box whose content leaves the field mostly empty (a table's
+     narrow columns), which reads as too much padding. Only its edges, dashed, in the thickness of a thin rule (whole pixels,
+     as a border), drawn inside the field, so they keep its grid lines; in the field's colour unless an outline- class says otherwise */
+  .outline-narrow::before {
     background: none;
-    border: round(nearest, calc(var(--unit) / 8), 1px) dashed var(--fill, var(--color-tint));
+    border: round(nearest, calc(var(--unit) / 8), 1px) dashed var(--outline-color, var(--fill, var(--color-tint)));
   }
 }
 

@@ -29,7 +29,7 @@ The grid steps down by whole columns; columns and gutters keep their widths, the
 
 - From 7 columns down, side figures and margin notes follow their paragraph; a note anchored to a word goes inline, in italic and in parentheses.
 - A pull quote moves into the page margin only as far as its columns and a gutter fit there.
-- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, fields and buttons side by side wrap, and a box with no field or button is padded by two units at the sides, the marks of a list in a box hang in its padding, and a box with a table is a dashed outline instead of a grey field.
+- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, fields and buttons side by side wrap, and a box with no field or button is padded by two units at the sides, the marks of a list in a box hang in its padding, and a box with `outline-narrow` is a dashed outline instead of a field.
 
 The breakpoints are for 16px text: a media query can't read `--font-size`.
 
@@ -48,8 +48,8 @@ Classes are named for their effect, for example:
 
 - Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`
 - Headings: `size-phi-n` (golden-section sizes), `ratio-a-b` (margins below : above, in half baselines), `rule-left`
-- Colour: `fill-red`, `fill-ink`, `fill-tint`, `text-light`, `text-ink`
-- Elements: `paragraph`, `heading`, `quote`, `figure`, `float-left`, `box`, `note`, `rule`, `list`, `table` (`row-gap-1`, `row-gap-2`), `code`, `icon` (`icon-arrow-right`, `icon-arrow-down`, `icon-plus`), `dropcap`, `badge`, `field`, `fields`, `choice`, `choices`, `button`, `buttons`
+- Colour: `fill-red`, `fill-ink`, `fill-tint`, `text-light`, `text-ink`, `outline-ink`, `outline-red`, `outline-tint`
+- Elements: `paragraph`, `heading`, `quote`, `figure`, `float-left`, `box` (`outline-narrow`), `note`, `rule`, `list`, `table` (`row-gap-1`, `row-gap-2`), `code`, `icon` (`icon-arrow-right`, `icon-arrow-down`, `icon-plus`), `dropcap`, `badge`, `field`, `fields`, `choice`, `choices`, `button`, `buttons`
 
 ## Browsers
 
