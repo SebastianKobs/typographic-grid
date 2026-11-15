@@ -1,4 +1,4 @@
-/* Effects: ornaments laid on the grid. Loaded after typographic-grid.css: they use its unit and its fill,
+/* Effects: ornaments laid on the grid. Loaded after grid.css: they use its unit and its fill,
    and its script hands over where they start. Their colours are theme.css's tokens. */
 
 /* A hatch: lines rising at 45° (falling with hatch-falling), a unit apart along a baseline, a thin rule's thickness (an eighth of the unit),

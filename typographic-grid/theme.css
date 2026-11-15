@@ -1,6 +1,6 @@
 /* The page's colours: every colour the stylesheets use is one of these tokens. Swap this file for another theme.
    One colour can't follow: the tick of a checked checkbox is drawn in a data URL, which can't read a token
-   (written out in typographic-grid.css as the ground's #f7f7f7). */
+   (written out in grid.css as the ground's #f7f7f7). */
 :root {
   /* the page, and the text on it */
   --color-ground: #f7f7f7;

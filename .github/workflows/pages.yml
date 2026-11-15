@@ -31,11 +31,11 @@ jobs:
         run: |
           version="${GITHUB_SHA::8}"
           mkdir _site
-          cp index.html *.css *.js _site/
-          # every local stylesheet and script: a relative href or src ending in .css or .js
-          sed -i -E "s#(href|src)=\"([^\":?\#/]+\.(css|js))\"#\1=\"\2?v=$version\"#g" _site/index.html
+          cp -r index.html typographic-grid *.js _site/
+          # every local stylesheet and script: a relative href or src (no scheme) ending in .css or .js
+          sed -i -E "s#(href|src)=\"([^\":?\#]+\.(css|js))\"#\1=\"\2?v=$version\"#g" _site/index.html
           # stop if a file that ships isn't linked with the version: the page would load a stale one, or none
-          for file in *.css *.js; do
+          for file in typographic-grid/*.css *.js; do
             grep -q "=\"$file?v=$version\"" _site/index.html || { echo "not versioned: $file"; exit 1; }
           done
 
