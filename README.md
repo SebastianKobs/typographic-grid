@@ -16,6 +16,23 @@ A web page where every part sits on one grid: text, headings, pictures, rules, b
 
 Change `--font-size` or `--line-height` in `:root` and every distance follows. The page is tuned for 16px / 1.5; at other settings Chromium can drift by a fraction of a pixel.
 
+## Narrow screens
+
+The grid steps down by whole columns; columns and gutters keep their widths, the page margins take what is left.
+
+| Viewport | Columns | Type area |
+|---|---|---|
+| 992px or more | 12 | 928px |
+| 592–991px | 7 | 528px |
+| 432–591px | 5 | 368px |
+| below 432px (down to 320px) | 4 | 288px |
+
+- From 7 columns down, side figures and margin notes follow their paragraph; a note anchored to a word goes inline, in italic and in parentheses.
+- A pull quote moves into the page margin only as far as its columns and a gutter fit there.
+- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, and fields and buttons side by side wrap.
+
+The breakpoints are for 16px text: a media query can't read `--font-size`.
+
 ## Files
 
 | File | Content |
