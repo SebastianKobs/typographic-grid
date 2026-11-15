@@ -92,6 +92,33 @@ body {
   align-self: start;
 }
 
+/* A list: items of text, a mark in front of each, one line apart as the lines of a paragraph are, so every baseline
+   is a grid line; one empty line above and below, as a paragraph keeps. Trimmed as a paragraph is, from the first
+   item's capitals to the last item's last baseline. */
+.list {
+  grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
+  align-self: start;
+  margin: 0 0 var(--paragraph-white);
+  padding: 0;
+  list-style: none;
+  text-box: trim-both cap alphabetic;
+}
+/* the mark hangs in a gutter's width left of the text edge, set right with an en space (half the unit) before the words,
+   so the items' words line up with the paragraphs'; inline in the item's first line, so it sits on its baseline */
+.list > li::before {
+  /* a pseudo-element isn't matched by *: its en space counts inside the gutter's width */
+  box-sizing: border-box;
+  display: inline-block;
+  width: var(--gutter);
+  margin-left: calc(-1 * var(--gutter));
+  padding-right: calc(var(--unit) / 2);
+  text-align: right;
+}
+/* an en dash, the Swiss mark for an item */
+ul.list > li::before { content: "–"; }
+/* figures of one width, so the full stops of 9. and 10. stand in one column; bold, as the labels of a form are */
+ol.list > li::before { content: counter(list-item) "."; font-variant-numeric: tabular-nums; font-weight: 700; }
+
 /* Size rounded to whole px; line height rounded up to whole steps (lines or half lines),
    so every line of a multi-line heading lands n steps below the last. */
 .heading,
