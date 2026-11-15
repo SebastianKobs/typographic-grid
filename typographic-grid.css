@@ -296,8 +296,8 @@ sup {
   display: block;
   font-weight: 700;
   text-box: trim-both cap alphabetic;
-  /* from the label's baseline to the field's top edge: half a line */
-  margin-bottom: var(--half);
+  /* from the label's baseline to the field's top edge: half a line; none above, also as a group's <p> */
+  margin: 0 0 var(--half);
 }
 /* A description: what to enter, on the lines below the label, set apart as a caption is.
    Label and description read as one block of text; the field follows its last baseline as it follows the label's. */
@@ -323,7 +323,69 @@ sup {
   font: inherit;
   line-height: var(--line);
   color: inherit;
-  background: var(--color-tint);
+  background-color: var(--color-tint);
+}
+/* A select: a text field with a mark at its right end, a small triangle pointing down, a half unit wide,
+   its middle on the capitals' middle and a unit in from the edge; the text kept clear of it by three units. */
+select.field-input {
+  --mark-width: calc(var(--unit) / 2);
+  --mark-top: calc(3 * var(--half) - var(--body-cap) / 2 - var(--mark-width) / 4);
+  appearance: none;
+  padding-right: calc(3 * var(--unit));
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-ink) 50%),
+    linear-gradient(135deg, var(--color-ink) 50%, transparent 50%);
+  background-size: calc(var(--mark-width) / 2) calc(var(--mark-width) / 2);
+  background-position:
+    calc(100% - var(--unit) - var(--mark-width) / 2) var(--mark-top),
+    calc(100% - var(--unit)) var(--mark-top);
+  background-repeat: no-repeat;
+}
+/* A text area: a field of several lines, four unless a rows- class says otherwise. Its first baseline a line
+   and a half below its top edge, as a field's; its lines a line apart; its bottom edge a line below the last.
+   The padding puts the first line there: a line box is centred on its baseline less half the capitals,
+   in Inter (ascent less descent is its cap height). Not resizable: a dragged height would leave the grid. */
+textarea.field-input {
+  height: calc((var(--rows, 4) + 1.5) * var(--line));
+  padding-top: calc(var(--line) - var(--body-cap) / 2);
+  padding-bottom: 0;
+  resize: none;
+}
+.rows-2 { --rows: 2; }
+.rows-3 { --rows: 3; }
+.rows-4 { --rows: 4; }
+.rows-6 { --rows: 6; }
+.rows-8 { --rows: 8; }
+/* A submit button: as deep as a text field, its text on a full line a line and a half below its top edge,
+   centred by the browser; two columns wide unless a col-span class says otherwise, as a width, so it holds
+   in a box too. In the red of the page, its text bold and in the page's colour. */
+.button {
+  --button-span: var(--col-span, 2);
+  grid-column: var(--col-start, 1) / span var(--button-span);
+  justify-self: start;
+  align-self: start;
+  display: block;
+  width: calc(var(--button-span) * var(--column) + (var(--button-span) - 1) * var(--gutter));
+  height: calc(5 * var(--half));
+  /* its text a line below where the next text would stand: its top edge half a line above that line,
+     so a line and a half of white below the field above it */
+  margin: calc(var(--body-cap) - var(--half)) 0 var(--paragraph-white);
+  padding: 0 var(--unit);
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  font-weight: 700;
+  line-height: var(--line);
+  color: var(--color-ground);
+  background: var(--color-rule);
+  cursor: pointer;
+}
+.button:hover { background: var(--color-ink); }
+/* focus: the red outline, outside, a gap of the same width between, so it shows against the red */
+.button:focus-visible {
+  --focus-thickness: calc(var(--unit) / 8);
+  outline: var(--focus-thickness) solid var(--color-rule);
+  outline-offset: var(--focus-thickness);
 }
 /* an example in an empty field, set as the description is, in the ink lightened to a grey that still reads on the tint */
 .field-input::placeholder {
@@ -341,8 +403,62 @@ sup {
 /* in a box, whose field is the same tint, or red or black: the colour of the page, an opening in the field */
 .box .field-input {
   color: var(--color-ink);
-  background: var(--color-ground);
+  background-color: var(--color-ground);
 }
+
+/* Checkboxes and radio buttons: each choice a line of text, its box in front of it. The group's label is a
+   field's label; the first choice a line and a half below it, so the choices stand on half lines, a line apart,
+   as the lines of a paragraph; the next label two and a half lines below the last choice, back on a full line.
+   Label to label, the group takes the lines a text field takes. */
+.field:has(> .choice) {
+  margin-bottom: calc(5 * var(--half) - var(--body-cap));
+}
+.field > .choice {
+  display: block;
+  text-box: trim-both cap alphabetic;
+  /* a line below the last choice's baseline */
+  margin-top: calc(var(--line) - var(--body-cap));
+  /* the box and a unit of white in front of the first line; a longer choice runs on under its own text */
+  padding-left: calc(2 * var(--unit));
+  text-indent: calc(-2 * var(--unit));
+}
+/* the first: a line and a half below the label's baseline or the description's */
+.field > :not(.choice) + .choice {
+  margin-top: calc(3 * var(--half) - var(--body-cap));
+}
+.field-label:has(+ .choice),
+.field-description:has(+ .choice) {
+  margin-bottom: 0;
+}
+/* a unit square, centred on the capitals of its line, in the tint of a text field */
+.choice-input {
+  --choice-fill: var(--color-tint);
+  appearance: none;
+  width: var(--unit);
+  height: var(--unit);
+  margin: 0 var(--unit) 0 0;
+  /* its bottom edge raised from the baseline by half the capitals less half the box: its middle the capitals' */
+  vertical-align: calc(var(--body-cap) / 2 - var(--unit) / 2);
+  border: 0;
+  border-radius: 0;
+  background: var(--choice-fill);
+}
+.choice-input[type="radio"] { border-radius: 50%; }
+/* checked: the box in the red of the rules and the focus, with a tick in the colour of the page
+   (#f7f7f7, written out: a data URL can't read a token) */
+.choice-input[type="checkbox"]:checked {
+  background: var(--color-rule) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23f7f7f7' stroke-width='2'/%3E%3C/svg%3E") center / 100% no-repeat;
+}
+/* checked: a red dot, half the circle */
+.choice-input[type="radio"]:checked {
+  background: radial-gradient(circle, var(--color-rule) 0 25%, var(--choice-fill) calc(25% + 0.5px));
+}
+.choice-input:focus-visible {
+  --focus-thickness: calc(var(--unit) / 8);
+  outline: var(--focus-thickness) solid var(--color-rule);
+  outline-offset: var(--focus-thickness);
+}
+.box .choice-input { --choice-fill: var(--color-ground); }
 
 /* A picture inside a paragraph, the text running round it. The same box as a figure: from the capitals
    of the line it starts on to a baseline, whole lines so the text beside it ends on its bottom;
@@ -430,6 +546,10 @@ sup {
   position: relative;
   /* its own stacking context, so the field stays behind its text and in front of the page */
   isolation: isolate;
+  /* a column of flex items: margins add up as between grid items instead of collapsing, so a button's
+     margin above, which can be positive or negative, counts the same in a box as outside one */
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: var(--box-pad-top) var(--unit) var(--box-pad-bottom);
 }
@@ -445,8 +565,14 @@ sup {
 }
 /* ending on a text field: its bottom edge is on a full line, so the box's field below it is whole lines;
    two, as one would leave less white below the field than above the first label (2 lines − its capitals) */
-.box:has(> .field:last-child) {
+.box:has(> .field:last-child),
+.box:has(> .button:last-child) {
   --box-inner-bottom: calc(2 * var(--line));
+}
+/* ending on checkboxes or radio buttons: the last choice is a line of text on a half line, so as below text,
+   a line and a half, which lands the box's edge on a full line */
+.box:has(> .field:last-child > .choice) {
+  --box-inner-bottom: calc(3 * var(--half));
 }
 /* straight after a heading: the field starts at the half line nearest the capitals the text would have,
    so the white between heading and field is the heading's own white below */
@@ -465,6 +591,8 @@ sup {
   background: var(--fill, var(--color-tint));
 }
 /* the box's text runs from its first capitals to its last baseline: the white around it is the box's */
+/* full width, as in a block: the grid's align-self: start of paragraphs and fields would shrink them in the column */
+.box > * { align-self: stretch; }
 .box > :last-child { margin-bottom: 0; }
 /* A heading as the box's first line: its baseline is the box's first, taller capitals reach up into the field
    (the box's padding keeps this margin from collapsing with anything outside); its white below keeps its ratio. */

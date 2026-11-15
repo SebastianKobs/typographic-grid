@@ -198,7 +198,39 @@
     <label class="field-label" for="field-city">City</label>
     <input class="field-input" id="field-city" type="text" value="Basel">
   </div>
+  <div class="field">
+    <label class="field-label" for="field-country">Country</label>
+    <select class="field-input" id="field-country">
+      <option>Austria</option>
+      <option>Germany</option>
+      <option selected>Switzerland</option>
+    </select>
+  </div>
+  <div class="field" role="group" aria-labelledby="contact-label">
+    <p class="field-label" id="contact-label">Contact me by</p>
+    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="email" checked>Email</label>
+    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="phone">Phone</label>
+    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="post" checked>Post</label>
+  </div>
+  <div class="field" role="radiogroup" aria-labelledby="newsletter-label">
+    <p class="field-label" id="newsletter-label">Newsletter</p>
+    <p class="field-description">How often you would like to hear from us.</p>
+    <label class="choice"><input class="choice-input" type="radio" name="newsletter" value="weekly">Weekly</label>
+    <label class="choice"><input class="choice-input" type="radio" name="newsletter" value="monthly" checked>Monthly</label>
+    <label class="choice"><input class="choice-input" type="radio" name="newsletter" value="changes">Only when something changes that concerns your account, your address or the way we send the newsletter</label>
+  </div>
+  <div class="field">
+    <label class="field-label" for="field-message">Message</label>
+    <p class="field-description" id="field-message-description">Anything else we should know.</p>
+    <textarea class="field-input" id="field-message" aria-describedby="field-message-description">Dear Karl,
+the grid arrived. Could you send the second volume as well?</textarea>
+  </div>
+  <button class="button" type="submit">Send</button>
   <p class="paragraph">The field is two and a half lines deep: its top edge a line and a half above the baseline of its text, its bottom edge a line below, so the capitals sit in its middle. The label stands half a line above the field, closer to it than to anything else. A description of what to enter goes on the lines below the label, set as a caption is, and the field follows its last line the same half line below. An empty field can show an example of what goes in it, set as the description is, until something is typed. Its width is a run of columns, its text set in by one unit, as in a box. Below it the page keeps the white it keeps below a box, two lines from the field's edge to the next baseline.</p>
+  <p class="paragraph">Checkboxes and radio buttons are lines of text with a box in front of each. The group has a label like a field's; its first choice stands a line and a half below it, and the others follow a line apart, as the lines of a paragraph, all on half lines.</p>
+  <p class="paragraph">Each box is a unit square, centred on the capitals of its line, with a unit of white between it and its text; a choice that runs to a second line runs on under its own text, not under the box. A checked checkbox turns red with a tick, a checked radio button takes a red dot, in the red of the rules and of a field in focus. After the last choice the next label or paragraph follows two and a half lines below, back on a full line, so from label to label a group takes the lines a text field takes.</p>
+  <p class="paragraph">A select is a text field with a mark at its right end, a small triangle centred on the capitals, a unit in from the edge. A text area is a field of several lines, four unless a class says otherwise: its first baseline a line and a half below its top edge, as in a text field, its lines a line apart, and its bottom edge a line below the last. It cannot be dragged larger, since a height pulled by hand would leave the lines of the page.</p>
+  <p class="paragraph">The submit button is as deep as a text field, its text on a full line a line and a half below its top edge, and it stands a line and a half below the field above it. It is two columns wide unless a class says otherwise, in the red of the page, its text bold and in the colour of the page.</p>
   <div class="box">
     <h2 class="heading size-phi-1 ratio-3-5">Your address</h2>
     <div class="field">
@@ -209,8 +241,32 @@
       <label class="field-label" for="box-city">City</label>
       <input class="field-input" id="box-city" type="text" value="Basel">
     </div>
+    <div class="field">
+      <label class="field-label" for="box-country">Country</label>
+      <select class="field-input" id="box-country">
+        <option>Austria</option>
+        <option>Germany</option>
+        <option selected>Switzerland</option>
+      </select>
+    </div>
+    <div class="field" role="group" aria-labelledby="box-contact-label">
+      <p class="field-label" id="box-contact-label">Contact me by</p>
+      <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="email" checked>Email</label>
+      <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="phone">Phone</label>
+    </div>
+    <div class="field" role="radiogroup" aria-labelledby="box-newsletter-label">
+      <p class="field-label" id="box-newsletter-label">Newsletter</p>
+      <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="weekly">Weekly</label>
+      <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="monthly" checked>Monthly</label>
+      <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="never">Never</label>
+    </div>
+    <div class="field">
+      <label class="field-label" for="box-message">Message</label>
+      <textarea class="field-input rows-3" id="box-message"></textarea>
+    </div>
+    <button class="button" type="submit">Send</button>
   </div>
-  <p class="paragraph">In a box the fields take the colour of the page, so they show as openings in the grey. A box that holds a form sets its contents in further than a box of text, by a column on the right and a unit less on the left: a field has a hard edge, and a narrower band of grey beside it would read as a thin frame. Below its last field the box takes two lines of grey: never less white than above its first label, and its edge on a full line.</p>
+  <p class="paragraph">In a box the fields take the colour of the page, so they show as openings in the grey. A box that holds a form sets its contents in further than a box of text, by a column on the right and a unit less on the left: a field has a hard edge, and a narrower band of grey beside it would read as a thin frame. Below its last text field the box takes two lines of grey, below its last choice a line and a half: never less white than above its first line, and its edge on a full line.</p>
 </main>
 
 <script src="typographic-grid.js"></script>
