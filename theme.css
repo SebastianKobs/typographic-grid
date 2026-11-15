@@ -10,6 +10,8 @@
   --color-rule: var(--color-red);
   /* a field: text fields, boxes, badges */
   --color-tint: #e4e4e4;
+  /* between the ink and the ground, opaque: a word behind another on black, as the back word of a poster */
+  --color-mid: color-mix(in srgb, var(--color-ink) 55%, var(--color-ground));
   /* a picture not yet there: a plain field, darker than the tint, so it reads as a picture, not a box */
   --color-picture: #cfcfcf;
   /* the ink faded, for what can't be used: a disabled field, choice or button */

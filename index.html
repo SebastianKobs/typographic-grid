@@ -627,25 +627,44 @@ the grid arrived. Could you send the second volume as well?</textarea>
        --y       grid lines below the first grid line of the area (24px each; the first is the cap height below the top edge)
        --length  steps of the turned grid, each 3 units across and 1 line down (53.7px), so a bar ends on a crossing too
        --thick   spacings of the turned grid's lines, a unit times the sine of the turn (7.2px)
-       turned-steep turns an element at a right angle to the turned grid, rising to the right -->
+       composition-steep turns an element at a right angle to the turned grid, rising to the right; turn-1-2 turns the grid -->
   <figure class="figure col-span-7 aspect-3-4 fill-ink">
-    <div class="figure-image turned-grid">
-      <span class="turned-word size-phi-3" style="--x: 1; --y: 2">column</span>
-      <span class="turned-rule" style="--x: 10; --y: 1; --length: 6"></span>
-      <span class="turned-bar" style="--x: 12; --y: 6; --length: 5; --thick: 4"></span>
-      <span class="turned-rule" style="--x: 3; --y: 9; --length: 5"></span>
-      <span class="turned-word size-phi-3" style="--x: 2; --y: 15">unit</span>
-      <span class="turned-word size-phi-3" style="--x: 21; --y: 17">line</span>
-      <span class="turned-rule" style="--x: 15; --y: 16; --length: 6"></span>
-      <span class="turned-bar turned-steep" style="--x: 1; --y: 30; --length: 12; --thick: 6"></span>
-      <span class="turned-bar turned-steep" style="--x: 9; --y: 30; --length: 8; --thick: 2"></span>
-      <span class="turned-bar turned-steep" style="--x: 26; --y: 15; --length: 4; --thick: 2"></span>
-      <span class="turned-bar turned-steep" style="--x: 24; --y: 7; --length: 5; --thick: 5"></span>
-      <span class="turned-rule turned-steep" style="--x: 0; --y: 25; --length: 4"></span>
+    <div class="figure-image composition turn-1-2">
+      <span class="composition-word size-phi-3" style="--x: 1; --y: 2">column</span>
+      <span class="composition-rule" style="--x: 10; --y: 1; --length: 6"></span>
+      <span class="composition-bar" style="--x: 12; --y: 6; --length: 5; --thick: 4"></span>
+      <span class="composition-rule" style="--x: 3; --y: 9; --length: 5"></span>
+      <span class="composition-word size-phi-3" style="--x: 2; --y: 15">unit</span>
+      <span class="composition-word size-phi-3" style="--x: 21; --y: 17">line</span>
+      <span class="composition-rule" style="--x: 15; --y: 16; --length: 6"></span>
+      <span class="composition-bar composition-steep" style="--x: 1; --y: 30; --length: 12; --thick: 6"></span>
+      <span class="composition-bar composition-steep" style="--x: 9; --y: 30; --length: 8; --thick: 2"></span>
+      <span class="composition-bar composition-steep" style="--x: 26; --y: 15; --length: 4; --thick: 2"></span>
+      <span class="composition-bar composition-steep" style="--x: 24; --y: 7; --length: 5; --thick: 5"></span>
+      <span class="composition-rule composition-steep" style="--x: 0; --y: 25; --length: 4"></span>
       <!-- starts where the line of the rule under "line" crosses it: 5.6 steps up the steep line, 8.4 units and 13.8 lines -->
-      <span class="turned-rule turned-steep" style="--x: 8.4; --y: 13.8; --length: 2.4"></span>
-      <span class="turned-rule turned-steep" style="--x: 21; --y: 11; --length: 6"></span>
-      <p class="turned-text" style="--x: 19; --y: 22">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
+      <span class="composition-rule composition-steep" style="--x: 8.4; --y: 13.8; --length: 2.4"></span>
+      <span class="composition-rule composition-steep" style="--x: 21; --y: 11; --length: 6"></span>
+      <p class="composition-text" style="--x: 19; --y: 22">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
+    </div>
+  </figure>
+  <p class="paragraph">Two colours can overprint, as two inks on a printed poster. Where a red part is on black, the black shows through. Where it is on the grey, it stays red. In the area below, the red bar goes across the black word, and the word stays easy to read on it. The red word goes across a black bar, and its letters are black there.</p>
+  <figure class="figure col-span-7 aspect-3-2 fill-tint">
+    <div class="figure-image composition turn-1-2 text-ink">
+      <span class="composition-word size-phi-3" style="--x: 1; --y: 4">overprint</span>
+      <span class="composition-bar composition-steep text-red overprint" style="--x: 8; --y: 15; --length: 6; --thick: 8"></span>
+      <span class="composition-bar composition-steep" style="--x: 19; --y: 14; --length: 6; --thick: 4"></span>
+      <span class="composition-word size-phi-3 text-red overprint" style="--x: 20; --y: 7">ink</span>
+      <span class="composition-rule" style="--x: 0; --y: 11; --length: 3"></span>
+    </div>
+  </figure>
+  <p class="paragraph">A colour area can also hold words at a very large size, as on the poster “der Film” by Josef Müller-Brockmann from 1960. There the grid is not turned. The first word is grey, and the left edge of the area cuts it. The second word has the colour of the page and covers the end of the first word. The small red text starts at the same column edge as the second word, and each of its baselines is on a grid line.</p>
+  <figure class="figure col-span-7 aspect-3-4 fill-ink">
+    <div class="figure-image composition">
+      <p class="composition-text text-red" style="--x: 10; --y: 2">Typographic grid<br>Effects</p>
+      <span class="composition-word size-phi-5 text-mid" style="--x: -2; --y: 22">the</span>
+      <span class="composition-word size-phi-5" style="--x: 10; --y: 22">Grid</span>
+      <p class="composition-text text-red" style="--x: 10; --y: 25">One unit 16, one line 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
     </div>
   </figure>
 

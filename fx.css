@@ -55,24 +55,34 @@
 }
 
 
-/* A turned grid, after Müller-Brockmann's Tonhalle poster (1955): a colour area holding words, bars and rules on the page's grid
-   turned by its own slope, a line down for every 3 units across (48px and 24px: the next crossing of units and grid lines,
-   about 26.6° at 16px / 1.5). On a picture's image area (figure-image turned-grid); what runs past its edge is cut, as by the
-   poster's edge.
-   Each child starts on a crossing of the page grid, --x units from the left edge and --y grid lines below the first one
-   (the area's top edge is on a cap line, the first grid line its cap height lower), and runs along the turned grid,
-   or across it with turned-steep. Lengths are whole steps (a step: 3 units across and a line down, √5 · 1.5 units long),
-   so a bar's ends are on crossings too; thicknesses whole spacings of the turned lines that go through crossings
-   (a unit across, times the sine of the turn). */
-.turned-grid {
+/* A composition: a colour area holding words, bars, rules and small text placed on the page's grid, as on a poster.
+   On a picture's image area (figure-image composition); what runs past its edge is cut, as by the poster's edge.
+   Each part starts on a crossing of the page grid, --x units from the left edge and --y grid lines below the first one
+   (the area's top edge is on a cap line, the first grid line its cap height lower). Flat by default, as on Müller-Brockmann's
+   "der Film" poster (1960): a bar's length whole steps of 3 units, its thickness and the small text's leading whole lines. */
+.composition {
   position: relative;
   overflow: hidden;
+  /* its own stacking context: an overprinting part combines with the area and the parts below it, not the page */
+  isolation: isolate;
+  --turn: 0deg;
+  --step: calc(3 * var(--unit));
+  --across: var(--line);
+  --leading: var(--line);
+}
+/* turned, a turn-1-2 class, as on Müller-Brockmann's Tonhalle poster (1955): the grid a line down for every 3 units across
+   (48px and 24px: the next crossing of units and grid lines, about 26.6° at 16px / 1.5). A step is 3 units across and a line
+   down (√5 · 1.5 units), so a bar's ends are on crossings too; thicknesses whole spacings of the turned lines that go through
+   crossings (a unit across, times the sine of the turn), the small text's leading three of them */
+.composition.turn-1-2 {
   --turn: atan2(var(--line), calc(3 * var(--unit)));
   --step: hypot(calc(3 * var(--unit)), var(--line));
   --across: calc(var(--unit) * sin(var(--turn)));
-  color: var(--color-ground);
+  --leading: calc(3 * var(--across));
 }
-.turned-grid > * {
+/* its parts in the page's colour, as on the posters' black, unless a text- class says otherwise (:where(): weaker than it) */
+:where(.composition) { color: var(--color-ground); }
+.composition > * {
   position: absolute;
   left: calc(var(--x, 0) * var(--unit));
   top: calc(var(--figure-cap) + var(--y, 0) * var(--line));
@@ -80,37 +90,46 @@
   transform-origin: 0 0;
   --angle: var(--turn);
 }
-.turned-grid > .turned-steep { --angle: calc(var(--turn) - 90deg); }
-/* a word: its baseline from the crossing on; lowercase and bold, as on the poster; sized by a size- class */
-.turned-word {
+/* a part across the grid, at a right angle to it, rising to the right */
+.composition > .composition-steep { --angle: calc(var(--turn) - 90deg); }
+/* a word: its baseline from the crossing on; bold, as on the posters; sized by a size- class. Aligned by its ink, not its box:
+   moved back along its baseline by its first letter's side bearing (the font's margin left of the letter, measured by the
+   script), so the letter itself stands on the crossing, as the small text's letters, whose bearing at the text's size is a pixel;
+   a round first letter (C, G, O, …) further, by --round-hang times as much as the font lets round letters overshoot the cap line,
+   as it only touches the line at one point and looks set in otherwise; two and a half times, chosen by eye: twice looked set in, three times hung out too far */
+.composition-word {
+  --round-hang: 2.5;
   font-size: round(nearest, calc(var(--font-size) * var(--heading-ratio, 1) * 1px), 1px);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
-  transform: rotate(var(--angle)) translateY(-100%);
+  transform: rotate(var(--angle)) translateX(calc(-1 * var(--bearing, 0px))) translateY(-100%);
 }
 /* a bar: its edge from the crossing on, --length steps long, --thick spacings thick */
-.turned-bar {
+.composition-bar {
   width: calc(var(--length, 1) * var(--step));
   height: calc(var(--thick, 3) * var(--across));
   background: currentColor;
   transform: rotate(var(--angle));
 }
-/* a rule: a thin rule's thickness, centred on the turned line through the crossing */
-.turned-rule {
+/* a rule: a thin rule's thickness, centred on the grid line through the crossing */
+.composition-rule {
   width: calc(var(--length, 1) * var(--step));
   height: round(nearest, calc(var(--unit) / 8), 1px);
   background: currentColor;
   transform: rotate(var(--angle)) translateY(-50%);
 }
-/* a small text: the text's size, its baselines three spacings apart, each on a turned line through crossings;
-   the first baseline from the crossing on */
-.turned-text {
+/* a small text: the text's size, each baseline on a line of the grid through crossings; the first baseline from the crossing on */
+.composition-text {
   font-size: var(--unit);
   font-weight: 500;
-  line-height: calc(3 * var(--across));
+  line-height: var(--leading);
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
   transform: rotate(var(--angle)) translateY(-1cap);
 }
+
+/* Overprint: a part printed over another as a second ink, not covering it. Multiplied with what is below: on the page's ground
+   a red part stays red, on black it is black, so the black shows through it, as where two inks overlap on a poster. */
+.overprint { mix-blend-mode: multiply; }

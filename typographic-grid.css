@@ -950,6 +950,8 @@ textarea.field-input {
 .size-phi-1 { --heading-ratio: 1.618; }
 .size-phi-2 { --heading-ratio: 2.618; }
 .size-phi-3 { --heading-ratio: 4.236; }
+.size-phi-4 { --heading-ratio: 6.854; }
+.size-phi-5 { --heading-ratio: 11.09; }
 .size-sqrt2-1 { --heading-ratio: 1.414; }
 .size-sqrt2-2 { --heading-ratio: 2; }
 .size-sqrt2-3 { --heading-ratio: 2.828; }
@@ -1023,6 +1025,8 @@ textarea.field-input {
 .text-red { color: var(--color-red); }
 /* text in the grey of a picture not yet there: an ornament more than text to read */
 .text-grey { color: var(--color-picture); }
+/* text in a grey between ink and ground, for a word behind another */
+.text-mid { color: var(--color-mid); }
 
 /* a side figure that takes no height in its row: it hangs past its paragraph beside what follows,
    and nothing clears it; keeping that clear is the designer's call. Only on the full grid: on fewer columns
