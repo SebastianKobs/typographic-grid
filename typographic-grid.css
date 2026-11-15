@@ -1111,6 +1111,13 @@ textarea.field-input {
      is that wide, so the items' words keep the full measure */
   .box .list { --mark-band: var(--gutter); padding-left: 0; }
   .box .list > li::before { text-align: right; }
+  /* a box with a table: its narrow columns leave the field mostly empty, which reads as too much padding; only its edges,
+     dashed, in the colour the field would have and the thickness of a thin rule (whole pixels, as a border), drawn inside the field,
+     so they keep its grid lines */
+  .box:has(> .table)::before {
+    background: none;
+    border: round(nearest, calc(var(--unit) / 8), 1px) dashed var(--fill, var(--color-tint));
+  }
 }
 
 /* 4 columns, below 432px: down to 320px, with a page margin of a unit */

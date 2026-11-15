@@ -29,7 +29,7 @@ The grid steps down by whole columns; columns and gutters keep their widths, the
 
 - From 7 columns down, side figures and margin notes follow their paragraph; a note anchored to a word goes inline, in italic and in parentheses.
 - A pull quote moves into the page margin only as far as its columns and a gutter fit there.
-- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, fields and buttons side by side wrap, and a box with no field or button is padded by two units at the sides, and the marks of a list in a box hang in its padding.
+- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, fields and buttons side by side wrap, and a box with no field or button is padded by two units at the sides, the marks of a list in a box hang in its padding, and a box with a table is a dashed outline instead of a grey field.
 
 The breakpoints are for 16px text: a media query can't read `--font-size`.
 
