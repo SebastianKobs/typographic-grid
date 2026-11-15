@@ -182,7 +182,8 @@
   <div class="field">
     <label class="field-label" for="field-email">Email</label>
     <p class="field-description" id="field-email-description">Only used to reply to you.</p>
-    <input class="field-input" id="field-email" type="email" placeholder="name@example.com" aria-describedby="field-email-description">
+    <p class="field-error" id="field-email-error">Enter an email address, such as name@example.com.</p>
+    <input class="field-input" id="field-email" type="email" placeholder="name@example.com" aria-invalid="true" aria-describedby="field-email-description field-email-error">
   </div>
   <p class="paragraph">Between two fields a paragraph is just a paragraph. It starts two lines below the field's edge, and the next label follows one empty line below its last baseline, as any paragraph would.</p>
   <div class="field">
@@ -234,6 +235,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph">Each box is a unit square, centred on the capitals of its line, with a unit of white between it and its text; a choice that runs to a second line runs on under its own text, not under the box. A checked checkbox turns red with a tick, a checked radio button takes a red dot, in the red of the rules and of a field in focus. After the last choice the next label or paragraph follows two and a half lines below, back on a full line, so from label to label a group takes the lines a text field takes.</p>
   <p class="paragraph">A select is a text field with a mark at its right end, a small triangle centred on the capitals, a unit in from the edge. A text area is a field of several lines, four unless a class says otherwise: its first baseline a line and a half below its top edge, as in a text field, its lines a line apart, and its bottom edge a line below the last. It cannot be dragged larger, since a height pulled by hand would leave the lines of the page.</p>
   <p class="paragraph">The submit button is as deep as a text field, its text on a full line a line and a half below its top edge, and it stands a line and a half below the field above it. It is two columns wide unless a class says otherwise, in the red of the page, its text bold and in the colour of the page. A second button beside it, a gutter away so it starts on the next column line, takes the grey of a text field and the ink of the text.</p>
+  <p class="paragraph">A field with an error says so twice. Its message stands between the label and the field, in the red of the rules and bold, a line below the label or the description, and the field moves down by the lines it takes. And a red rule a unit to the left of the column runs from the label's capitals to the field's bottom edge, as the rule before a heading groups what follows it. Red alone already marks a field in focus and a checked choice; the message and the rule are what only an error has.</p>
   <div class="box">
     <h2 class="heading size-phi-1 ratio-3-5">Your address</h2>
     <div class="field">
@@ -252,9 +254,10 @@ the grid arrived. Could you send the second volume as well?</textarea>
         <option selected>Switzerland</option>
       </select>
     </div>
-    <div class="field" role="group" aria-labelledby="box-contact-label">
+    <div class="field" role="group" aria-labelledby="box-contact-label" aria-describedby="box-contact-error">
       <p class="field-label" id="box-contact-label">Contact me by</p>
-      <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="email" checked>Email</label>
+      <p class="field-error" id="box-contact-error">Choose at least one way to contact you.</p>
+      <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="email">Email</label>
       <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="phone">Phone</label>
     </div>
     <div class="field" role="radiogroup" aria-labelledby="box-newsletter-label">

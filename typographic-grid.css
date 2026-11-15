@@ -440,8 +440,37 @@ textarea.field-input {
   margin-top: calc(3 * var(--half) - var(--body-cap));
 }
 .field-label:has(+ .choice),
-.field-description:has(+ .choice) {
+.field-description:has(+ .choice),
+.field-error:has(+ .choice) {
   margin-bottom: 0;
+}
+/* An error: its message on the lines below the label and the description, in the red of the rules and bold,
+   the field following it as it follows a description; and the field marked by a vertical rule as a heading is,
+   a unit to the left of its column, from the label's capitals to the field's bottom edge. Red already marks
+   focus and a checked choice; the rule and the message are what only an error has. */
+.field-error {
+  text-box: trim-both cap alphabetic;
+  font-weight: 700;
+  color: var(--color-rule);
+  margin: 0 0 var(--half);
+}
+.field-label:has(+ .field-error),
+.field-description:has(+ .field-error) {
+  /* the message's first baseline a line below */
+  margin-bottom: calc(var(--line) - var(--body-cap));
+}
+.field:has(> .field-error) {
+  --rule-thickness: calc(var(--unit) / 4);
+  position: relative;
+}
+.field:has(> .field-error)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--unit) - var(--rule-thickness) / 2);
+  width: var(--rule-thickness);
+  background: var(--color-rule);
 }
 /* a unit square, centred on the capitals of its line, in the tint of a text field */
 .choice-input {
