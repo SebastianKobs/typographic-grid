@@ -621,6 +621,34 @@ the grid arrived. Could you send the second volume as well?</textarea>
     </figure>
   </div>
 
+  <p class="paragraph">A colour area can also hold a grid that is turned, as on a concert poster by Josef Müller-Brockmann from 1955. The turned grid goes one line down for each three units to the right, so it goes through the crossings of the page grid. Each word, bar and rule starts at such a crossing. The length of a bar is a number of steps of three units and one line, so its end is on a crossing too. Some bars go across the turned grid, at a right angle. The start of each part is a number of units from the left edge of the area and a number of grid lines below its first grid line. The length of a bar is a number of steps, and its thickness is a number of spacings between the lines of the turned grid.</p>
+  <!-- each element of the turned grid, set in its style, in grid units:
+       --x       units from the left edge of the area (the text size, 16px); a unit crossing, not a column edge
+       --y       grid lines below the first grid line of the area (24px each; the first is the cap height below the top edge)
+       --length  steps of the turned grid, each 3 units across and 1 line down (53.7px), so a bar ends on a crossing too
+       --thick   spacings of the turned grid's lines, a unit times the sine of the turn (7.2px)
+       turned-steep turns an element at a right angle to the turned grid, rising to the right -->
+  <figure class="figure col-span-7 aspect-3-4 fill-ink">
+    <div class="figure-image turned-grid">
+      <span class="turned-word size-phi-3" style="--x: 1; --y: 2">column</span>
+      <span class="turned-rule" style="--x: 10; --y: 1; --length: 6"></span>
+      <span class="turned-bar" style="--x: 12; --y: 6; --length: 5; --thick: 4"></span>
+      <span class="turned-rule" style="--x: 3; --y: 9; --length: 5"></span>
+      <span class="turned-word size-phi-3" style="--x: 2; --y: 15">unit</span>
+      <span class="turned-word size-phi-3" style="--x: 21; --y: 17">line</span>
+      <span class="turned-rule" style="--x: 15; --y: 16; --length: 6"></span>
+      <span class="turned-bar turned-steep" style="--x: 1; --y: 30; --length: 12; --thick: 6"></span>
+      <span class="turned-bar turned-steep" style="--x: 9; --y: 30; --length: 8; --thick: 2"></span>
+      <span class="turned-bar turned-steep" style="--x: 26; --y: 15; --length: 4; --thick: 2"></span>
+      <span class="turned-bar turned-steep" style="--x: 24; --y: 7; --length: 5; --thick: 5"></span>
+      <span class="turned-rule turned-steep" style="--x: 0; --y: 25; --length: 4"></span>
+      <!-- starts where the line of the rule under "line" crosses it: 5.6 steps up the steep line, 8.4 units and 13.8 lines -->
+      <span class="turned-rule turned-steep" style="--x: 8.4; --y: 13.8; --length: 2.4"></span>
+      <span class="turned-rule turned-steep" style="--x: 21; --y: 11; --length: 6"></span>
+      <p class="turned-text" style="--x: 19; --y: 22">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
+    </div>
+  </figure>
+
   <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens">Each part of the page is on one grid: the narrow screens</h2>
   <p class="paragraph">The other sections of this page describe the grid on a wide screen, with twelve columns. On a narrower screen, the grid has fewer columns. The columns and the gutters keep their widths, and only the number of columns changes. Thus each baseline stays on a grid line.</p>
   <table class="table">

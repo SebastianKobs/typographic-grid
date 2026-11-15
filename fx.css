@@ -53,3 +53,64 @@
   writing-mode: sideways-rl;
   text-align: start;
 }
+
+
+/* A turned grid, after Müller-Brockmann's Tonhalle poster (1955): a colour area holding words, bars and rules on the page's grid
+   turned by its own slope, a line down for every 3 units across (48px and 24px: the next crossing of units and grid lines,
+   about 26.6° at 16px / 1.5). On a picture's image area (figure-image turned-grid); what runs past its edge is cut, as by the
+   poster's edge.
+   Each child starts on a crossing of the page grid, --x units from the left edge and --y grid lines below the first one
+   (the area's top edge is on a cap line, the first grid line its cap height lower), and runs along the turned grid,
+   or across it with turned-steep. Lengths are whole steps (a step: 3 units across and a line down, √5 · 1.5 units long),
+   so a bar's ends are on crossings too; thicknesses whole spacings of the turned lines that go through crossings
+   (a unit across, times the sine of the turn). */
+.turned-grid {
+  position: relative;
+  overflow: hidden;
+  --turn: atan2(var(--line), calc(3 * var(--unit)));
+  --step: hypot(calc(3 * var(--unit)), var(--line));
+  --across: calc(var(--unit) * sin(var(--turn)));
+  color: var(--color-ground);
+}
+.turned-grid > * {
+  position: absolute;
+  left: calc(var(--x, 0) * var(--unit));
+  top: calc(var(--figure-cap) + var(--y, 0) * var(--line));
+  margin: 0;
+  transform-origin: 0 0;
+  --angle: var(--turn);
+}
+.turned-grid > .turned-steep { --angle: calc(var(--turn) - 90deg); }
+/* a word: its baseline from the crossing on; lowercase and bold, as on the poster; sized by a size- class */
+.turned-word {
+  font-size: round(nearest, calc(var(--font-size) * var(--heading-ratio, 1) * 1px), 1px);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+  transform: rotate(var(--angle)) translateY(-100%);
+}
+/* a bar: its edge from the crossing on, --length steps long, --thick spacings thick */
+.turned-bar {
+  width: calc(var(--length, 1) * var(--step));
+  height: calc(var(--thick, 3) * var(--across));
+  background: currentColor;
+  transform: rotate(var(--angle));
+}
+/* a rule: a thin rule's thickness, centred on the turned line through the crossing */
+.turned-rule {
+  width: calc(var(--length, 1) * var(--step));
+  height: round(nearest, calc(var(--unit) / 8), 1px);
+  background: currentColor;
+  transform: rotate(var(--angle)) translateY(-50%);
+}
+/* a small text: the text's size, its baselines three spacings apart, each on a turned line through crossings;
+   the first baseline from the crossing on */
+.turned-text {
+  font-size: var(--unit);
+  font-weight: 500;
+  line-height: calc(3 * var(--across));
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+  transform: rotate(var(--angle)) translateY(-1cap);
+}
