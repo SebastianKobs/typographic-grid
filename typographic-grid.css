@@ -27,9 +27,6 @@
 
   --color-ground: #f7f7f7;
   --color-ink: #111;
-  --color-column: rgb(255 0 80 / 0.07);
-  --color-line: rgb(0 140 255 / 0.45);
-  --color-half-line: rgb(0 140 255 / 0.2);
   --color-red: #da291c;
   --color-rule: var(--color-red);
   --color-tint: #e4e4e4;
@@ -67,22 +64,6 @@ body {
   /* one empty line: from a last baseline to where the capitals two lines below it would be */
   --paragraph-white: calc(2 * var(--line) - var(--body-cap));
 }
-
-/* Overlay, for checking by eye: remove its hidden attribute to see the columns and a line on every baseline. */
-.grid-overlay {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: inherit;
-  column-gap: inherit;
-  pointer-events: none;
-  background:
-    repeating-linear-gradient(to bottom, var(--color-line) 0 1px, transparent 1px var(--line)),
-    repeating-linear-gradient(to bottom, var(--color-half-line) 0 1px, transparent 1px var(--line));
-  background-position-y: 0, var(--half);
-}
-.grid-overlay > div { background: var(--color-column); }
-.grid-overlay[hidden] { display: none; }
 
 /* Every text box runs from its capitals to its last baseline: the margin between two boxes
    is the white the eye sees, and a box's bottom edge is a baseline. */
@@ -173,7 +154,7 @@ body {
 .first-letter-bold::first-letter { font-weight: 700; }
 /* first in the flow: no white above to keep, placed so the paragraph after it lands on a full line;
    :where() keeps it as weak as a two-class selector, so the title-before-heading rule below wins */
-.type-area > .heading:where(:nth-child(1 of :not(.grid-overlay))) {
+.type-area > .heading:where(:first-child) {
   margin-top: mod(calc(-1 * (1cap + var(--inside) + var(--rule-gap) + var(--to-next))), var(--line));
 }
 /* A heading right after the title: the title ends its rule's band on a full line, and the heading
