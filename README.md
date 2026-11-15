@@ -23,7 +23,6 @@ Change `--font-size` or `--line-height` in `:root` and every distance follows. T
 | `index.html` | The demo page. Its text explains each element, in ASD-STE100 Simplified Technical English. |
 | `typographic-grid.css` | All styles: the base on `:root`, then each element, then utility classes. |
 | `typographic-grid.js` | What CSS cannot know: how many lines a heading wraps to, where a float's line box starts, the width of a drop cap's letter, and the half baseline a box may need at its bottom. |
-| `tuneable.html` | A lab version with sliders (size, line height, weights, type scale) and a grid overlay. It has its own inline CSS and is not kept in step with the main stylesheet. |
 
 ## Classes
 
