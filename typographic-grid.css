@@ -176,6 +176,53 @@ ol.list > li::before { content: counter(list-item) "."; font-variant-numeric: ta
 /* numbers, and their heads, set right: the last digits stand in one vertical line */
 .table .align-right { text-align: right; }
 
+/* A link: the text's size, weight and line height, so no baseline moves; marked by a line below it, in the red
+   of the rules and the focus, a rule's thickness (whole pixels, as a border), a rule's thickness below the baseline,
+   broken where a letter reaches below the baseline */
+a {
+  --link-line: var(--color-rule);
+  --link-hover: var(--color-rule);
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--link-line);
+  text-decoration-thickness: round(nearest, calc(var(--unit) / 8), 1px);
+  text-underline-position: alphabetic;
+  text-underline-offset: round(nearest, calc(var(--unit) / 8), 1px);
+  text-decoration-skip-ink: auto;
+}
+a:hover { color: var(--link-hover); }
+a:focus-visible {
+  outline: round(nearest, calc(var(--unit) / 8), 1px) solid var(--link-line);
+  outline-offset: round(nearest, calc(var(--unit) / 8), 1px);
+}
+/* on a red or black field the red line would vanish or blur: the line in the text's colour; on red, the hover in ink */
+.fill-red a,
+.fill-ink a { --link-line: currentColor; }
+.fill-red a { --link-hover: var(--color-ink); }
+
+/* Code: a monospace font, its cap height Inter's (both near 0.73 of the size), so at the text's size and weight
+   its capitals and baseline are the text's. In a line of text it takes no height of its own (its taller ascent
+   and descent would otherwise push the line box apart), as a superscript doesn't. */
+code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1em;
+  font-weight: inherit;
+  line-height: 0;
+}
+/* A block of code: a paragraph of monospace lines, one line apart, trimmed from its first capitals to its last baseline,
+   one empty line above and below. Its indents kept; a line longer than the span runs on to the next line
+   instead of scrolling, as a scroll bar would add height off the grid. */
+.code {
+  grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
+  align-self: start;
+  margin: 0 0 var(--paragraph-margin);
+  font-family: "JetBrains Mono", monospace;
+  white-space: pre-wrap;
+  tab-size: 2;
+  text-box: trim-both cap alphabetic;
+}
+.code > code { line-height: inherit; }
+
 /* Size rounded to whole px; line height rounded up to whole steps (lines or half baselines),
    so every line of a multi-line heading lands n steps below the last. */
 .heading,
@@ -298,6 +345,9 @@ ol.list > li::before { content: counter(list-item) "."; font-variant-numeric: ta
   /* the next paragraph's first baseline two lines below the bottom edge, rounded up to a full line */
   margin-bottom: calc(2 * var(--line) + var(--figure-to-full-line) - var(--body-cap));
 }
+/* after a list: the list's ragged short lines leave its empty line looking smaller above a picture's solid edge;
+   one line more, so the top edge stays on a capital line */
+.list + .figure { margin-top: var(--line); }
 /* with a caption, the figure's box ends on the caption's last baseline, already a full line */
 .figure:has(.figure-caption) {
   margin-bottom: calc(2 * var(--line) - var(--body-cap));

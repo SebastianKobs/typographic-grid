@@ -6,7 +6,7 @@
 <title>Typographic grid</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="typographic-grid.css">
 </head>
 <body>
@@ -24,6 +24,23 @@
     <div class="figure-image"></div>
     <figcaption class="figure-caption">This picture is two columns wide.</figcaption>
   </figure>
+
+  <h2 class="heading size-phi-1 ratio-3-5">Contents</h2>
+  <ol class="list">
+    <li><a href="#headings">The headings and the text</a></li>
+    <li><a href="#pictures-in-text">The pictures inside a paragraph</a></li>
+    <li><a href="#rules">The rules</a></li>
+    <li><a href="#colour-areas">The colour areas</a></li>
+    <li><a href="#boxes">The boxes</a></li>
+    <li><a href="#box-after-heading">A box directly after a heading</a></li>
+    <li><a href="#margin-notes">The margin notes</a></li>
+    <li><a href="#pull-quotes">The pull quotes</a></li>
+    <li><a href="#lists">The lists</a></li>
+    <li><a href="#tables">The tables</a></li>
+    <li><a href="#links">The links</a></li>
+    <li><a href="#code">The code</a></li>
+    <li><a href="#forms">The form elements</a></li>
+  </ol>
 
   <figure class="figure col-start-1 col-span-7 aspect-3-2">
     <div class="figure-image"></div>
@@ -43,7 +60,7 @@
     <figcaption class="figure-caption">This picture is three by four.</figcaption>
   </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the headings and the text</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="headings">Each part of the page is on one grid: the headings and the text</h2>
   <p class="paragraph">A heading is larger than the text, and its line height is a number of half baselines. Thus each line of a heading is a whole number of half baselines below the line before it. The margin above a heading is larger than the margin below it, so the heading belongs to the text after it. The two margins are near three and five half baselines, two numbers of the Fibonacci series. The first baseline of the text after a heading is always on a grid line.</p>
   <figure class="figure figure-side figure-hanging col-start-8 col-span-5 aspect-9-8">
     <div class="figure-image"></div>
@@ -67,7 +84,7 @@
     <p class="paragraph">Here the text is in the columns on the right. The pictures are in the text width, the seven columns on the left. The pictures and the heading start at the same cap line.</p>
   </div>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the pictures inside a paragraph</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="pictures-in-text">Each part of the page is on one grid: the pictures inside a paragraph</h2>
   <p class="paragraph"><span class="float-left col-span-2 aspect-1-1"></span>A picture can also be inside a paragraph, with the text around it. Its width is a number of columns plus one unit of the gutter. Thus a margin of one unit is between the picture and the text, and the text beside it starts at a column edge. The top edge of the picture is at the cap line of the first line of text, and its bottom edge is on a baseline. The text beside the picture is narrower, and the text below the picture has its full width again. Here the picture is square and two columns wide.</p>
   <p class="paragraph"><span class="float-left col-span-1 aspect-1-1"></span>A small picture follows the same rules as a large picture. This picture is one column wide, plus one unit of the gutter. The column sets its width, and the lines set its height, so no part of its size comes from the eye. Its top edge is at the cap line of the first line, and its bottom edge is on a baseline. A picture of this size is near the size of a letter, for example an initial at the start of a paragraph. After the picture, the text continues with its full width.</p>
   <p class="paragraph"><span class="float-left col-span-2 aspect-3-4"></span>A portrait picture is taller than it is wide. At three by four on two columns, it is taller than the square above it, so more lines of text are narrow. The height of the picture is a whole number of lines, so the picture does not stretch and the text does not stop for it. Where the picture ends, the next line of text has its full width again. The eye then finds the left edge of the column at the same position as before. A tall picture needs a long paragraph, because with a short paragraph the picture extends below the end of the text.</p>
@@ -106,12 +123,12 @@
     <div class="figure-image"></div>
   </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the rules</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="rules">Each part of the page is on one grid: the rules</h2>
   <p class="paragraph">A rule divides the text and adds no picture. It belongs to the text before it, as a heading belongs to the text after it. Thus the ratio of the margins is the other way round: two half baselines above the rule, and near three below it. The rule is centred on a grid line, and the margin below it is never smaller than the margin above it. The length of the rule is a number of columns, and here it is the text width.</p>
   <hr class="rule">
   <p class="paragraph">Below the rule, the text continues on the grid. The rule is an eighth of a unit thick and has the colour of the text. Thus it shows a pause between two thoughts, not the start of a new section.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5 rule-left rule-ink">Each part of the page is on one grid: the colour areas</h2>
+  <h2 class="heading size-phi-1 ratio-3-5 rule-left rule-ink" id="colour-areas">Each part of the page is on one grid: the colour areas</h2>
   <p class="paragraph">A colour area is a picture with no content. Its width is a number of columns, and its top edge is at the cap line of the text beside it. Its bottom edge is on a grid line, as near to its ratio as possible. A colour area gives weight to a part of the page, shows where a section starts, or holds a row together. It uses the two colours of the page: the red of the rule below the title, and the black of the text.</p>
   <figure class="figure figure-side col-start-8 col-span-3 aspect-1-1 fill-red">
     <div class="figure-image"></div>
@@ -126,7 +143,7 @@
     <div class="figure-image"></div>
   </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the boxes</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="boxes">Each part of the page is on one grid: the boxes</h2>
   <p class="paragraph">A box separates a piece of text from the paragraphs around it, for example a note, a definition or an example. A box does not have its own grid. Its background is a number of columns wide, as a picture is. The text in the box has the same size and line height as each other paragraph.</p>
   <div class="box">
     <h2 class="heading size-phi-1 ratio-3-5">A box with its own heading</h2>
@@ -135,7 +152,7 @@
   <p class="paragraph">The margin around each box is the same. The background starts one line below the last baseline of the text above it. The next baseline after the box is two lines below the background. In the box, the text can stop between two grid lines. Then the background adds half a baseline at its bottom, and the text after the box is on the grid lines again.</p>
   <p class="paragraph">Between two boxes, the text continues as usual. Each box has its own margin above and below it, so two boxes do not touch. The paragraphs between the boxes are part of the body text.</p>
   <div class="box fill-red text-light">
-    <p class="paragraph">This box is red and has no heading. Its text has the colour of the page. The background starts two lines above the first baseline and stops two lines below the last baseline. Thus the text stays on the grid lines, and the margin around the box is the same as around each other box.</p>
+    <p class="paragraph">This box is red and has no heading. Its text has the colour of the page. The line below a link in this box, for example to the <a href="#links">links</a>, also has the colour of the page. The background starts two lines above the first baseline and stops two lines below the last baseline. Thus the text stays on the grid lines, and the margin around the box is the same as around each other box.</p>
   </div>
   <p class="paragraph">After the red box, the page continues with plain text. Its first baseline is on a grid line, as after each other part of the page.</p>
   <div class="box fill-ink text-light">
@@ -144,7 +161,7 @@
   </div>
   <p class="paragraph">After the black box, the text continues, and its first baseline is on a grid line again. The parts around the box need no information about the box. The margin above the box comes from the paragraph above it, and the box keeps its own padding inside. Below the box, the next paragraph gets the same margin as after each other box. For the reader, the box is a pause, not a break, and the columns and the lines continue after it.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: a box directly after a heading</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="box-after-heading">Each part of the page is on one grid: a box directly after a heading</h2>
   <div class="box">
     <p class="paragraph">This box comes directly after a heading, with no paragraph between them. The background starts where the text after the heading would start. The text in the box keeps its own padding. After the box, the page is on its grid lines again.</p>
   </div>
@@ -159,13 +176,13 @@
     <p class="paragraph">This paragraph comes after the box and is also inside the text block.</p>
   </div>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the margin notes</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="margin-notes">Each part of the page is on one grid: the margin notes</h2>
   <p class="paragraph">A margin note is in the columns beside the text, where a picture can also be. It has the size and the line height of the text. Thus each of its lines is on a baseline of the paragraph beside it. Only its italic style and its light weight make it different, as for a caption. Its first line is on the first line of the paragraph, as a picture beside a paragraph starts at its cap line.</p>
   <aside class="note">This note is three columns wide. Its lines are on the baselines of the text.</aside>
   <p class="paragraph">Below the note is the same margin as below a paragraph. When the note is longer than its paragraph, the next paragraph starts one empty line below the note. Thus the page stays on its grid lines.</p>
   <p class="paragraph">A note can also refer to one word lower in a paragraph. The note is then in the HTML of the paragraph, directly after that word<sup>1</sup><span class="note"><sup>1</sup> This note refers to the word with the number 1. It starts on the line of that word.</span>, and the browser moves it into the columns beside the text. There it starts on the line of that word. When the line breaks of the text change, the word goes to another line, and the note goes with it. A note of this type is not part of the rows of the grid. When it is longer than its paragraph, the text below does not move down for it.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the pull quotes</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="pull-quotes">Each part of the page is on one grid: the pull quotes</h2>
   <p class="paragraph">A pull quote shows a few words from the text again, in a larger size. It is between two paragraphs, for a reader who only looks quickly through the page. Its size and line height follow the rules of a heading, so its line height is a number of half baselines. It has the text width.</p>
   <blockquote class="quote size-phi-1">A pull quote shows a few words from the text again, in a larger size.</blockquote>
   <p class="paragraph">A heading belongs to the text after it, but a pull quote belongs to neither paragraph. Thus the margin above it and the margin below it are the same: one empty line, as between two paragraphs. The margin above is a little larger, so that the paragraph after the quote is on a grid line again. The quote is italic and has the light weight of the text, so it shows as a quote and not as a heading. Its opening quotation mark is in the page margin, to the left of the edge of the text. A class can make its first letter bold, as in the second quote below.</p>
@@ -173,7 +190,7 @@
   <blockquote class="quote size-phi-1 pull-left-1 first-letter-bold">The quote moves past the edge of the type area into the page margin.</blockquote>
   <p class="paragraph">The type area is the area of the twelve columns. Here the text starts in the first column of the type area. The quote moves past the edge of the type area into the page margin. It moves by one column and one gutter, as if the grid continued past its edge. A quote that moves to the right goes into the columns beside the text. In both cases, the margin above and below the quote is the same as for a quote in the columns of the text.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the lists</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="lists">Each part of the page is on one grid: the lists</h2>
   <p class="paragraph">A list is a set of items, for example parts or steps. Each item starts on a new line, with a mark in front of it. The lines of a list are one line apart, as the lines of a paragraph are. Thus each baseline of a list is on a grid line. Above and below a list is one empty line, as between two paragraphs.</p>
   <ul class="list">
     <li>A column is three units wide.</li>
@@ -203,7 +220,7 @@
     </ol>
   </div>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the tables</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="tables">Each part of the page is on one grid: the tables</h2>
   <p class="paragraph">A table shows values in rows and columns. Each row of a table is a line of text, so its baselines are on the grid lines. The columns of the table are on the columns of the page. Thus each column of the table starts at a column edge, and a gutter is between two columns of the table.</p>
   <table class="table">
     <colgroup>
@@ -261,7 +278,19 @@
     </table>
   </div>
 
-  <h2 class="heading size-phi-1 ratio-3-5">Each part of the page is on one grid: the form elements</h2>
+  <h2 class="heading size-phi-1 ratio-3-5" id="links">Each part of the page is on one grid: the links</h2>
+  <p class="paragraph">A link takes the reader to another part of the page or to another page. A link has the size, the weight and the line height of the text, so it does not move a baseline. A red line below the words shows the link, for example to the <a href="#boxes">boxes</a> or to the <a href="#tables">tables</a> above. The line is as thick as a thin rule, and its distance below the baseline is the same as its thickness. Where a letter goes below the baseline, the line has a gap.</p>
+  <p class="paragraph">When the pointer is on a link, the words of the link are red. When the link has the focus, a red outline is around it. In a red box or a black box, the line below a link has the colour of the text of the box. A link that the reader used before looks the same as the other links.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5" id="code">Each part of the page is on one grid: the code</h2>
+  <p class="paragraph">Code is text for a computer, for example the name of a property such as <code>text-box</code> or of a class such as <code>.paragraph</code>. In a paragraph, code has a monospace font, in which each letter has the same width. The capital letters of this font have the same height as the capital letters of the text. Thus the code stays on the baseline, and the line height does not change.</p>
+  <pre class="code"><code>.paragraph {
+  text-box: trim-both cap alphabetic;
+  margin: 0 0 var(--paragraph-margin);
+}</code></pre>
+  <p class="paragraph">A block of code has one line of code on each grid line. Its lines are one line apart, as the lines of a paragraph are, and above and below the block is one empty line. The block keeps the spaces at the start of each line, so the structure of the code stays clear. A line of code that is longer than the text width continues on the next line.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5" id="forms">Each part of the page is on one grid: the form elements</h2>
   <p class="paragraph">A field is an area where the reader enters or selects a value. A text field is a grey field for one line of text. Its label is above the field. The text in the field is on a grid line, two lines below the baseline of the label. Thus a form keeps the grid lines of the page and of each column beside it.</p>
   <div class="field">
     <label class="field-label" for="field-name">Name</label>
