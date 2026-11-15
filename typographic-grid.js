@@ -73,12 +73,14 @@ function alignDropcapsToUnits() {
 }
 alignDropcapsToUnits();
 
-// a heading resizes when the font loads or it rewraps: count again, then realign the figures
+// a heading resizes when the font loads or it rewraps, the type area when the grid steps to fewer columns:
+// count again, then realign the figures
 const headingLines = new ResizeObserver((entries) => {
-  for (const entry of entries) countLines(entry.target);
+  for (const entry of entries) if (entry.target.matches(".heading, .quote")) countLines(entry.target);
   alignFiguresToHeadings();
   dropFloatsToCapitals();
   roundBoxesToFullLines();
   alignDropcapsToUnits();
 });
 for (const heading of document.querySelectorAll(".heading, .quote")) headingLines.observe(heading);
+headingLines.observe(document.querySelector(".type-area"));
