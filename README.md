@@ -29,7 +29,7 @@ The grid steps down by whole columns; columns and gutters keep their widths, the
 
 - From 7 columns down, side figures and margin notes follow their paragraph; a note anchored to a word goes inline, in italic and in parentheses.
 - A pull quote moves into the page margin only as far as its columns and a gutter fit there.
-- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, and fields and buttons side by side wrap.
+- From 5 columns down, a picture inside a paragraph is at most 2 columns wide, tables size their columns by content with a unit between them, fields and buttons side by side wrap, and a box with no field or button is padded by a unit at the sides.
 
 The breakpoints are for 16px text: a media query can't read `--font-size`.
 
@@ -52,7 +52,7 @@ Classes are named for their effect, for example:
 
 ## Browsers
 
-Tested in Chromium 153 and Firefox 155. It needs `text-box`, `font-size-adjust: cap-height`, `round()`, `mod()`, `:has()` and registered custom properties (`@property`). Safari is untested.
+Tested in Chromium 153 and Firefox 155. It needs `text-box`, `font-size-adjust: cap-height`, `round()`, `mod()`, `:has()` and registered custom properties (`@property`). Safari on the iPhone is checked by eye; Safari on the desktop and the iPad is untested.
 
 ## License
 

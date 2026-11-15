@@ -1103,6 +1103,9 @@ textarea.field-input {
   .field-row > .field-input:not([class*="col-span-"]) {
     flex: 1 1 calc(2 * var(--column) + var(--gutter));
   }
+  /* a box of text, a list or a table: padded by a unit at the sides, as a column would leave too narrow a measure;
+     a box with fields or buttons keeps its column, against the fields' hard edges */
+  .box:not(:has(.field, .button)) { padding-inline: var(--unit); }
 }
 
 /* 4 columns, below 432px: down to 320px, with a page margin of a unit */
