@@ -1103,9 +1103,14 @@ textarea.field-input {
   .field-row > .field-input:not([class*="col-span-"]) {
     flex: 1 1 calc(2 * var(--column) + var(--gutter));
   }
-  /* a box of text, a list or a table: padded by a unit at the sides, as a column would leave too narrow a measure;
-     a box with fields or buttons keeps its column, against the fields' hard edges */
-  .box:not(:has(.field, .button)) { padding-inline: var(--unit); }
+  /* a box of text, a list or a table: padded by two units at the sides, as a column would leave too narrow a measure;
+     about the padding above and below its text, which a unit fell short of. A box with fields or buttons keeps its column,
+     against the fields' hard edges */
+  .box:not(:has(.field, .button)) { padding-inline: calc(2 * var(--unit)); }
+  /* in a box, a list's marks hang in its padding as on the page, in a gutter's width set right: the box's padding on the left
+     is that wide, so the items' words keep the full measure */
+  .box .list { --mark-band: var(--gutter); padding-left: 0; }
+  .box .list > li::before { text-align: right; }
 }
 
 /* 4 columns, below 432px: down to 320px, with a page margin of a unit */
