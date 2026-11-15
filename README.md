@@ -40,6 +40,7 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 | `index.html` | The demo page. Its text explains each element, in ASD-STE100 Simplified Technical English. |
 | `typographic-grid.css` | All styles: the base on `:root`, then each element, then utility classes. |
 | `typographic-grid.js` | What CSS cannot know: how many lines a heading wraps to, where a float's line box starts, the width of a drop cap's letter, and the half baseline a box may need at its bottom. |
+| `.github/workflows/pages.yml` | Deploys the page to GitHub Pages on each push to `main`, with the commit in the URLs of the stylesheet and the script, so a browser loads a new version at once. |
 
 ## Classes
 
