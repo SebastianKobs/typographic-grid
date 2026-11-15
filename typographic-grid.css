@@ -289,6 +289,8 @@ code {
   font-size: var(--heading-size);
   line-height: round(up, calc(var(--heading-size) * var(--heading-leading)), var(--heading-step));
   font-weight: 600;
+  /* lines of even length, so no line is a single word: the same number of lines, words moved between them */
+  text-wrap: balance;
 
   /* set by the script: how many lines the heading wraps to, which CSS can't know */
   --lines: 1;
@@ -1191,6 +1193,9 @@ textarea.field-input {
 /* left out on 5 columns and fewer, hide-below-7 */
 @media (width < 592px) {
   .hide-below-7 { display: none; }
+  /* a section heading's forced line break gives way on 5 columns and fewer: its topic runs on after the colon, as there the
+     part before the colon fills its own lines and the break would only add one (the space before the break stays) */
+  :is(h2, h3).heading br { display: none; }
 }
 
 /* 5 columns, from 432px */
