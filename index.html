@@ -605,12 +605,14 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph">Below its last text field or button, the box adds two lines of grey. Below its last choice, it adds one and a half lines. Thus the padding below is never less than the padding above the first line of the box. The bottom edge of the box stays on a grid line.</p>
   <h2 class="heading size-phi-1 ratio-3-5" id="effects">Each part of the page is on one grid: the effects</h2>
   <!-- a hanging stack left of its paragraph comes before it: the grid places left to right, so after it it'd drop a row -->
-  <div class="figure-stack figure-hanging col-start-1 col-span-1 pull-left-1 hide-unpulled">
+  <div class="figure-stack figure-hanging col-start-1 col-span-1 keep-start pull-left-1 hide-unpulled">
     <p class="text-up size-phi-2 text-grey">Each part of the page is on one grid</p>
   </div>
   <p class="paragraph">An effect is an ornament on the grid. The effects are in a separate style sheet, and each effect keeps the lines and the columns of the grid. Text can run up, at a right angle to the lines, as on Swiss posters. Its baseline is on the right edge of a column, and its end is at the cap line of the paragraph beside it, as the top edge of a picture. The title of the page runs up in the page margin, beside this paragraph, in grey and in a heavier weight than a heading. Its baseline is one gutter to the left of the type area, as if the grid continued into the page margin. A different class turns the text the other way, so that it runs down. When the page margin is too narrow, a class hides the text.</p>
   <p class="paragraph">A colour area can also have a hatch: thin lines at 45 degrees, in black, red or grey. Along a baseline, the distance between two lines is one unit. The hatch starts at the top-left corner of the type area, not at the corner of the colour area. Thus each line goes through the edge of each column on every second baseline, and the hatches of two colour areas continue each other. A class turns the lines the other way, from the top left to the bottom right, as in the red hatch.</p>
-  <div class="figure-stack figure-hanging col-start-8 col-span-3">
+
+  <p class="paragraph">A colour area can also hold a grid that is turned, as on a concert poster by Josef Müller-Brockmann from 1955. The turned grid is the grid of the page: columns of three units, gutters of two units, and a line between two grid lines. It turns around the first grid line at the left edge of the area, so that it goes one line down for each three units to the right. Each word, bar and rule starts at a crossing of the turned grid, a number of units along it and a number of grid lines across it. The words stand on its grid lines, and the bars fill its columns or go along its lines. Thus each part is on the turned columns.</p>
+  <div class="figure-stack figure-hanging hang-up side-by-side-on-7 col-start-8 col-span-3 col-span-6-on-7">
     <figure class="figure aspect-1-1 fill-hatch">
       <div class="figure-image"></div>
     </figure>
@@ -621,8 +623,6 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <div class="figure-image"></div>
     </figure>
   </div>
-
-  <p class="paragraph">A colour area can also hold a grid that is turned, as on a concert poster by Josef Müller-Brockmann from 1955. The turned grid is the grid of the page: columns of three units, gutters of two units, and a line between two grid lines. It turns around the first grid line at the left edge of the area, so that it goes one line down for each three units to the right. Each word, bar and rule starts at a crossing of the turned grid, a number of units along it and a number of grid lines across it. The words stand on its grid lines, and the bars fill its columns or go along its lines. Thus each part is on the turned columns.</p>
   <!-- each part, set in its style, on the composition's grid (the page's grid again, turned with turn-1-2):
        --x  units from the left edge (a column's left edge every 5, its right edge 3 later)
        --y  grid lines below the first grid line (the first is the cap height below the top edge)
@@ -674,34 +674,35 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph">The grid of the page can also hold a layout as on a poster, over the full width of the twelve columns. The example below follows a concert poster by Josef Müller-Brockmann from 1957. The red areas are colour areas, a number of columns wide and a number of lines deep, and some move down by whole lines. Each area also fills the gutter after it, so that only a hairline is between two areas. The names are on the red area, in the colour of the page. The small names are aligned on the right, against the gutter before the large names, and each of them is on a baseline of a large name. The details below start at the same column edge as the large names.</p>
   <!-- the colour areas hang in the row after the paragraph above: each its columns, --lines-above lower, --depth lines deep -->
   <!-- the poster's paper: all twelve columns, from the block's top edge to the lowest bar's end, behind the other areas -->
-  <figure class="figure figure-side figure-hanging col-start-1 col-span-12 fill-tint" style="--depth: 32">
+  <figure class="figure figure-side figure-hanging hang-always col-start-1 col-span-12 fill-tint" style="--depth: 32">
     <div class="figure-image"></div>
   </figure>
-  <figure class="figure figure-side figure-hanging col-start-1 col-span-7 fill-red fill-gutter" style="--depth: 17">
+  <figure class="figure figure-side figure-hanging hang-always col-start-1 col-span-7 col-span-5-on-7 fill-red fill-gutter" style="--depth: 17">
     <div class="figure-image"></div>
   </figure>
-  <figure class="figure figure-side figure-hanging col-start-8 col-span-2 fill-red fill-gutter" style="--lines-above: 7; --depth: 18">
+  <figure class="figure figure-side figure-hanging hide-below-12 col-start-8 col-span-2 fill-red fill-gutter" style="--lines-above: 5.5; --depth: 19">
     <div class="figure-image"></div>
   </figure>
-  <figure class="figure figure-side figure-hanging col-start-10 col-span-1 fill-red fill-gutter" style="--lines-above: 12; --depth: 20">
+  <figure class="figure figure-side figure-hanging hang-always hide-below-7 col-start-10 col-span-1 fill-red fill-gutter" style="--lines-above: 11.5; --depth: 20.5">
     <div class="figure-image"></div>
   </figure>
-  <figure class="figure figure-side figure-hanging col-start-11 col-span-1 fill-red fill-gutter" style="--lines-above: 4; --depth: 18">
+  <figure class="figure figure-side figure-hanging hide-below-12 col-start-11 col-span-1 fill-red fill-gutter" style="--lines-above: 3.5; --depth: 18.5">
     <div class="figure-image"></div>
   </figure>
-  <figure class="figure figure-side figure-hanging col-start-12 col-span-1 fill-red" style="--depth: 18">
+  <figure class="figure figure-side figure-hanging hang-always hide-below-7 col-start-12 col-span-1 fill-red" style="--depth: 18">
     <div class="figure-image"></div>
   </figure>
   <!-- the names: two headings side by side, both a line and a half apart; the same rule puts their first baselines on one line -->
-  <p class="heading size-phi-0 leading-2 ratio-3-5 col-start-1 col-span-3 text-right text-light" style="--lines-above: 6">karl<br>josef<br>emil<br>armin<br>max</p>
-  <p class="heading size-phi-1 ratio-3-5 col-start-4 col-span-4 text-light" style="--lines-above: 6">gerstner<br>müller-brockmann<br>ruder<br>hofmann<br>bill<br>grid systems<br>in graphic design</p>
-  <p class="paragraph col-start-4 col-span-4 weight-semibold">swiss typography<br>1950 to 1970</p>
-  <p class="paragraph col-start-1 col-span-3 text-right weight-semibold">4. poster</p>
-  <p class="paragraph col-start-4 col-span-4 weight-semibold">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>baseline grid 24 pixels<br>twelve columns<br>type area 928 pixels</p>
-  <p class="paragraph col-start-4 col-span-4 weight-semibold">made with css<br>text-box, round, mod<br>no pictures</p>
+  <p class="heading size-phi-0 leading-2 ratio-3-5 col-start-1 col-span-3 keep-start narrow-col-1 shift-right-1-on-7 shift-right-1-on-5 shift-right-1-on-4 text-right text-light" style="--lines-above: 3.5">karl<br>josef<br>emil<br>armin<br>max</p>
+  <p class="heading size-phi-1 ratio-3-5 col-start-4 col-span-4 keep-start narrow-col-rest size-down-on-4 text-light" style="--lines-above: 3.5">gerstner<br>müller-brockmann<br>ruder<br>hofmann<br>bill<br>grid systems<br>in graphic design</p>
+  <p class="paragraph col-start-4 col-span-4 keep-start narrow-col-rest weight-semibold" style="--lines-above: 3">swiss typography<br>1950 to 1970</p>
+  <p class="paragraph col-start-1 col-span-3 keep-start narrow-col-1 shift-right-1-on-7 shift-right-1-on-5 shift-right-1-on-4 text-right weight-semibold">4. poster</p>
+  <p class="paragraph col-start-4 col-span-4 keep-start narrow-col-rest weight-semibold">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>baseline grid 24 pixels<br>twelve columns<br>type area 928 pixels</p>
+  <p class="paragraph col-start-4 col-span-4 keep-start narrow-col-rest weight-semibold">made with css<br>text-box, round, mod<br>no pictures</p>
 
-  <!-- set lower by the lines the poster's paper hangs past its last paragraph -->
-  <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens" style="--lines-above: 2">Each part of the page is on one grid: the narrow screens</h2>
+  <!-- set lower by the lines the poster's paper hangs past its last paragraph; half a line less, as the poster's details
+       stand on half baselines: from here the page is on its full lines again -->
+  <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens" style="--lines-above: 1.5">Each part of the page is on one grid: the narrow screens</h2>
   <p class="paragraph">The other sections of this page describe the grid on a wide screen, with twelve columns. On a narrower screen, the grid has fewer columns. The columns and the gutters keep their widths, and only the number of columns changes. Thus each baseline stays on a grid line.</p>
   <table class="table">
     <colgroup>
@@ -720,7 +721,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
     </tbody>
   </table>
   <p class="paragraph">The values are in pixels, for a text size of 16 pixels. The type area is in the middle of the screen, and the page margins at its left and right get the width that is left. Each page margin is at least one gutter wide. With four columns, it is at least one unit wide.</p>
-  <p class="paragraph">With seven columns or fewer, no columns are beside the text. A picture or a note beside a paragraph then goes below the paragraph, with the margin of a paragraph above it. A note that refers to a word goes into the line, directly after that word. It is in parentheses and keeps its italic style.</p>
+  <p class="paragraph">With seven columns or fewer, no columns are beside the text. A picture or a note beside a paragraph then goes below the paragraph, with the margin of a paragraph above it. A note that refers to a word goes into the line, directly after that word. It is in parentheses and keeps its italic style. In the full-width example, the paper and the red area stay behind the text. With seven columns, the red area is five columns wide, and two of the bars are in the last two columns: one from the top edge, one to the bottom edge. The small names are in the first column, and the large names and the details are in the other columns. With five columns or fewer, the bars are not shown, and with four columns, the large names are one size smaller.</p>
   <p class="paragraph">A pull quote moves into the page margin only when the page margin is wide enough for its columns and one gutter. When the page margin is narrower, the quote moves by fewer columns, or it stays in the text width. Text that runs up or down in the page margin then goes above its paragraph, in the first column, or a class hides it.</p>
   <p class="paragraph">With five columns or fewer, a picture inside a paragraph is not wider than two columns, so the text beside it has at least half of the columns. The columns of a table are not on the columns of the page. Their widths come from their content, and one unit is between two columns. Fields and buttons that are side by side go to the next row when they do not fit. A box with no field and no button has a padding of two units at its left and at its right. In a box, the marks of a list go into the padding, as they go into the page margin outside a box. A colour area with words, bars and rules becomes smaller as a whole. Its grid, its words and its small text get smaller with the width of the area, so that the layout and all of the text stay the same. A class can show a box as a dashed outline, with no background. The box with the table has this class, with a black outline.</p>
 </main>

@@ -76,7 +76,8 @@ body {
    on either side, all start there; a heading after it takes the line back. */
 .paragraph {
   grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
-  margin: 0 0 var(--paragraph-margin);
+  /* whole lines more above, --lines-above in its style, as for a heading set lower on purpose */
+  margin: calc(var(--lines-above, 0) * var(--line)) 0 var(--paragraph-margin);
   /* not stretched to a row that its figures make taller: the box keeps ending on its last baseline */
   align-self: start;
 }
@@ -1019,7 +1020,9 @@ textarea.field-input {
 
 /* a colour area reaching over the gutter after it, up to a hairline before the next column: areas side by side then lie
    a hairline apart, as on a poster's printed fields; the hairline a sixteenth of the unit, whole pixels */
-.fill-gutter { margin-right: calc(-1 * (var(--gutter) - round(nearest, calc(var(--unit) / 16), 1px))); }
+@media (width >= 592px) {
+  .fill-gutter { margin-right: calc(-1 * (var(--gutter) - round(nearest, calc(var(--unit) / 16), 1px))); }
+}
 
 /* a vertical rule's colour, red unless it says otherwise */
 .rule-ink { --rule-color: var(--color-ink); }
@@ -1053,6 +1056,17 @@ textarea.field-input {
     height: 0;
     margin-bottom: 0;
   }
+  /* hanging upward, a hang-up class: its bottom edge on its paragraph's last baseline (in the row's end, less the paragraph's
+     margin below, which it takes too), its figures rising from there: no height of its own, lined up from its end, the last
+     figure without its margin below, so its bottom edge is that baseline */
+  .figure-stack.figure-hanging.hang-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-self: end;
+    margin-bottom: var(--paragraph-margin);
+  }
+  .figure-stack.hang-up > .figure:last-child { margin-bottom: 0; }
   /* a hanging figure moved down by whole lines, --lines-above in its style: moved, not pushed, so it takes no room
      in its row (a margin would); on fewer columns it follows its paragraph instead. Behind the text that runs over it:
      moved, it would be painted above it otherwise */
@@ -1102,8 +1116,9 @@ textarea.field-input {
    their top edge where the next capitals would be, as a figure below a paragraph */
 @media (width < 992px) {
   :root { --columns: 7; --text-span: 7; }
-  [class*="col-start-"],
+  [class*="col-start-"]:not(.keep-start),
   .note { --col-start: auto; }
+  /* a keep-start class: keeps its column on 7 columns too, where its place is still there (a layout of the text's span) */
   .col-span-8, .col-span-9, .col-span-10, .col-span-11, .col-span-12 { --col-span: 7; }
   /* a text block keeps the text's span */
   .text-block { --col-start: 1; --col-span: var(--text-span); }
@@ -1138,6 +1153,44 @@ textarea.field-input {
 }
 @media (width < 752px) {
   .quote { --pull: 0; }
+}
+
+/* hanging on fewer columns too, a hang-always class: an area behind the text that stays where it is, as the paper and the field of
+   a poster; and parts that only work beside the text's columns, hide-below-12, left out where those columns are gone */
+@media (width < 992px) {
+  .figure.figure-side.figure-hanging.hang-always {
+    height: 0;
+    margin-bottom: 0;
+    translate: 0 calc(var(--lines-above, 0) * var(--line));
+    z-index: -1;
+  }
+  .hide-below-12 { display: none; }
+  /* two text columns on 7 columns and fewer: a narrow-col-1 class in the first column, narrow-col-rest from the second to the edge */
+  .narrow-col-1 { grid-column: 1 / span 1; }
+  .narrow-col-rest { grid-column: 2 / -1; }
+}
+/* a column span only on 7 columns, col-span-n-on-7: a layout of the text's span laid out again for it */
+@media (592px <= width < 992px) {
+  .col-span-1-on-7 { --col-span: 1; }
+  .col-span-2-on-7 { --col-span: 2; }
+  .col-span-3-on-7 { --col-span: 3; }
+  .col-span-4-on-7 { --col-span: 4; }
+  .col-span-5-on-7 { --col-span: 5; }
+  .col-span-6-on-7 { --col-span: 6; }
+}
+/* a figure stack's figures side by side on 7 columns, side-by-side-on-7: two columns each, a gutter apart,
+   where one below the other they'd leave the columns beside them empty */
+@media (592px <= width < 992px) {
+  .figure-stack.side-by-side-on-7 { display: flex; gap: var(--gutter); }
+  .figure-stack.side-by-side-on-7 > .figure {
+    --col-span: 2;
+    flex: none;
+    width: calc(2 * var(--column) + var(--gutter));
+  }
+}
+/* left out on 5 columns and fewer, hide-below-7 */
+@media (width < 592px) {
+  .hide-below-7 { display: none; }
 }
 
 /* 5 columns, from 432px */
@@ -1186,6 +1239,9 @@ textarea.field-input {
 
 /* 4 columns, below 432px: down to 320px, with a page margin of a unit */
 @media (width < 432px) {
+  /* a heading of the next size down where 4 columns are too narrow for its longest line, a size-down-on-4 class:
+     22px instead of 26, its leading raised to 1.5 so its lines keep their distance (36px) and any text beside them its baselines */
+  .size-down-on-4 { --heading-ratio: 1.375; --heading-leading: 1.5; }
   :root { --columns: 4; --text-span: 4; }
   .col-span-5, .col-span-6, .col-span-7, .col-span-8, .col-span-9, .col-span-10, .col-span-11, .col-span-12 { --col-span: 4; }
 }
@@ -1230,3 +1286,50 @@ textarea.field-input {
   user-select: none;
 }
 .grid-toggle .choice-input { --choice-fill: var(--color-ground); margin: 0 calc(var(--unit) / 2) 0 0; vertical-align: 0; }
+
+/* ---------- Shifts: an element moved left or right by whole units, at every width or on one step of the grid ----------
+   shift-left-n, shift-right-n (n = 1 to 3 units), or with -on-12, -on-7, -on-5, -on-4 only where the grid has that many columns.
+   A margin on one side and the same less on the other, as a pulled quote: the element keeps its width and its place in the
+   grid's rows, and stays on the unit grid. */
+[class*="shift-left-"],
+[class*="shift-right-"] {
+  margin-inline: calc(var(--shift, 0) * var(--unit)) calc(-1 * var(--shift, 0) * var(--unit));
+}
+.shift-left-1 { --shift: -1; }
+.shift-right-1 { --shift: 1; }
+.shift-left-2 { --shift: -2; }
+.shift-right-2 { --shift: 2; }
+.shift-left-3 { --shift: -3; }
+.shift-right-3 { --shift: 3; }
+@media (width >= 992px) {
+  .shift-left-1-on-12 { --shift: -1; }
+  .shift-right-1-on-12 { --shift: 1; }
+  .shift-left-2-on-12 { --shift: -2; }
+  .shift-right-2-on-12 { --shift: 2; }
+  .shift-left-3-on-12 { --shift: -3; }
+  .shift-right-3-on-12 { --shift: 3; }
+}
+@media (592px <= width < 992px) {
+  .shift-left-1-on-7 { --shift: -1; }
+  .shift-right-1-on-7 { --shift: 1; }
+  .shift-left-2-on-7 { --shift: -2; }
+  .shift-right-2-on-7 { --shift: 2; }
+  .shift-left-3-on-7 { --shift: -3; }
+  .shift-right-3-on-7 { --shift: 3; }
+}
+@media (432px <= width < 592px) {
+  .shift-left-1-on-5 { --shift: -1; }
+  .shift-right-1-on-5 { --shift: 1; }
+  .shift-left-2-on-5 { --shift: -2; }
+  .shift-right-2-on-5 { --shift: 2; }
+  .shift-left-3-on-5 { --shift: -3; }
+  .shift-right-3-on-5 { --shift: 3; }
+}
+@media (width < 432px) {
+  .shift-left-1-on-4 { --shift: -1; }
+  .shift-right-1-on-4 { --shift: 1; }
+  .shift-left-2-on-4 { --shift: -2; }
+  .shift-right-2-on-4 { --shift: 2; }
+  .shift-left-3-on-4 { --shift: -3; }
+  .shift-right-3-on-4 { --shift: 3; }
+}
