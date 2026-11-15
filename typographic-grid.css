@@ -461,10 +461,12 @@ textarea.field-input {
    field's label; the first choice a line and a half below it, so the choices stand on half lines, a line apart,
    as the lines of a paragraph; the next label two and a half lines below the last choice, back on a full line.
    Label to label, the group takes the lines a text field takes. */
-.field:has(> .choice) {
+.field:has(> .choice),
+.field:has(> .choices) {
   margin-bottom: calc(5 * var(--half) - var(--body-cap));
 }
-.field > .choice {
+.field > .choice,
+.choices > .choice {
   display: block;
   text-box: trim-both cap alphabetic;
   /* a line below the last choice's baseline */
@@ -482,6 +484,19 @@ textarea.field-input {
 .field-error:has(+ .choice) {
   margin-bottom: 0;
 }
+/* Many choices in columns: cells of whole columns, two unless a choice-span class says otherwise, a gutter apart,
+   filled row by row. Each row is as deep as its longest choice, whole lines, so every row starts on a line:
+   the choices of one row share their first baseline. The label's half line below and each choice's line above
+   put the first row where a single column's first choice would be. */
+.choices {
+  --choice-span: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, calc(var(--choice-span) * var(--column) + (var(--choice-span) - 1) * var(--gutter)));
+  column-gap: var(--gutter);
+  align-items: start;
+}
+.choice-span-2 { --choice-span: 2; }
+.choice-span-3 { --choice-span: 3; }
 /* An error: its message on the lines below the label and the description, in the red of the rules and bold,
    the field following it as it follows a description; and the field marked by a vertical rule as a heading is,
    a unit to the left of its column, from the label's capitals to the field's bottom edge. Red already marks
@@ -653,7 +668,8 @@ textarea.field-input {
 }
 /* ending on checkboxes or radio buttons: the last choice is a line of text on a half line, so as below text,
    a line and a half, which lands the box's edge on a full line */
-.box:has(> .field:last-child > .choice) {
+.box:has(> .field:last-child > .choice),
+.box:has(> .field:last-child > .choices) {
   --box-inner-bottom: calc(3 * var(--half));
 }
 /* straight after a heading: the field starts at the half line nearest the capitals the text would have,
