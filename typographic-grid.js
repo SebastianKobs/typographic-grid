@@ -99,25 +99,6 @@ function roundTurnedTextToLines() {
 }
 roundTurnedTextToLines();
 
-// a word of a composition (fx.css) aligned by its ink: its first letter's side bearing, the font's margin left of the letter,
-// from the text's metrics (actualBoundingBoxLeft: how far the ink reaches left of the start, so the bearing is its negative).
-// A round first letter hangs out further: the font's overshoot of round letters past the cap line (an O's height less an H's),
-// times --round-hang (fx.css), as that overshoot alone still looks set in at a large size
-const measure = document.createElement("canvas").getContext("2d");
-const roundOnTheLeft = "CGOQSacdegoqs";
-function measureBearings() {
-  for (const word of document.querySelectorAll(".composition-word")) {
-    const style = getComputedStyle(word);
-    measure.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-    const first = word.textContent.trim().charAt(0);
-    const bearing = -measure.measureText(first).actualBoundingBoxLeft;
-    const overshoot = measure.measureText("O").actualBoundingBoxAscent - measure.measureText("H").actualBoundingBoxAscent;
-    const hang = parseFloat(style.getPropertyValue("--round-hang")) || 1;
-    word.style.setProperty("--bearing", `${bearing + (roundOnTheLeft.includes(first) ? hang * overshoot : 0)}px`);
-  }
-}
-measureBearings();
-
 // a heading resizes when the font loads or it rewraps, the type area when the grid steps to fewer columns:
 // count again, then realign the figures
 const headingLines = new ResizeObserver((entries) => {
@@ -127,7 +108,6 @@ const headingLines = new ResizeObserver((entries) => {
   roundBoxesToFullLines();
   alignDropcapsToUnits();
   roundTurnedTextToLines();
-  measureBearings();
   alignHatchesToGrid();
 });
 for (const heading of document.querySelectorAll(".heading, .quote")) headingLines.observe(heading);

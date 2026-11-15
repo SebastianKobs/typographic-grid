@@ -101,19 +101,22 @@
 /* a part across the grid, at a right angle to it, rising to the right */
 .composition > .composition-steep { --angle: calc(var(--turn) - 90deg); }
 /* a word: its baseline from the crossing on; bold, as on the posters; sized by a size- class. Aligned by its ink, not its box:
-   moved back along its baseline by its first letter's side bearing (the font's margin left of the letter, measured by the
-   script), so the letter itself stands on the crossing, as the small text's letters, whose bearing at the text's size is a pixel;
-   a round first letter (C, G, O, …) further, by --round-hang times as much as the font lets round letters overshoot the cap line,
-   as it only touches the line at one point and looks set in otherwise; two and a half times, chosen by eye: twice looked set in, three times hung out too far */
+   moved back along its baseline by a side bearing (the font's margin left of a letter, about 3% of the size in Inter, from
+   0.9% for a t to 5.4% for an H), so the letter itself stands near the crossing, as the small text's letters, whose bearing
+   at the text's size is a pixel. A word starting with a round letter (C, G, O, …), hang-round, further: two and a half times
+   Inter's overshoot of round letters past the cap line (1.1% of the size), as it only touches the line at one point and
+   looks set in otherwise; chosen by eye, twice looked set in, three times hung out too far.
+   Fixed values for the font, not measured: another font may want others. */
 .composition-word {
-  --round-hang: 2.5;
+  --side-bearing: 0.03em;
   font-size: round(nearest, calc(var(--unit) * var(--heading-ratio, 1)), 1px);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
-  transform: rotate(var(--angle)) translateX(calc(-1 * var(--bearing, 0px))) translateY(-100%);
+  transform: rotate(var(--angle)) translateX(calc(-1 * (var(--side-bearing) + var(--hang, 0em)))) translateY(-100%);
 }
+.hang-round { --hang: calc(2.5 * 0.011em); }
 /* a bar: its edge from the crossing on, --length steps long, --thick spacings thick (a steep bar also half spacings:
    along the turned lines the steep lines through crossings lie twice as close) */
 .composition-bar {

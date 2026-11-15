@@ -630,7 +630,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
        composition-steep turns an element at a right angle to the turned grid, rising to the right; turn-1-2 turns the grid -->
   <figure class="figure col-span-7 aspect-3-4 fill-ink">
     <div class="figure-image composition turn-1-2">
-      <span class="composition-word size-phi-3" style="--x: 1; --y: 2">column</span>
+      <span class="composition-word size-phi-3 hang-round" style="--x: 1; --y: 2">column</span>
       <span class="composition-rule" style="--x: 10; --y: 1; --length: 6"></span>
       <span class="composition-bar" style="--x: 12; --y: 6; --length: 5; --thick: 4"></span>
       <span class="composition-rule" style="--x: 3; --y: 9; --length: 5"></span>
@@ -641,9 +641,10 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <span class="composition-bar composition-steep" style="--x: 9; --y: 30; --length: 8; --thick: 2"></span>
       <span class="composition-bar composition-steep" style="--x: 26; --y: 15; --length: 4; --thick: 2"></span>
       <span class="composition-bar composition-steep" style="--x: 24; --y: 7; --length: 5; --thick: 5"></span>
-      <span class="composition-rule composition-steep" style="--x: 0; --y: 25; --length: 4"></span>
-      <!-- starts where the line of the rule under "line" crosses it: 5.6 steps up the steep line, 8.4 units and 13.8 lines -->
-      <span class="composition-rule composition-steep" style="--x: 8.4; --y: 13.8; --length: 2.4"></span>
+      <!-- the broken rule through the middle of the i of "unit": the steep line through crossings nearest to the i's centre -->
+      <span class="composition-rule composition-steep" style="--x: -1; --y: 27; --length: 5"></span>
+      <!-- starts where the line of the rule under "line" crosses it: 6.53 steps up the steep line, 8.8 units and 13.93 lines -->
+      <span class="composition-rule composition-steep" style="--x: 8.8; --y: 13.933; --length: 3.467"></span>
       <span class="composition-rule composition-steep" style="--x: 21; --y: 11; --length: 6"></span>
       <p class="composition-text" style="--x: 19; --y: 22">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
     </div>
@@ -651,7 +652,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph">Two colours can overprint, as two inks on a printed poster. Where a red part is on black, the black shows through. Where it is on the grey, it stays red. In the area below, the red bar goes across the black word, and the word stays easy to read on it. The red word goes across a grey bar, and its letters are dark red there: the two colours together.</p>
   <figure class="figure col-span-7 aspect-3-2 fill-tint">
     <div class="figure-image composition turn-1-2 text-ink">
-      <span class="composition-word size-phi-3" style="--x: 1; --y: 4">overprint</span>
+      <span class="composition-word size-phi-3 hang-round" style="--x: 1; --y: 4">overprint</span>
       <!-- the red bar ends with the t: its right edge on the steep line through crossings nearest to the end of the t;
            the grey bar over "k": both edges on the steep lines nearest to the letter's ink
            (along a word those lines are 3.6px apart, half a thickness step: so a steep bar may be a half step thick) -->
@@ -666,8 +667,8 @@ the grid arrived. Could you send the second volume as well?</textarea>
     <div class="figure-image composition">
       <p class="composition-text text-red" style="--x: 10; --y: 2">Typographic<br>Grid Effects</p>
       <span class="composition-word size-phi-5 text-mid" style="--x: -2; --y: 22">the</span>
-      <span class="composition-word size-phi-5" style="--x: 10; --y: 22">Grid</span>
-      <p class="composition-text text-red" style="--x: 10; --y: 25">One unit 16, one line 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
+      <span class="composition-word size-phi-5 hang-round" style="--x: 10; --y: 22">Grid</span>
+      <p class="composition-text text-red" style="--x: 10; --y: 25">Unit 16, baseline grid 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
     </div>
   </figure>
 
