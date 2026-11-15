@@ -102,6 +102,8 @@ body {
   padding: 0;
   list-style: none;
   text-box: trim-both cap alphabetic;
+  /* the band the marks stand in, left of the items' words */
+  --mark-band: var(--gutter);
 }
 /* the mark hangs in a gutter's width left of the text edge, set right with an en space (half the unit) before the words,
    so the items' words line up with the paragraphs'; inline in the item's first line, so it sits on its baseline */
@@ -109,11 +111,16 @@ body {
   /* a pseudo-element isn't matched by *: its en space counts inside the gutter's width */
   box-sizing: border-box;
   display: inline-block;
-  width: var(--gutter);
-  margin-left: calc(-1 * var(--gutter));
+  width: var(--mark-band);
+  margin-left: calc(-1 * var(--mark-band));
   padding-right: calc(var(--unit) / 2);
   text-align: right;
 }
+/* in a box the text is set in by only a unit, too little for the marks to hang in: they don't hang there,
+   but start at the text's edge, in line with the heading; the band narrowed to a unit and an en space,
+   room for a number and its full stop */
+.box .list { --mark-band: calc(3 * var(--unit) / 2); padding-left: var(--mark-band); }
+.box .list > li::before { text-align: left; }
 /* an en dash, the Swiss mark for an item */
 ul.list > li::before { content: "–"; }
 /* figures of one width, so the full stops of 9. and 10. stand in one column; bold, as the labels of a form are */
