@@ -38,17 +38,19 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 | File | Content |
 |---|---|
 | `index.html` | The demo page. Its text explains each element, in ASD-STE100 Simplified Technical English. |
-| `typographic-grid.css` | All styles: the base on `:root`, then each element, then utility classes. |
-| `typographic-grid.js` | What CSS cannot know: how many lines a heading wraps to, where a float's line box starts, the width of a drop cap's letter, and the half baseline a box may need at its bottom. |
-| `.github/workflows/pages.yml` | Deploys the page to GitHub Pages on each push to `main`, with the commit in the URLs of the stylesheet and the script, so a browser loads a new version at once. |
+| `theme.css` | The colours, as tokens on `:root`. Swap it for another theme. |
+| `typographic-grid.css` | The grid and its elements: the base on `:root`, then each element, then utility classes. |
+| `fx.css` | Effects laid on the grid, such as the hatch. |
+| `typographic-grid.js` | What CSS cannot know: how many lines a heading wraps to, where a float's line box starts, the width of a drop cap's letter, the half baseline a box may need at its bottom, and where a hatch starts. |
+| `.github/workflows/pages.yml` | Deploys the page to GitHub Pages on each push to `main`, with the commit in the URLs of the stylesheets and the script, so a browser loads a new version at once. |
 
 ## Classes
 
 Classes are named for their effect, for example:
 
-- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`
+- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`
 - Headings: `size-phi-n` (golden-section sizes), `ratio-a-b` (margins below : above, in half baselines), `rule-left`
-- Colour: `fill-red`, `fill-ink`, `fill-tint`, `text-light`, `text-ink`, `outline-ink`, `outline-red`, `outline-tint`
+- Colour: `fill-red`, `fill-ink`, `fill-tint`, `fill-hatch`, `fill-hatch-red`, `fill-hatch-tint`, `hatch-falling`, `text-light`, `text-ink`, `outline-ink`, `outline-red`, `outline-tint`
 - Elements: `paragraph`, `heading`, `quote`, `figure`, `float-left`, `box` (`outline-narrow`), `note`, `rule`, `list`, `table` (`row-gap-1`, `row-gap-2`), `code`, `icon` (`icon-arrow-right`, `icon-arrow-down`, `icon-plus`), `dropcap`, `badge`, `field`, `fields`, `choice`, `choices`, `button`, `buttons`
 
 ## Browsers

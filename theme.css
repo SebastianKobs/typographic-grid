@@ -1,0 +1,19 @@
+/* The page's colours: every colour the stylesheets use is one of these tokens. Swap this file for another theme.
+   One colour can't follow: the tick of a checked checkbox is drawn in a data URL, which can't read a token
+   (written out in typographic-grid.css as the ground's #f7f7f7). */
+:root {
+  /* the page, and the text on it */
+  --color-ground: #f7f7f7;
+  --color-ink: #111;
+  /* the one colour beside black: the title's rule, focus, errors, checked choices */
+  --color-red: #da291c;
+  --color-rule: var(--color-red);
+  /* a field: text fields, boxes, badges */
+  --color-tint: #e4e4e4;
+  /* a picture not yet there: a plain field, darker than the tint, so it reads as a picture, not a box */
+  --color-picture: #cfcfcf;
+  /* the ink faded, for what can't be used: a disabled field, choice or button */
+  --color-disabled: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  /* the ink lightened, for an example in an empty field: a grey that still reads on the tint */
+  --color-example: color-mix(in srgb, var(--color-ink) 60%, transparent);
+}

@@ -24,14 +24,7 @@
   --heading-leading: 1;
   /* the step a heading's line height rounds to: half a baseline by default, or a line */
   --heading-step: calc(var(--line) / 2);
-
-  --color-ground: #f7f7f7;
-  --color-ink: #111;
-  --color-red: #da291c;
-  --color-rule: var(--color-red);
-  --color-tint: #e4e4e4;
-  /* the ink faded, for what can't be used: a disabled field, choice or button */
-  --color-disabled: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  /* the colours are in theme.css */
 }
 
 /* registered, so a length set as 1cap is resolved where it's declared and inherited as px */
@@ -434,11 +427,18 @@ code {
   /* set by the script beside a text block: its heading's margin above */
   margin-top: var(--beside-margin, 0px);
 }
+/* Figures one below the other beside a paragraph: a side figure's place in the grid, holding figures as a text column
+   holds paragraphs. Each figure keeps its margin below, so the next one's top edge is on the next capitals; in the same row
+   as the paragraph, its top edge on the paragraph's capitals. The figures take the stack's columns. */
+.figure-stack {
+  grid-column: var(--col-start, calc(var(--text-span) + 1)) / span var(--col-span, calc(var(--columns) - var(--text-span)));
+  align-self: start;
+}
 /* placeholder until real images: a plain field, so the crop doesn't distract;
    a fill- class makes it a colour field, a picture with nothing in it */
 .figure-image {
   height: var(--figure-height);
-  background: var(--fill, #cfcfcf);
+  background: var(--fill, var(--color-picture));
 }
 
 /* A margin note: a few words in the columns beside the text, in register with it. The same size and line
@@ -634,11 +634,11 @@ textarea.field-input {
   outline: var(--focus-thickness) solid var(--color-rule);
   outline-offset: var(--focus-thickness);
 }
-/* an example in an empty field, set as the description is, in the ink lightened to a grey that still reads on the tint */
+/* an example in an empty field, set as the description is, in a grey that still reads on the tint */
 .field-input::placeholder {
   font-style: italic;
   font-weight: var(--caption-weight);
-  color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+  color: var(--color-example);
   opacity: 1;
 }
 /* focus: an outline in the red of the rules, drawn inside the field so it stays within its columns */
@@ -790,7 +790,7 @@ textarea.field-input {
   /* the margin's end falls half a baseline short of the next line box: the text beside it ends on its bottom's
      baseline and the next line runs full */
   margin: 0 var(--unit) calc(var(--float-drop, 0px) - var(--half)) 0;
-  background: #cfcfcf;
+  background: var(--color-picture);
 }
 
 /* A rule between two paragraphs, centred on a grid line as the title's rule is; as long as its span.
@@ -1002,6 +1002,7 @@ textarea.field-input {
 .fill-red { --fill: var(--color-red); }
 .fill-ink { --fill: var(--color-ink); }
 .fill-tint { --fill: var(--color-tint); }
+/* fill-hatch: in fx.css */
 
 /* a vertical rule's colour, red unless it says otherwise */
 .rule-ink { --rule-color: var(--color-ink); }
@@ -1020,7 +1021,8 @@ textarea.field-input {
    and nothing clears it; keeping that clear is the designer's call. Only on the full grid: on fewer columns
    it follows its paragraph and takes its height. */
 @media (width >= 992px) {
-  .figure.figure-side.figure-hanging {
+  .figure.figure-side.figure-hanging,
+  .figure-stack.figure-hanging {
     height: 0;
     margin-bottom: 0;
   }

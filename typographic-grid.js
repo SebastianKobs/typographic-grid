@@ -73,6 +73,19 @@ function alignDropcapsToUnits() {
 }
 alignDropcapsToUnits();
 
+// a hatch is laid from the type area's top-left corner: each hatched field gets its offset from there,
+// a box's field being its ::before, a figure's its image at the figure's corner
+function alignHatchesToGrid() {
+  for (const hatched of document.querySelectorAll(".fill-hatch, .fill-hatch-red, .fill-hatch-tint")) {
+    const area = hatched.closest(".type-area").getBoundingClientRect();
+    const rect = hatched.getBoundingClientRect();
+    const fieldTop = hatched.matches(".box") ? rect.top + parseFloat(getComputedStyle(hatched, "::before").top) : rect.top;
+    hatched.style.setProperty("--hatch-x", `${area.left - rect.left}px`);
+    hatched.style.setProperty("--hatch-y", `${area.top - fieldTop}px`);
+  }
+}
+alignHatchesToGrid();
+
 // a heading resizes when the font loads or it rewraps, the type area when the grid steps to fewer columns:
 // count again, then realign the figures
 const headingLines = new ResizeObserver((entries) => {
@@ -81,6 +94,7 @@ const headingLines = new ResizeObserver((entries) => {
   dropFloatsToCapitals();
   roundBoxesToFullLines();
   alignDropcapsToUnits();
+  alignHatchesToGrid();
 });
 for (const heading of document.querySelectorAll(".heading, .quote")) headingLines.observe(heading);
 headingLines.observe(document.querySelector(".type-area"));

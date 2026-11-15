@@ -7,7 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="typographic-grid.css">
+<link rel="stylesheet" href="fx.css">
 </head>
 <body>
 
@@ -134,7 +136,7 @@
 
   <h2 class="heading size-phi-1 ratio-3-5 rule-left rule-ink" id="colour-areas">Each part of the page is on one grid: the colour areas</h2>
   <p class="paragraph">A colour area is a picture with no content. Its width is a number of columns, and its top edge is at the cap line of the text beside it. Its bottom edge is on a grid line, as near to its ratio as possible. A colour area gives weight to a part of the page, shows where a section starts, or holds a row together. It uses the two colours of the page: the red of the rule below the title, and the black of the text.</p>
-  <figure class="figure figure-side col-start-8 col-span-3 aspect-1-1 fill-red">
+  <figure class="figure figure-side figure-hanging col-start-8 col-span-3 aspect-1-1 fill-red">
     <div class="figure-image"></div>
   </figure>
   <figure class="figure col-start-1 col-span-2 aspect-1-1 fill-ink">
@@ -146,6 +148,18 @@
   <figure class="figure col-start-5 col-span-3 aspect-13-8">
     <div class="figure-image"></div>
   </figure>
+  <p class="paragraph">A colour area can also have a hatch: thin lines at 45 degrees, in black, red or grey. Along a baseline, the distance between two lines is one unit. The hatch starts at the top-left corner of the type area, not at the corner of the colour area. Thus each line goes through the edge of each column on every second baseline, and the hatches of two colour areas continue each other. A class turns the lines the other way, from the top left to the bottom right, as in the red hatch.</p>
+  <div class="figure-stack figure-hanging col-start-8 col-span-3">
+    <figure class="figure aspect-1-1 fill-hatch">
+      <div class="figure-image"></div>
+    </figure>
+    <figure class="figure aspect-1-1 fill-hatch-red hatch-falling">
+      <div class="figure-image"></div>
+    </figure>
+    <figure class="figure aspect-1-1 fill-hatch-tint">
+      <div class="figure-image"></div>
+    </figure>
+  </div>
 
   <h2 class="heading size-phi-1 ratio-3-5" id="boxes">Each part of the page is on one grid: the boxes</h2>
   <p class="paragraph">A box separates a piece of text from the paragraphs around it, for example a note, a definition or an example. A box does not have its own grid. Its background is a number of columns wide, as a picture is. The text in the box has the same size and line height as each other paragraph.</p>

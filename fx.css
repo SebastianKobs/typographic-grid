@@ -1,0 +1,27 @@
+/* Effects: ornaments laid on the grid. Loaded after typographic-grid.css: they use its unit and its fill,
+   and its script hands over where they start. Their colours are theme.css's tokens. */
+
+/* A hatch: lines rising at 45° (falling with hatch-falling), a unit apart along a baseline, a thin rule's thickness (an eighth of the unit),
+   on the page's ground; in the ink, or in red or the tint with the class of that colour.
+   Tiles of a unit square, laid from the type area's top-left corner, not the element's (the script hands over the offset):
+   every line then crosses every column edge, and every unit, on every second baseline, and two hatched areas continue each other.
+   Drawn as a gradient, not an image, so the colour is a token. In a unit square at 135° the gradient runs from the top-left corner
+   to the bottom-right: the line through the other two corners at its middle, the next lines' ends at its two ends; at 45°
+   from the bottom-left to the top-right, the same for lines falling to the right.
+   :where(), so an outline- class still sets a box's outline colour; by default the hatch's own. */
+.fill-hatch { --hatch-color: var(--color-ink); }
+.fill-hatch-red { --hatch-color: var(--color-red); }
+.fill-hatch-tint { --hatch-color: var(--color-tint); }
+.hatch-falling { --hatch-angle: 45deg; }
+:where(.fill-hatch, .fill-hatch-red, .fill-hatch-tint) {
+  /* half a line's thickness, along the gradient: across the line */
+  --hatch-half: calc(var(--unit) / 16);
+  --fill: linear-gradient(var(--hatch-angle, 135deg),
+      var(--hatch-color) 0 var(--hatch-half),
+      transparent var(--hatch-half) calc(50% - var(--hatch-half)),
+      var(--hatch-color) calc(50% - var(--hatch-half)) calc(50% + var(--hatch-half)),
+      transparent calc(50% + var(--hatch-half)) calc(100% - var(--hatch-half)),
+      var(--hatch-color) calc(100% - var(--hatch-half)))
+    var(--hatch-x, 0px) var(--hatch-y, 0px) / var(--unit) var(--unit);
+  --outline-color: var(--hatch-color);
+}
