@@ -377,10 +377,23 @@ textarea.field-input {
   font-weight: 700;
   line-height: var(--line);
   color: var(--color-ground);
-  background: var(--color-rule);
+  /* red unless a fill- class says otherwise */
+  background: var(--fill, var(--color-rule));
   cursor: pointer;
 }
-.button:hover { background: var(--color-ink); }
+.button:hover { color: var(--color-ground); background: var(--color-ink); }
+/* Buttons side by side: the row takes a button's place and white, its buttons a gutter apart,
+   so each starts on a column line. */
+.buttons {
+  grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
+  align-self: start;
+  display: flex;
+  gap: var(--gutter);
+  margin: calc(var(--body-cap) - var(--half)) 0 var(--paragraph-white);
+}
+.buttons > .button { margin: 0; }
+/* a tint button in a box, whose field is the same tint: the colour of the page, as a text field there */
+.box .button.fill-tint { --fill: var(--color-ground); }
 /* focus: the red outline, outside, a gap of the same width between, so it shows against the red */
 .button:focus-visible {
   --focus-thickness: calc(var(--unit) / 8);
@@ -566,7 +579,8 @@ textarea.field-input {
 /* ending on a text field: its bottom edge is on a full line, so the box's field below it is whole lines;
    two, as one would leave less white below the field than above the first label (2 lines − its capitals) */
 .box:has(> .field:last-child),
-.box:has(> .button:last-child) {
+.box:has(> .button:last-child),
+.box:has(> .buttons:last-child) {
   --box-inner-bottom: calc(2 * var(--line));
 }
 /* ending on checkboxes or radio buttons: the last choice is a line of text on a half line, so as below text,
@@ -685,12 +699,15 @@ textarea.field-input {
 /* a figure's fill: a colour field instead of a picture, in the colours the page already uses */
 .fill-red { --fill: var(--color-red); }
 .fill-ink { --fill: var(--color-ink); }
+.fill-tint { --fill: var(--color-tint); }
 
 /* a vertical rule's colour, red unless it says otherwise */
 .rule-ink { --rule-color: var(--color-ink); }
 
 /* text in the colour of the page, for a box on red or black */
 .text-light { color: var(--color-ground); }
+/* text in ink, for a button on the tint */
+.text-ink { color: var(--color-ink); }
 
 /* a side figure that takes no height in its row: it hangs past its paragraph beside what follows,
    and nothing clears it; keeping that clear is the designer's call */
