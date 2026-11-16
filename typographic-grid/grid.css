@@ -196,6 +196,33 @@ a:focus-visible {
 .fill-red a,
 .fill-ink a { --link-line: currentColor; }
 .fill-red a { --link-hover: var(--color-ink); }
+/* A menu, a site's navigation (a nav holding a details element, its summary "Menu", the links after it): on twelve columns
+   the links in one row, an em space apart, the summary not shown; on fewer, where the row no longer fits,
+   one line "Menu" with a plus, and tapped, the links below it, one a line, the plus turned to a cross.
+   Trimmed as a paragraph is, from the first capitals to the last baseline, so open or closed every baseline is a grid
+   line; it takes a paragraph's place and margins. No script: the details element opens and closes itself. */
+.menu {
+  grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
+  align-self: start;
+  margin: 0 0 var(--paragraph-margin);
+  text-box: trim-both cap alphabetic;
+}
+.menu summary {
+  display: none;
+  cursor: pointer;
+  /* no marker: the plus is the mark */
+  list-style: none;
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary:hover { color: var(--color-rule); }
+.menu summary:focus-visible {
+  outline: round(nearest, calc(var(--unit) / 8), 1px) solid var(--color-rule);
+  outline-offset: round(nearest, calc(var(--unit) / 8), 1px);
+}
+/* the source's space between two links, and an em space more */
+.menu a:not(:last-child) { margin-right: 1em; }
+/* shown closed too: the row is the menu on twelve columns */
+.menu details::details-content { content-visibility: visible; }
 
 /* Code: a monospace font, its cap height Inter's (both near 0.73 of the size), so at the text's size and weight
    its capitals and baseline are the text's. In a line of text it takes no height of its own (its taller ascent
@@ -223,18 +250,22 @@ code {
 /* An icon: a unit square, as large as the text, centred on the capitals as a checkbox is, so a line keeps its height;
    drawn on a grid of 16 in the unit, its strokes 2 of 16, an eighth of a unit as a thin rule; in the text's colour,
    so it follows a link's hover; an en space (half the unit) before the word after it.
-   The class wraps that word and draws the icon in front of it: no line break between the two. */
+   The class wraps that word and draws the icon in front of it: no line break between the two;
+   with icon-after, behind it, for words set right, so the icon is the edge they end on. */
 .icon { white-space: nowrap; }
-.icon::before {
+.icon::before,
+.icon.icon-after::after {
   content: "";
   display: inline-block;
   width: var(--unit);
   height: var(--unit);
-  margin-right: calc(var(--unit) / 2);
   vertical-align: calc(var(--body-cap) / 2 - var(--unit) / 2);
   background-color: currentColor;
   mask: var(--icon) center / contain no-repeat;
 }
+.icon::before { margin-right: calc(var(--unit) / 2); }
+.icon.icon-after::before { content: none; }
+.icon.icon-after::after { margin-left: calc(var(--unit) / 2); }
 .icon-arrow-right { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M1 8H14M9 3l5 5-5 5'/%3E%3C/svg%3E"); }
 .icon-arrow-down { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M8 1V14M3 9l5 5 5-5'/%3E%3C/svg%3E"); }
 .icon-plus { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M8 1V15M1 8H15'/%3E%3C/svg%3E"); }
@@ -1167,6 +1198,25 @@ textarea.field-input {
     z-index: -1;
   }
   .hide-below-12 { display: none; }
+  /* the menu folded: "Menu" set right on the title's last baseline (its trimmed bottom edge), tied to it by an anchor,
+     so it takes no row of its own and the row after the title starts as if there were no menu; open, the links fill
+     that row, one a line, set right, as a paragraph would sit there, and push what follows down by whole lines.
+     Each line as wide as its words, so a tap and the focus outline are on the words */
+  .page-title { anchor-name: --page-title; }
+  .menu:not(:has(details[open])) { margin-bottom: 0; }
+  .menu summary {
+    display: block;
+    position: absolute;
+    position-anchor: --page-title;
+    bottom: anchor(bottom);
+    right: anchor(right);
+    text-box: trim-both cap alphabetic;
+  }
+  .menu a,
+  .menu a:not(:last-child) { display: block; width: fit-content; margin: 0 0 0 auto; }
+  .menu details:not([open])::details-content { content-visibility: hidden; }
+  .menu details[open] > summary .icon::before,
+  .menu details[open] > summary .icon::after { rotate: 45deg; }
   /* two text columns on 7 columns and fewer: a narrow-col-1 class in the first column, narrow-col-rest from the second to the edge */
   .narrow-col-1 { grid-column: 1 / span 1; }
   .narrow-col-rest { grid-column: 2 / -1; }
@@ -1240,6 +1290,11 @@ textarea.field-input {
     background: none;
     border: round(nearest, calc(var(--unit) / 8), 1px) dashed var(--outline-color, var(--fill, var(--color-tint)));
   }
+}
+/* on 5 columns only: a heading at φ (26px) where its size is too wide there, a size-phi-1-on-5 class,
+   as a φ³ title that would run under a menu on its line: at φ² it still fills the line */
+@media (432px <= width < 592px) {
+  .size-phi-1-on-5 { --heading-ratio: 1.618; }
 }
 
 /* 4 columns, below 432px: down to 320px, with a page margin of a unit */
