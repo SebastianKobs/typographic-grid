@@ -201,6 +201,10 @@
   transform: var(--ray) translateY(-50%);
 }
 
+/* See-through: a word partly clear, a see-through class, --see-through opaque: what is behind it shows through, most where
+   it crosses another word. On the area it is a little darker than without. */
+.composition > .see-through { opacity: var(--see-through, 0.8); }
+
 /* Overprint: a part printed over another as a second ink, not covering it. Multiplied with what is below: on the page's ground
    a red part stays red, on black it is black, so the black shows through it, as where two inks overlap on a poster. */
 .overprint { mix-blend-mode: multiply; }

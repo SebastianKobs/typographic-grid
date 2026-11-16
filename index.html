@@ -659,13 +659,15 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <span class="composition-word size-phi-4 text-red overprint" style="--x: 35; --y: 22">ink</span>
     </div>
   </figure>
-  <p class="paragraph">A colour area can also hold words at a very large size, as on the poster “der Film” by Josef Müller-Brockmann from 1960. There the grid is not turned. The first word is grey, and the left edge of the area cuts it. The second word has the colour of the page and covers the end of the first word. The small red text starts at the same column edge as the second word, and each of its baselines is on a grid line.</p>
+  <p class="paragraph">A colour area can also hold words at a very large size, as on the poster “der Film” by Josef Müller-Brockmann from 1960. There the grid is not turned. The first word is grey. It ends on the right edge of the seventh column, and the left edge of the area cuts its first letter. The second word has the colour of the page. The second word is partly clear, so where the two words cross, the first word shows through. The small red text starts at the same column edge as the second word, and each of its baselines is on a grid line.</p>
   <figure class="figure col-span-12 fill-ink" style="--depth: 32">
     <div class="figure-image composition">
       <p class="composition-text weight-semibold text-red" style="--heading-ratio: 1.25; --x: 15; --y: 2.5">Typographic<br>Grid Effects</p>
       <!-- 372px (23.25 units): the size at which the ink of "Grid" ends on the area's right edge, the right edge of column 12 -->
-      <span class="composition-word text-mid" style="--heading-ratio: 23.25; --x: -16; --y: 24">the</span>
-      <span class="composition-word hang-round" style="--heading-ratio: 23.25; --x: 15; --y: 24">Grid</span>
+      <!-- the size of "Grid": the h of "the" on the cap line, as high as the G to the eye (the G overshoots it, as round letters do);
+           moved left off the grid (--shift-x, 15px), so that its ink ends on the right edge of column 7 -->
+      <span class="composition-word text-mid" style="--heading-ratio: 23.25; --x: 0; --shift-x: -0.9375; --y: 24">the</span>
+      <span class="composition-word hang-round see-through" style="--heading-ratio: 23.25; --x: 15; --y: 24">Grid</span>
       <p class="composition-text weight-semibold text-red" style="--heading-ratio: 1.25; --x: 15; --y: 27">Unit 16, baseline grid 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
     </div>
   </figure>
