@@ -36,11 +36,11 @@
   /* the colours are in theme.css */
 }
 
-/* registered, so a length set as 1cap is resolved where it's declared and inherited as px; the unit and the line too,
-   so a composition's own (from its width) reaches its overlay as pixels */
+/* registered, so a length set as 1cap is resolved where it's declared and inherited as px (the body's cap as 64 times
+   itself, see .type-area); the unit and the line too, so a composition's own (from its width) reaches its overlay as pixels */
 @property --unit { syntax: "<length>"; inherits: true; initial-value: 16px; }
 @property --line { syntax: "<length>"; inherits: true; initial-value: 24px; }
-@property --body-cap { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --body-cap-64 { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @property --rule-gap { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @property --rule-lift { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @property --rule-thickness { syntax: "<length>"; inherits: true; initial-value: 0px; }
@@ -70,8 +70,12 @@ body {
   font-size: calc(var(--font-size) * 1px);
   line-height: var(--line);
   font-weight: var(--font-weight);
-  /* the body's cap height, for the headings' margin below */
-  --body-cap: 1cap;
+  /* the body's cap height, for the headings' margin below: rounded to Chromium's layout step (1/64px) as its trim rounds
+     the cap, else each margin that subtracts it is cut 1/64px short there and the page drifts (2.5px over a long page at
+     20px). Kept as whole px times 64, registered: a registered length reaches var() as text with 6 digits, which would
+     cut it again; the division happens where it's used */
+  --body-cap-64: round(nearest, 64 * 1cap, 1px);
+  --body-cap: calc(var(--body-cap-64) / 64);
   /* one empty line: from a last baseline to where the capitals two lines below it would be */
   --paragraph-margin: calc(2 * var(--line) - var(--body-cap));
 }

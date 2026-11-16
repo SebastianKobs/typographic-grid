@@ -74,8 +74,9 @@
   --unit: calc(100cqw / var(--composition-units, 58));
   --line: calc(var(--unit) * var(--line-height));
   font-size: var(--unit);
-  /* the cap height at the composition's unit, for its first grid line */
-  --body-cap: 1cap;
+  /* the cap height at the composition's unit, for its first grid line; rounded as the page's (.type-area) */
+  --body-cap-64: round(nearest, 64 * 1cap, 1px);
+  --body-cap: calc(var(--body-cap-64) / 64);
   position: relative;
   overflow: hidden;
   /* its own stacking context: an overprinting part combines with the area and the parts below it, not the page */

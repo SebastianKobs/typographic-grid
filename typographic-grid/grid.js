@@ -96,7 +96,7 @@ function roundTurnedTextToLines() {
   for (const turned of document.querySelectorAll(".text-up, .text-down")) {
     const area = getComputedStyle(turned.closest(".type-area"));
     const line = parseFloat(area.lineHeight);
-    const cap = parseFloat(area.getPropertyValue("--body-cap"));
+    const cap = parseFloat(area.getPropertyValue("--body-cap-64")) / 64;
     turned.style.removeProperty("--turned-length");
     const length = turned.getBoundingClientRect().height;
     turned.style.setProperty("--turned-length", `${cap + Math.ceil((length - cap) / line) * line}px`);
