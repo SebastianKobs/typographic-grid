@@ -2,7 +2,7 @@
 
 A web page where every part sits on one grid: text, headings, pictures, rules, boxes, notes, quotes, lists, tables, links, code, icons, drop caps, badges and form elements. No distance comes from the eye; each one is computed from the size and the line height of the text.
 
-**Demo:** https://sebastiankobs.github.io/typographic-grid/
+**Demo:** https://sebastiankobs.github.io/typographic-grid/ (reference: https://sebastiankobs.github.io/typographic-grid/reference.html)
 
 ## The grid
 
@@ -39,7 +39,8 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 
 | File | Content |
 |---|---|
-| `index.html` | The demo page. Its text explains each element, in ASD-STE100 Simplified Technical English. |
+| `index.html` | The showcase: an article about Swiss typography (Müller-Brockmann, Gerstner, Ruder) laid out on the grid, with its posters, a table and a form. |
+| `reference.html` | The reference page. Its text explains each element, in ASD-STE100 Simplified Technical English. |
 | `typographic-grid/theme.css` | The colours, as tokens on `:root`. Swap it for another theme. |
 | `typographic-grid/grid.css` | The grid and its elements: the base on `:root`, then each element, then utility classes. |
 | `typographic-grid/fx.css` | Effects laid on the grid, such as the hatch. |

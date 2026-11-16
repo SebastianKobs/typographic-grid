@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Typographic grid</title>
+<title>Swiss typography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -13,616 +13,196 @@
 </head>
 <body>
 
+<!-- A showcase: the grid as a web page about the people who made it. Only the library's classes; no CSS of its own. -->
 <main class="type-area">
-  <p class="heading page-title size-phi-3 ratio-3-5 col-start-1 col-span-12">Each part of the page is on one grid</p>
+  <p class="heading page-title size-phi-3 ratio-3-5 col-start-1 col-span-12 size-down-on-4">Swiss typography</p>
+  <p class="paragraph col-span-12 weight-semibold">
+    <a href="#style">The style</a>&emsp;
+    <a href="#mueller-brockmann">Müller-Brockmann</a>&emsp;
+    <a href="#gerstner">Gerstner</a>&emsp;
+    <a href="#ruder">Ruder</a>&emsp;
+    <a href="#timeline">Timeline</a>&emsp;
+    <a href="#order"><span class="icon icon-arrow-down">Posters</span></a>
+  </p>
 
-  <h1 class="heading size-phi-2 ratio-3-5">Each part of the page is on one grid</h1>
-  <p class="paragraph">This page uses one grid for all of its parts. The unit of the grid is the size of the text. A column is three units wide, and a gutter, the distance between two columns, is two units wide. The baseline is the bottom of letters such as H and x. A line is the distance from one baseline to the next, one and a half units. The baselines of the text are on the grid lines, which are one line apart. The text width, the width of the paragraphs, is seven columns, and the five columns on the right hold pictures and notes. When the size of the text or the line height changes, all distances on the page change with it. No distance on the page comes from the eye.</p>
-  <figure class="figure figure-side figure-hanging col-start-8 col-span-3 aspect-3-2">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is three columns wide.</figcaption>
-  </figure>
-  <figure class="figure figure-side figure-hanging col-start-11 col-span-2 aspect-3-2">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is two columns wide.</figcaption>
-  </figure>
-
-  <h2 class="heading size-phi-1 ratio-3-5">Contents</h2>
-  <ol class="list">
-    <li><a href="#headings">The headings and the text</a></li>
-    <li><a href="#pictures-in-text">The pictures inside a paragraph</a></li>
-    <li><a href="#rules">The rules</a></li>
-    <li><a href="#colour-areas">The colour areas</a></li>
-    <li><a href="#boxes">The boxes</a></li>
-    <li><a href="#box-after-heading">A box directly after a heading</a></li>
-    <li><a href="#margin-notes">The margin notes</a></li>
-    <li><a href="#pull-quotes">The pull quotes</a></li>
-    <li><a href="#lists">The lists</a></li>
-    <li><a href="#tables">The tables</a></li>
-    <li><a href="#links">The links</a></li>
-    <li><a href="#code">The code</a></li>
-    <li><a href="#icons">The icons</a></li>
-    <li><a href="#dropcaps">The drop caps</a></li>
-    <li><a href="#badges">The badges</a></li>
-    <li><a href="#forms">The form elements</a></li>
-    <li><a href="#effects">The effects</a></li>
-    <li><a href="#full-width">A full-width example</a></li>
-    <li><a href="#narrow-screens">The narrow screens</a></li>
-  </ol>
-
-  <figure class="figure col-start-1 col-span-7 aspect-3-2">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is seven columns wide. Its height is the height of a capital letter plus whole lines, as near to three by two as possible.</figcaption>
-  </figure>
-  <p class="paragraph">A picture is on the same grid. The cap line is the top of the capital letters. The width of a picture is a number of columns. Its top edge is at the cap line of the text beside it, and its bottom edge is on a grid line. Its height is the height of a capital letter plus whole lines, as near to its ratio as possible. The image is cut to that height, so it does not stretch. Thus the text after a picture starts on a grid line again.</p>
-  <!-- one column is too narrow for a caption -->
-  <figure class="figure figure-side figure-hanging col-start-8 col-span-1 aspect-1-3">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure figure-side figure-hanging col-start-9 col-span-2 aspect-1-1">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is square.</figcaption>
-  </figure>
-  <figure class="figure figure-side figure-hanging col-start-11 col-span-2 aspect-3-4">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is three by four.</figcaption>
+  <!-- opener: the grid turned, a line down for every three units across -->
+  <figure class="figure col-span-12 fill-red" style="--depth: 24">
+    <div class="figure-image composition turn-1-2">
+      <span class="composition-bar text-ink" style="--x: 40; --y: -30; --w: 3; --h: 70"></span>
+      <span class="composition-word size-phi-4 text-ink" style="--x: 5; --y: 4">swiss</span>
+      <span class="composition-rule text-ink" style="--x: 5; --y: 5; --w: 50"></span>
+      <span class="composition-word size-phi-4" style="--x: 10; --y: 10">typography</span>
+      <span class="composition-bar text-ink" style="--x: 10; --y: 12; --w: 13; --h: 1"></span>
+      <p class="composition-text text-ink" style="--x: 45; --y: -14">Basel and Zürich<br>1950 to 1970</p>
+      <p class="composition-text" style="--x: 45; --y: -9">Müller-Brockmann<br>Gerstner<br>Ruder</p>
+    </div>
   </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="headings">Each part of the page is on one grid: <br>the headings and the&nbsp;text</h2>
-  <p class="paragraph">A heading is larger than the text, and its line height is a number of half baselines. Thus each line of a heading is a whole number of half baselines below the line before it. The margin above a heading is larger than the margin below it, so the heading belongs to the text after it. The two margins are near three and five half baselines, two numbers of the Fibonacci series. The first baseline of the text after a heading is always on a grid line.</p>
-  <figure class="figure figure-side figure-hanging col-start-8 col-span-5 aspect-9-8">
+  <h1 class="heading size-phi-2 ratio-3-5" id="style">Order, not ornament</h1>
+  <p class="paragraph"><span class="dropcap">B</span>etween 1950 and 1970, designers in Basel and Zürich made a new style of typography. Today, many people call it Swiss typography or the International Typographic Style. Its posters, books and magazines have no ornament. The designers wanted information that is clear and objective. The reader must find each part quickly, and the layout must not hide it.</p>
+  <figure class="figure figure-side figure-hanging col-start-8 col-span-3 aspect-1-1 fill-ink">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is five columns wide. Its top edge is at the cap line of the paragraph beside it.</figcaption>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-11 col-span-2 aspect-1-3 fill-red">
+    <div class="figure-image"></div>
+  </figure>
+  <p class="paragraph">The style has three main parts:</p>
+  <ul class="list">
+    <li>A sans-serif typeface, for example Akzidenz-Grotesk, Univers or Helvetica, gives the text a neutral voice.</li>
+    <li>Text set flush left keeps the same space between all words. Its right edge is ragged.</li>
+    <li>A grid of columns and lines gives each part of the page a fixed position.</li>
+  </ul>
+  <p class="paragraph">With a grid, all pages of a book or a magazine look like one family<sup>1</sup><span class="note"><sup>1 </sup>This page uses one grid too: twelve columns, and a line of 24 pixels.</span>. The reader learns the layout on the first page and then finds each part at once. The designers did not want to show their personal style. They wanted to show the content.</p>
+
+  <blockquote class="quote size-phi-1 first-letter-bold">The designers did not want to show their personal style. They wanted to show the content.</blockquote>
+
+  <h2 class="heading size-phi-1 ratio-3-5 rule-left" id="mueller-brockmann">Josef Müller-Brockmann: <br>the grid is an&nbsp;aid</h2>
+  <p class="paragraph">Josef Müller-Brockmann (1914 to 1996) was a graphic designer in Zürich. In the 1950s he started to make concert posters for the Tonhalle in Zürich. On these posters, geometric shapes show the structure of the music. In 1958, he started the magazine Neue Grafik with Richard Paul Lohse, Hans Neuburg and Carlo Vivarelli.</p>
+  <aside class="note">Neue Grafik had text in German, English and French, in three columns side by side.</aside>
+  <p class="paragraph">His book Grid Systems in Graphic Design (1981) shows how to make a grid. First, divide the page into columns. Then divide the columns into fields. The height of each field is a number of lines of text. Pictures and text fill one field or more. Thus each size on the page comes from the size of the text.</p>
+
+  <!-- rings one line apart round one point, as on his Beethoven poster (1955) -->
+  <figure class="figure col-span-12 fill-ink" style="--depth: 26">
+    <div class="figure-image composition polar" style="--cx: 12; --cy: 22">
+      <span class="composition-arc text-red" style="--r: 2; --h: 1; --a: -22; --span: 10"></span>
+      <span class="composition-arc" style="--r: 3; --h: 1; --a: -18; --span: 14"></span>
+      <span class="composition-arc text-mid" style="--r: 4; --h: 0.5; --a: -24; --span: 20"></span>
+      <span class="composition-arc" style="--r: 5; --h: 1; --a: -15; --span: 9"></span>
+      <span class="composition-arc text-red" style="--r: 6; --h: 2; --a: -20; --span: 12"></span>
+      <span class="composition-arc" style="--r: 8; --h: 1; --a: -23; --span: 19"></span>
+      <span class="composition-arc text-mid" style="--r: 9; --h: 0.5; --a: -13; --span: 6"></span>
+      <span class="composition-arc" style="--r: 10; --h: 1; --a: -19; --span: 11"></span>
+      <span class="composition-arc text-red" style="--r: 11; --h: 2; --a: -16; --span: 10"></span>
+      <span class="composition-arc" style="--r: 13; --h: 1; --a: -22; --span: 15"></span>
+      <span class="composition-arc text-red" style="--r: 14; --h: 0.5; --a: -12; --span: 5"></span>
+      <span class="composition-arc text-mid" style="--r: 15; --h: 1; --a: -18; --span: 8"></span>
+      <span class="composition-arc" style="--r: 16; --h: 1; --a: -21; --span: 13"></span>
+      <span class="composition-arc text-red" style="--r: 18; --h: 2; --a: -14; --span: 7"></span>
+      <span class="composition-arc" style="--r: 20; --h: 1; --a: -20; --span: 11"></span>
+      <span class="composition-word size-phi-4" style="--x: 35; --y: 19">zürich</span>
+      <p class="composition-text text-red" style="--x: 35; --y: 21">Josef Müller-Brockmann<br>1914 to 1996<br>Grid Systems<br>in Graphic Design, 1981</p>
+    </div>
   </figure>
 
-  <h3 class="heading size-phi-0 ratio-3-5">Each part of the page is on one grid: <br>the smallest heading and the paragraph below&nbsp;it</h3>
-  <p class="paragraph">The smallest heading has the size of the text and a bold weight. Its line height is one line, so each of its lines is on a grid line. Its margins above and below have the same ratio as for the larger headings. The first baseline of the paragraph after it is two lines below its last baseline. Thus the smallest heading uses the grid of the text with no change.</p>
-  <!-- figures on the left come before their text block: the grid places left to right, so after it they'd drop a row -->
-  <!-- filling the text span, one height: 4 columns at 3:2, 3 columns at 13:12 (288 / 1.5 = 208 / (13/12) units of height) -->
-  <figure class="figure figure-side col-start-1 col-span-4 aspect-3-2">
+  <p class="paragraph">A grid does not make a good layout by itself. Müller-Brockmann wrote that the grid is an aid, not a guarantee. It gives the designer a structure, but the designer must still make decisions. A grid with too many columns gives too many possible layouts. A grid with too few columns gives too few.</p>
+  <figure class="figure figure-side col-start-1 col-span-4 aspect-3-2 fill-hatch">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is four columns wide and three by two.</figcaption>
+    <figcaption class="figure-caption">Four columns: a picture in one field.</figcaption>
   </figure>
-  <figure class="figure figure-side col-start-5 col-span-3 aspect-13-12">
+  <figure class="figure figure-side col-start-5 col-span-3 aspect-13-12 fill-tint">
     <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is three columns wide and has the same height.</figcaption>
+    <figcaption class="figure-caption">Three columns, the same height.</figcaption>
   </figure>
   <div class="text-block col-start-8 col-span-5">
-    <h3 class="heading size-phi-0 ratio-2-3 rule-left">Pictures on the left, text on the right</h3>
-    <p class="paragraph">Here the text is in the columns on the right. The pictures are in the text width, the seven columns on the left. The pictures and the heading start at the same cap line.</p>
+    <h3 class="heading size-phi-0 ratio-2-3 rule-left">The fields of the grid</h3>
+    <p class="paragraph">A field is a number of columns wide and a number of lines deep. Here two pictures fill the seven columns on the left, and the text is in the five columns on the right.</p>
   </div>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="pictures-in-text">Each part of the page is on one grid: <br>the pictures inside a&nbsp;paragraph</h2>
-  <p class="paragraph"><span class="float-left col-span-2 aspect-1-1"></span>A picture can also be inside a paragraph, with the text around it. Its width is a number of columns plus one unit of the gutter. Thus a margin of one unit is between the picture and the text, and the text beside it starts at a column edge. The top edge of the picture is at the cap line of the first line of text, and its bottom edge is on a baseline. The text beside the picture is narrower, and the text below the picture has its full width again. Here the picture is square and two columns wide.</p>
-  <p class="paragraph"><span class="float-left col-span-1 aspect-1-1"></span>A small picture follows the same rules as a large picture. This picture is one column wide, plus one unit of the gutter. The column sets its width, and the lines set its height, so no part of its size comes from the eye. Its top edge is at the cap line of the first line, and its bottom edge is on a baseline. A picture of this size is near the size of a letter, for example an initial at the start of a paragraph. After the picture, the text continues with its full width.</p>
-  <p class="paragraph"><span class="float-left col-span-2 aspect-3-4"></span>A portrait picture is taller than it is wide. At three by four on two columns, it is taller than the square above it, so more lines of text are narrow. The height of the picture is a whole number of lines, so the picture does not stretch and the text does not stop for it. Where the picture ends, the next line of text has its full width again. The eye then finds the left edge of the column at the same position as before. A tall picture needs a long paragraph, because with a short paragraph the picture extends below the end of the text.</p>
-  <p class="paragraph"><span class="float-left col-span-3 aspect-13-8"></span>A landscape picture on three columns leaves four columns for the text beside it. Four columns hold only a few words in each line, so this width is good for a few lines only. At thirteen by eight the picture is low, and the text soon has its full width again. Thirteen to eight is near the golden section, a ratio that the page also uses for the sizes of its headings. The width of the picture is three columns plus one unit of the gutter. The picture and the text use the same edges.</p>
-  <figure class="figure col-start-1 col-span-2 aspect-1-1">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is square.</figcaption>
-  </figure>
-  <figure class="figure col-start-3 col-span-2 aspect-1-1">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is square.</figcaption>
-  </figure>
-  <figure class="figure col-start-5 col-span-3 aspect-13-8">
-    <div class="figure-image"></div>
-    <figcaption class="figure-caption">This picture is thirteen by eight.</figcaption>
-  </figure>
-  <figure class="figure col-start-1 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-2 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-3 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-4 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-5 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-6 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-7 col-span-1 aspect-1-1">
-    <div class="figure-image"></div>
-  </figure>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="rules">Each part of the page is on one grid: <br>the&nbsp;rules</h2>
-  <p class="paragraph">A rule divides the text and adds no picture. It belongs to the text before it, as a heading belongs to the text after it. Thus the ratio of the margins is the other way round: two half baselines above the rule, and near three below it. The rule is centred on a grid line, and the margin below it is never smaller than the margin above it. The length of the rule is a number of columns, and here it is the text width.</p>
-  <hr class="rule">
-  <p class="paragraph">Below the rule, the text continues on the grid. The rule is an eighth of a unit thick and has the colour of the text. Thus it shows a pause between two thoughts, not the start of a new section.</p>
-
-  <h2 class="heading size-phi-1 ratio-3-5 rule-left rule-ink" id="colour-areas">Each part of the page is on one grid: <br>the colour&nbsp;areas</h2>
-  <p class="paragraph">A colour area is a picture with no content. Its width is a number of columns, and its top edge is at the cap line of the text beside it. Its bottom edge is on a grid line, as near to its ratio as possible. A colour area gives weight to a part of the page, shows where a section starts, or holds a row together. It uses the two colours of the page: the red of the rule below the title, and the black of the text.</p>
-  <figure class="figure figure-side figure-hanging col-start-8 col-span-3 aspect-1-1 fill-red">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-1 col-span-2 aspect-1-1 fill-ink">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-3 col-span-2 aspect-1-1 fill-red">
-    <div class="figure-image"></div>
-  </figure>
-  <figure class="figure col-start-5 col-span-3 aspect-13-8">
-    <div class="figure-image"></div>
-  </figure>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="boxes">Each part of the page is on one grid: <br>the&nbsp;boxes</h2>
-  <p class="paragraph">A box separates a piece of text from the paragraphs around it, for example a note, a definition or an example. A box does not have its own grid. Its background is a number of columns wide, as a picture is. The text in the box has the same size and line height as each other paragraph.</p>
-  <div class="box">
-    <h2 class="heading size-phi-1 ratio-3-5">A box with its own heading</h2>
-    <p class="paragraph">The background of the box goes from one column edge to another. The padding at the sides of the box is one column on the right and one unit less on the left, so the text does not touch the edge. The background starts two lines above the baseline of the heading and stops one line below the last baseline. A box with no heading has two lines above its text. Below its text, it has at least one and a half lines, up to the next grid line.</p>
+  <h2 class="heading size-phi-1 ratio-3-5 rule-left" id="gerstner">Karl Gerstner: <br>a programme, not a&nbsp;solution</h2>
+  <div class="figure-stack figure-hanging col-start-1 col-span-1 keep-start pull-left-1 hide-unpulled">
+    <p class="text-up size-phi-2 text-grey">Designing Programmes</p>
   </div>
-  <p class="paragraph">The margin around each box is the same. The background starts one line below the last baseline of the text above it. The next baseline after the box is two lines below the background. In the box, the text can stop between two grid lines. Then the background adds half a baseline at its bottom, and the text after the box is on the grid lines again.</p>
-  <p class="paragraph">Between two boxes, the text continues as usual. Each box has its own margin above and below it, so two boxes do not touch. The paragraphs between the boxes are part of the body text.</p>
-  <div class="box fill-red text-light">
-    <p class="paragraph">This box is red and has no heading. Its text has the colour of the page. The line below a link in this box, for example to the <a href="#links">links</a>, also has the colour of the page. The background starts two lines above the first baseline and stops two lines below the last baseline. Thus the text stays on the grid lines, and the margin around the box is the same as around each other box.</p>
-  </div>
-  <p class="paragraph">After the red box, the page continues with plain text. Its first baseline is on a grid line, as after each other part of the page.</p>
-  <div class="box fill-ink text-light">
-    <h3 class="heading size-phi-0 ratio-2-3">A box in black</h3>
-    <p class="paragraph">This box starts with a smaller heading, and its text is near the heading. The first baseline of the text is one and a half lines below the heading, so the text is between two grid lines. The background then adds half a baseline at its bottom. Thus the margin around the box is the same as around each other box.</p>
-  </div>
-  <p class="paragraph">After the black box, the text continues, and its first baseline is on a grid line again. The parts around the box need no information about the box. The margin above the box comes from the paragraph above it, and the box keeps its own padding inside. Below the box, the next paragraph gets the same margin as after each other box. For the reader, the box is a pause, not a break, and the columns and the lines continue after it.</p>
+  <p class="paragraph">Karl Gerstner (1930 to 2017) was a designer and an artist in Basel. In 1959, he and Markus Kutter started an advertising agency, later known as GGK. For the magazine Capital (1962), Gerstner made a grid of 58 units. Between two columns are always two units. The same 58 units then give two, three, four, five or six columns.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="box-after-heading">Each part of the page is on one grid: <br>a box directly after a&nbsp;heading</h2>
-  <div class="box">
-    <p class="paragraph">This box comes directly after a heading, with no paragraph between them. The background starts where the text after the heading would start. The text in the box keeps its own padding. After the box, the page is on its grid lines again.</p>
-  </div>
-  <p class="paragraph">Directly after a heading, the background starts near the cap line that a paragraph would have there. Its position moves in steps of half a baseline. Thus the margin between the heading and the background is the margin below the heading. The background can then start between two grid lines. Then it adds half a baseline at its bottom, so that it stops on a grid line.</p>
-
-  <div class="text-block">
-    <h3 class="heading size-phi-0 ratio-3-5">A box inside a text block</h3>
-    <p class="paragraph">Here the box is not a cell of the page grid. It is part of a text block: a heading and its text in one cell of the grid.</p>
-    <div class="box">
-      <p class="paragraph">This box is inside the text block, between two of its paragraphs. Around the background, the box has padding, not a margin. Thus the padding adds to the margin below the paragraph above it, and the two do not merge. The box has the same margin and padding here as in the page grid.</p>
+  <!-- his Capital grid: 58 units, gutters of 2; each row one of its divisions, the red one this page's -->
+  <figure class="figure col-span-12 fill-tint" style="--depth: 19">
+    <div class="figure-image composition text-ink">
+      <span class="composition-bar" style="--x: 0; --y: 1; --w: 28; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 30; --y: 1; --w: 28; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 0; --y: 4; --w: 18; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 20; --y: 4; --w: 18; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 40; --y: 4; --w: 18; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 0; --y: 7; --w: 13; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 15; --y: 7; --w: 13; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 30; --y: 7; --w: 13; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 45; --y: 7; --w: 13; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 0; --y: 10; --w: 10; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 12; --y: 10; --w: 10; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 24; --y: 10; --w: 10; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 36; --y: 10; --w: 10; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 48; --y: 10; --w: 10; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 0; --y: 13; --w: 8; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 10; --y: 13; --w: 8; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 20; --y: 13; --w: 8; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 30; --y: 13; --w: 8; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 40; --y: 13; --w: 8; --h: 1.5"></span>
+      <span class="composition-bar" style="--x: 50; --y: 13; --w: 8; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 0; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 5; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 10; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 15; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 20; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 25; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 30; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 35; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 40; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 45; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 50; --y: 16; --w: 3; --h: 1.5"></span>
+      <span class="composition-bar text-red" style="--x: 55; --y: 16; --w: 3; --h: 1.5"></span>
+      <p class="composition-text text-light" style="--x: 1; --y: 2">2 columns</p>
+      <p class="composition-text text-light" style="--x: 1; --y: 5">3 columns</p>
+      <p class="composition-text text-light" style="--x: 1; --y: 8">4 columns</p>
+      <p class="composition-text text-light" style="--x: 1; --y: 11">5 columns</p>
+      <p class="composition-text text-light" style="--x: 1; --y: 14">6 columns</p>
     </div>
-    <p class="paragraph">This paragraph comes after the box and is also inside the text block.</p>
-  </div>
+  </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="margin-notes">Each part of the page is on one grid: <br>the margin&nbsp;notes</h2>
-  <p class="paragraph">A margin note is in the columns beside the text, where a picture can also be. It has the size and the line height of the text. Thus each of its lines is on a baseline of the paragraph beside it. Only its italic style and its light weight make it different, as for a caption. Its first line is on the first line of the paragraph, as a picture beside a paragraph starts at its cap line.</p>
-  <aside class="note">This note is three columns wide. Its lines are on the baselines of the text.</aside>
-  <p class="paragraph">Below the note is the same margin as below a paragraph. When the note is longer than its paragraph, the next paragraph starts one empty line below the note. Thus the page stays on its grid lines.</p>
-  <p class="paragraph">A note can also refer to one word lower in a paragraph. The note is then in the HTML of the paragraph, directly after that word<sup>1</sup><span class="note"><sup>1 </sup>This note refers to the word with the number 1. It starts on the line of that word.</span>, and the browser moves it into the columns beside the text. There it starts on the line of that word. When the line breaks of the text change, the word goes to another line, and the note goes with it. A note of this type is not part of the rows of the grid. When it is longer than its paragraph, the text below does not move down for it.</p>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="pull-quotes">Each part of the page is on one grid: <br>the pull&nbsp;quotes</h2>
-  <p class="paragraph">A pull quote shows a few words from the text again, in a larger size. It is between two paragraphs, for a reader who only looks quickly through the page. Its size and line height follow the rules of a heading, so its line height is a number of half baselines. It has the text width.</p>
-  <blockquote class="quote size-phi-1">A pull quote shows a few words from the text again, in a larger size.</blockquote>
-  <p class="paragraph">A heading belongs to the text after it, but a pull quote belongs to neither paragraph. Thus the margin above it and the margin below it are the same: one empty line, as between two paragraphs. The margin above is a little larger, so that the paragraph after the quote is on a grid line again. The quote is italic and has the light weight of the text, so it shows as a quote and not as a heading. Its opening quotation mark is in the page margin, to the left of the edge of the text. A class can make its first letter bold, as in the second quote below.</p>
-  <p class="paragraph">A pull quote can also move out of the columns of the text, by whole columns to the left or to the right. It keeps its width and the steps of the column grid. But its edges are not in line with the paragraphs around it, so the reader sees it as separate from them.</p>
-  <blockquote class="quote size-phi-1 pull-left-1 first-letter-bold">The quote moves past the edge of the type area into the page margin.</blockquote>
-  <p class="paragraph">The type area is the area of the twelve columns. Here the text starts in the first column of the type area. The quote moves past the edge of the type area into the page margin. It moves by one column and one gutter, as if the grid continued past its edge. A quote that moves to the right goes into the columns beside the text. In both cases, the margin above and below the quote is the same as for a quote in the columns of the text.</p>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="lists">Each part of the page is on one grid: <br>the&nbsp;lists</h2>
-  <p class="paragraph">A list is a set of items, for example parts or steps. Each item starts on a new line, with a mark in front of it. The lines of a list are one line apart, as the lines of a paragraph are. Thus each baseline of a list is on a grid line. Above and below a list is one empty line, as between two paragraphs.</p>
-  <ul class="list">
-    <li>A column is three units wide.</li>
-    <li>A gutter is two units wide.</li>
-    <li>A line is one and a half units.</li>
-    <li>The text width is seven columns, and the five columns on the right hold pictures, notes and quotes that move to the right.</li>
-  </ul>
-  <p class="paragraph">The marks are to the left of the edge of the text, in an area as wide as a gutter. Thus the words of the items are in line with the words of the paragraphs. Between a mark and the first word is a distance of half a unit. When an item has more than one line, its next line starts at the edge of the text, below the first word of the item.</p>
-  <ol class="list">
-    <li>Set the size of the text.</li>
-    <li>Set the line height.</li>
-    <li>Divide the type area into twelve columns and eleven gutters.</li>
-    <li>Put each part of the page on the grid lines.</li>
-  </ol>
-  <p class="paragraph">A numbered list shows steps in a sequence. The numbers are aligned on the right, so their full stops are in a vertical line. The numbers are bold, so each step is easy to find.</p>
-  <div class="box">
-    <h2 class="heading size-phi-1 ratio-3-5">Lists in a box</h2>
-    <ul class="list">
-      <li>In a box, the marks do not go into the padding. They start at the edge of the text, in line with the heading.</li>
-      <li>The words of the items start one and a half units to the right of the edge of the text.</li>
-      <li>The lines of the items are on the grid lines, as outside the box.</li>
-    </ul>
-    <ol class="list">
-      <li>Put the heading at the top of the box.</li>
-      <li>Put the lists below the heading, with one empty line between them.</li>
-      <li>Stop the background one line below the last baseline, or one and a half lines if the last baseline is between two grid lines.</li>
-    </ol>
-  </div>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="tables">Each part of the page is on one grid: <br>the&nbsp;tables</h2>
-  <p class="paragraph">A table shows values in rows and columns. Each row of a table is a line of text, so its baselines are on the grid lines. The columns of the table are on the columns of the page. Thus each column of the table starts at a column edge, and a gutter is between two columns of the table.</p>
+  <p class="paragraph">This page uses the twelve-column version of his grid: columns of three units and gutters of two units. Every two, three, four or six of these columns make his six-, four-, three- and two-column versions. Only his five columns do not come from the twelve. The table shows each version.</p>
   <table class="table">
     <colgroup>
       <col class="col-span-2">
-      <col class="col-span-3">
-      <col class="col-span-1">
+      <col class="col-span-2">
+      <col class="col-span-2">
       <col class="col-span-1">
     </colgroup>
     <thead>
-      <tr><th>Part</th><th>Size</th><th class="align-right">Units</th><th class="align-right">Pixels</th></tr>
+      <tr><th>Columns</th><th class="align-right">Column, units</th><th class="align-right">Gutters</th><th class="align-right">Units</th></tr>
     </thead>
     <tbody>
-      <tr><td>Unit</td><td>The size of the text</td><td class="align-right">1</td><td class="align-right">16</td></tr>
-      <tr><td>Gutter</td><td>The distance between two columns</td><td class="align-right">2</td><td class="align-right">32</td></tr>
-      <tr><td>Column</td><td>Three units</td><td class="align-right">3</td><td class="align-right">48</td></tr>
-      <tr><td>Text width</td><td>Seven columns and six gutters</td><td class="align-right">33</td><td class="align-right">528</td></tr>
-      <tr><td>Type area</td><td>Twelve columns and eleven gutters</td><td class="align-right">58</td><td class="align-right">928</td></tr>
+      <tr><td>Two</td><td class="align-right">28</td><td class="align-right">1</td><td class="align-right">58</td></tr>
+      <tr><td>Three</td><td class="align-right">18</td><td class="align-right">2</td><td class="align-right">58</td></tr>
+      <tr><td>Four</td><td class="align-right">13</td><td class="align-right">3</td><td class="align-right">58</td></tr>
+      <tr><td>Five</td><td class="align-right">10</td><td class="align-right">4</td><td class="align-right">58</td></tr>
+      <tr><td>Six</td><td class="align-right">8</td><td class="align-right">5</td><td class="align-right">58</td></tr>
+      <tr><td>Twelve</td><td class="align-right">3</td><td class="align-right">11</td><td class="align-right">58</td></tr>
     </tbody>
   </table>
-  <p class="paragraph">The first row has the names of the columns, in bold. Below it is a thin rule. The distance from the rule to the baseline above it is the same as the distance to the cap line below it. Thus the next row is two lines below the first row. Numbers are aligned on the right, and all digits have the same width. Thus the last digits of all numbers are in a vertical line. When a cell has more than one line of text, the next row starts one line below its last baseline. The values in pixels are for a text size of 16 pixels.</p>
-  <p class="paragraph">When the cells have long text, more padding above each row makes a table easier to read. A class adds one or two empty lines between two rows. The padding is whole lines, so the rows stay on the grid lines. In the table below, each row starts two lines below the last baseline of the row above it.</p>
-  <table class="table row-gap-1">
-    <colgroup>
-      <col class="col-span-2">
-      <col class="col-span-2">
-      <col class="col-span-3">
-    </colgroup>
-    <thead>
-      <tr><th>Part</th><th>Width</th><th>Height</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Picture</td><td>A number of columns</td><td>The height of a capital letter plus whole lines</td></tr>
-      <tr><td>Pull quote</td><td>The text width</td><td>Lines of a number of half baselines each</td></tr>
-      <tr><td>Text field</td><td>The text width</td><td>Two and a half lines</td></tr>
-      <tr><td>Button</td><td>Two columns, or the number of columns in its class</td><td>Two and a half lines</td></tr>
-    </tbody>
-  </table>
-  <p class="paragraph">The padding below the first row does not change. The next row is two lines below the first row, as in the compact table, and the rule is halfway between them.</p>
-  <div class="box outline-narrow outline-ink">
-    <h2 class="heading size-phi-1 ratio-3-5">A table in a box</h2>
-    <table class="table row-gap-1">
-      <colgroup>
-        <col class="col-span-4">
-        <col class="col-span-3">
-      </colgroup>
-      <thead>
-        <tr><th>Distance</th><th class="align-right">Half baselines</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Margin above the box, from the last baseline above it to its top edge</td><td class="align-right">2</td></tr>
-        <tr><td>Padding at the top, from the top edge to the baseline of the heading</td><td class="align-right">4</td></tr>
-        <tr><td>Padding at the bottom, from the last baseline to the bottom edge</td><td class="align-right">2</td></tr>
-        <tr><td>Margin below the box, from its bottom edge to the first baseline of a paragraph after it</td><td class="align-right">4</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="links">Each part of the page is on one grid: <br>the&nbsp;links</h2>
-  <p class="paragraph">A link takes the reader to another part of the page or to another page. A link has the size, the weight and the line height of the text, so it does not move a baseline. A red line below the words shows the link, for example to the <a href="#boxes">boxes</a> or to the <a href="#tables">tables</a> above. The line is as thick as a thin rule, and its distance below the baseline is the same as its thickness. Where a letter goes below the baseline, the line has a gap.</p>
-  <p class="paragraph">When the pointer is on a link, the words of the link are red. When the link has the focus, a red outline is around it. In a red box or a black box, the line below a link has the colour of the text of the box. A link that the reader used before looks the same as the other links.</p>
-
-  <h2 class="heading size-phi-1 ratio-3-5" id="code">Each part of the page is on one grid: <br>the&nbsp;code</h2>
-  <p class="paragraph">Code is text for a computer, for example the name of a property such as <code>text-box</code> or of a class such as <code>.paragraph</code>. In a paragraph, code has a monospace font, in which each letter has the same width. The capital letters of this font have the same height as the capital letters of the text. Thus the code stays on the baseline, and the line height does not change.</p>
-  <pre class="code"><code>.paragraph {
-  text-box: trim-both cap alphabetic;
-  margin: 0 0 var(--paragraph-margin);
+  <p class="paragraph">In his book Designing Programmes (1964), Gerstner describes a method. The designer does not draw one solution. The designer writes rules, and the rules give many solutions.</p>
+  <blockquote class="quote size-phi-1 pull-left-1">Instead of solutions for problems, programmes for solutions.</blockquote>
+  <p class="paragraph">This page uses the same method. Its rules are in a style sheet, and each distance comes from four values:</p>
+  <pre class="code"><code>:root {
+  --unit: 16px;
+  --column: calc(var(--unit) * 3);
+  --gutter: calc(var(--unit) * 2);
+  --line: calc(var(--unit) * 1.5);
 }</code></pre>
-  <p class="paragraph">A block of code has one line of code on each grid line. Its lines are one line apart, as the lines of a paragraph are, and above and below the block is one empty line. The block keeps the spaces at the start of each line, so the structure of the code stays clear. A line of code that is longer than the text width continues on the next line.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="icons">Each part of the page is on one grid: <br>the&nbsp;icons</h2>
-  <p class="paragraph">An icon is a small picture with the meaning of a word, for example an arrow. An icon is one unit wide and one unit high, as large as the text. Its middle is at the middle of the capital letters, as for a checkbox, so an icon in a line does not change the line height. The lines of an icon are an eighth of a unit thick, as a thin rule is. Between an icon and the word after it is a distance of half a unit.</p>
-  <p class="paragraph">An arrow in front of a link shows where the link goes. For example, <a href="#forms"><span class="icon icon-arrow-down">the</span> form elements</a> are below this section. The icon has the colour of the text, so it becomes red with the words of the link when the pointer is on it.</p>
-  <button class="button col-span-3" type="button"><span class="icon icon-plus">Add</span> a field</button>
-  <p class="paragraph">In a button, the icon is in front of the word, at the same distance. The icon and the word together are in the middle of the button.</p>
+  <h2 class="heading size-phi-1 ratio-3-5 rule-left" id="ruder">Emil Ruder: <br>the white of the&nbsp;page</h2>
+  <p class="paragraph"><span class="dropcap">E</span>mil Ruder (1914 to 1970) taught typography at the school of design in Basel from 1942. For Ruder, the empty parts of a page are as important as the printed parts. The space inside a letter and around it has a shape too, the counter. A good layout gives these empty shapes a rhythm, as the rests do in music.</p>
+  <figure class="figure figure-side figure-hanging col-start-8 col-span-2 aspect-1-1 fill-hatch">
+    <div class="figure-image"></div>
+  </figure>
+  <figure class="figure figure-side figure-hanging col-start-10 col-span-2 aspect-1-1 fill-hatch-red hatch-falling">
+    <div class="figure-image"></div>
+  </figure>
+  <p class="paragraph">His book Typographie (1967) shows this with many examples. Ruder liked the typeface Univers by Adrian Frutiger, from 1957. Univers has 21 styles in one system of weights and widths. With them, a designer can make contrast in one typeface: light and bold, narrow and wide, small and large.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="dropcaps">Each part of the page is on one grid: <br>the drop&nbsp;caps</h2>
-  <p class="paragraph"><span class="dropcap">A</span> drop cap is a large first letter at the start of a paragraph. A drop cap is three lines deep. Its top is at the cap line of the first line, and its baseline is on the baseline of the third line. Thus the height of its capital letter is two lines plus the height of a capital letter of the text. The font size of the drop cap comes from this height. The text beside the drop cap starts a whole number of half units from the left edge of the text, and at least half a unit to the right of the letter. Below the drop cap, the text has its full width again.</p>
+  <!-- counters: two letters so large that the area's edges cut them, the red one printed over the black -->
+  <figure class="figure col-span-12 fill-tint" style="--depth: 20">
+    <div class="figure-image composition text-ink">
+      <span class="composition-word" style="--heading-ratio: 52; --x: -6; --y: 19">a</span>
+      <span class="composition-word text-red overprint" style="--heading-ratio: 52; --x: 18; --y: 21">o</span>
+      <span class="composition-rule composition-steep" style="--x: 48; --y: -1; --h: 22"></span>
+      <p class="composition-text weight-semibold" style="--x: 50; --y: 1">counter<br>form<br>rhythm</p>
+      <p class="composition-text" style="--x: 50; --y: 15">Emil Ruder<br>Typographie<br>1967</p>
+    </div>
+  </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="badges">Each part of the page is on one grid: <br>the&nbsp;badges</h2>
-  <p class="paragraph">A badge is a short word or a number on a small grey area in a line of text, for example <span class="badge">New</span>. The area goes from a quarter of a unit above the cap line to a quarter of a unit below the baseline. Thus a badge is smaller than a line, and it does not change the line height. The text of the badge is bold and stays on the baseline of the line. At its sides, the area has a padding of half a unit.</p>
-  <p class="paragraph">A badge can also be red, with text in the colour of the page, for example for a number of new messages: <span class="badge fill-red text-light">12</span>. All digits have the same width, so a badge keeps its width when a digit changes. In a box, a grey badge has the colour of the page, as a text field has.</p>
+  <p class="paragraph">Ruder wrote that typography has one plain duty: to convey information in writing. Thus a beautiful page that is difficult to read fails. But he also asked for form. The reader sees a page before reading it, and a page with good proportions invites the reader to read.</p>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="forms">Each part of the page is on one grid: <br>the form&nbsp;elements</h2>
-  <p class="paragraph">A field is an area where the reader enters or selects a value. A text field is a grey field for one line of text. Its label is above the field. The text in the field is on a grid line, two lines below the baseline of the label. Thus a form keeps the grid lines of the page and of each column beside it.</p>
-  <div class="field">
-    <label class="field-label" for="field-name">Name</label>
-    <input class="field-input" id="field-name" type="text" value="Karl Gerstner">
-  </div>
-  <div class="field">
-    <label class="field-label" for="field-customer">Customer number</label>
-    <p class="field-description" id="field-customer-description">We fill in this number for you.</p>
-    <input class="field-input" id="field-customer" type="text" value="K-1930-07" disabled aria-describedby="field-customer-description">
-  </div>
-  <div class="field">
-    <label class="field-label" for="field-email">Email</label>
-    <p class="field-description" id="field-email-description">We use it only to reply to you.</p>
-    <p class="field-error" id="field-email-error">Enter an email address, such as name@example.com.</p>
-    <input class="field-input" id="field-email" type="email" placeholder="name@example.com" aria-invalid="true" aria-describedby="field-email-description field-email-error">
-  </div>
-  <p class="paragraph">A paragraph between two fields is a normal paragraph. Its first baseline is two lines below the bottom edge of the field above it. The next label is two lines below the last baseline of the paragraph, as between two paragraphs.</p>
-  <div class="field">
-    <label class="field-label" for="field-street">Street</label>
-    <p class="field-description" id="field-street-description">Write the street and the house number. Add a floor or a company after a comma.</p>
-    <input class="field-input" id="field-street" type="text" placeholder="Spalenberg 20" aria-describedby="field-street-description">
-  </div>
-  <div class="fields">
-    <div class="field col-span-2">
-      <label class="field-label" for="field-postcode">Postcode</label>
-      <p class="field-description" id="field-postcode-description">It has four digits.</p>
-      <input class="field-input" id="field-postcode" type="text" value="4051" aria-describedby="field-postcode-description">
-    </div>
-    <div class="field">
-      <label class="field-label" for="field-city">City</label>
-      <input class="field-input" id="field-city" type="text" value="Basel">
-    </div>
-  </div>
-  <div class="field">
-    <label class="field-label" for="field-country">Country</label>
-    <select class="field-input" id="field-country">
-      <option>Austria</option>
-      <option>Germany</option>
-      <option selected>Switzerland</option>
-    </select>
-  </div>
-  <div class="field" role="group" aria-labelledby="field-birth-label">
-    <p class="field-label" id="field-birth-label">Date of birth</p>
-    <div class="field-row">
-      <select class="field-input col-span-2" id="field-day" aria-label="Day">
-          <option>1</option>
-          <option selected>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
-          <option>13</option>
-          <option>14</option>
-          <option>15</option>
-          <option>16</option>
-          <option>17</option>
-          <option>18</option>
-          <option>19</option>
-          <option>20</option>
-          <option>21</option>
-          <option>22</option>
-          <option>23</option>
-          <option>24</option>
-          <option>25</option>
-          <option>26</option>
-          <option>27</option>
-          <option>28</option>
-          <option>29</option>
-          <option>30</option>
-          <option>31</option>
-        </select>
-      <select class="field-input col-span-3" id="field-month" aria-label="Month">
-          <option>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option selected>July</option>
-          <option>August</option>
-          <option>September</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
-        </select>
-      <select class="field-input" id="field-year" aria-label="Year">
-          <option>1920</option>
-          <option>1921</option>
-          <option>1922</option>
-          <option>1923</option>
-          <option>1924</option>
-          <option>1925</option>
-          <option>1926</option>
-          <option>1927</option>
-          <option>1928</option>
-          <option>1929</option>
-          <option selected>1930</option>
-          <option>1931</option>
-          <option>1932</option>
-          <option>1933</option>
-          <option>1934</option>
-          <option>1935</option>
-          <option>1936</option>
-          <option>1937</option>
-          <option>1938</option>
-          <option>1939</option>
-          <option>1940</option>
-        </select>
-    </div>
-  </div>
-  </div>
-  <div class="field" role="group" aria-labelledby="contact-label">
-    <p class="field-label" id="contact-label">Contact me by</p>
-    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="email" checked>Email</label>
-    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="phone">Phone</label>
-    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="fax" disabled>Fax</label>
-    <label class="choice"><input class="choice-input" type="checkbox" name="contact" value="post" checked>Post</label>
-  </div>
-  <div class="field" role="radiogroup" aria-labelledby="newsletter-label">
-    <p class="field-label" id="newsletter-label">Newsletter</p>
-    <p class="field-description">Select how often we send it.</p>
-    <label class="choice"><input class="choice-input" type="radio" name="newsletter" value="weekly">Weekly</label>
-    <label class="choice"><input class="choice-input" type="radio" name="newsletter" value="monthly" checked>Monthly</label>
-    <label class="choice"><input class="choice-input" type="radio" name="newsletter" value="changes">Only when your account, your address or the delivery of the newsletter changes</label>
-  </div>
-  <div class="field" role="group" aria-labelledby="interests-label">
-    <p class="field-label" id="interests-label">Interests</p>
-    <p class="field-description">Select all that apply.</p>
-    <div class="choices">
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="typography" checked>Typography</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="grid systems">Grid systems</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="photography">Photography</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="book design and binding">Book design and binding</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="posters" checked>Posters</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="signage for public buildings and stations">Signage for public buildings and stations</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="colour">Colour</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="type design">Type design</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="corporate identity">Corporate identity</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="exhibition design">Exhibition design</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="music">Music</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="interests" value="lettering by hand">Lettering by hand</label>
-    </div>
-  </div>
-  <div class="field">
-    <label class="field-label" for="field-message">Message <span class="field-optional">(optional)</span></label>
-    <p class="field-description" id="field-message-description">Write anything else that we must know.</p>
-    <textarea class="field-input" id="field-message" aria-describedby="field-message-description">Dear Karl,
-the grid arrived. Could you send the second volume as well?</textarea>
-  </div>
-  <div class="buttons">
-    <button class="button" type="submit">Send</button>
-    <button class="button fill-tint text-ink" type="button">Save draft</button>
-  </div>
-  <p class="paragraph">A text field is two and a half lines deep, and the baseline of its text is on a grid line. The label is half a baseline above the field, and a description or an error message can be between them. Fields can be side by side, with their labels on one baseline and the same edges. A select and a text area use the same rules as a text field.</p>
-  <p class="paragraph">Checkboxes and radio buttons are lines of text, one line apart, with a square or a circle in front of each line. Many choices can be in columns of two or more grid columns, row by row, and the choices of one row start on the same baseline. A checked choice is red, as a field in focus is. From label to label, a group of choices has the same lines as a text field.</p>
-  <p class="paragraph">The submit button is red and as deep as a text field, and a second button can be beside it in grey. A field with an error has a red message above it and a red rule to its left. A disabled field, choice or button has no fill, a thin grey outline and grey text. An optional field has the word optional after its label, in the style of a description.</p>
-  <div class="box">
-    <h2 class="heading size-phi-1 ratio-3-5">Your address</h2>
-    <div class="field">
-      <label class="field-label" for="box-name">Name</label>
-      <input class="field-input" id="box-name" type="text" value="Karl Gerstner">
-    </div>
-    <div class="fields">
-      <div class="field col-span-2">
-        <label class="field-label" for="box-postcode">Postcode</label>
-        <p class="field-error" id="box-postcode-error">Enter the four digits of your postcode.</p>
-        <input class="field-input" id="box-postcode" type="text" value="40" aria-invalid="true" aria-describedby="box-postcode-error">
-      </div>
-      <div class="field">
-        <label class="field-label" for="box-city">City</label>
-        <input class="field-input" id="box-city" type="text" value="Basel">
-      </div>
-    </div>
-    <div class="field">
-      <label class="field-label" for="box-country">Country</label>
-      <select class="field-input" id="box-country">
-        <option>Austria</option>
-        <option>Germany</option>
-        <option selected>Switzerland</option>
-      </select>
-    </div>
-    <div class="fields">
-      <div class="field col-span-2">
-        <label class="field-label" for="box-day">Day</label>
-        <select class="field-input" id="box-day">
-          <option>1</option>
-          <option selected>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
-          <option>13</option>
-          <option>14</option>
-          <option>15</option>
-          <option>16</option>
-          <option>17</option>
-          <option>18</option>
-          <option>19</option>
-          <option>20</option>
-          <option>21</option>
-          <option>22</option>
-          <option>23</option>
-          <option>24</option>
-          <option>25</option>
-          <option>26</option>
-          <option>27</option>
-          <option>28</option>
-          <option>29</option>
-          <option>30</option>
-          <option>31</option>
-        </select>
-      </div>
-      <div class="field col-span-2">
-        <label class="field-label" for="box-month">Month</label>
-        <select class="field-input" id="box-month">
-          <option value="January">Jan</option>
-          <option value="February">Feb</option>
-          <option value="March">Mar</option>
-          <option value="April">Apr</option>
-          <option value="May">May</option>
-          <option value="June">Jun</option>
-          <option value="July" selected>Jul</option>
-          <option value="August">Aug</option>
-          <option value="September">Sep</option>
-          <option value="October">Oct</option>
-          <option value="November">Nov</option>
-          <option value="December">Dec</option>
-        </select>
-      </div>
-      <div class="field">
-        <label class="field-label" for="box-year">Year</label>
-        <select class="field-input" id="box-year">
-          <option>1920</option>
-          <option>1921</option>
-          <option>1922</option>
-          <option>1923</option>
-          <option>1924</option>
-          <option>1925</option>
-          <option>1926</option>
-          <option>1927</option>
-          <option>1928</option>
-          <option>1929</option>
-          <option selected>1930</option>
-          <option>1931</option>
-          <option>1932</option>
-          <option>1933</option>
-          <option>1934</option>
-          <option>1935</option>
-          <option>1936</option>
-          <option>1937</option>
-          <option>1938</option>
-          <option>1939</option>
-          <option>1940</option>
-        </select>
-      </div>
-    </div>
-    <div class="field" role="group" aria-labelledby="box-contact-label" aria-describedby="box-contact-error">
-      <p class="field-label" id="box-contact-label">Contact me by</p>
-      <p class="field-error" id="box-contact-error">Choose at least one way to contact you.</p>
-      <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="email">Email</label>
-      <label class="choice"><input class="choice-input" type="checkbox" name="box-contact" value="phone">Phone</label>
-    </div>
-    <div class="field" role="radiogroup" aria-labelledby="box-newsletter-label">
-      <p class="field-label" id="box-newsletter-label">Newsletter</p>
-      <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="weekly">Weekly</label>
-      <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="monthly" checked>Monthly</label>
-      <label class="choice"><input class="choice-input" type="radio" name="box-newsletter" value="never">Never</label>
-    </div>
-    <div class="field">
-      <label class="field-label" for="box-message">Message <span class="field-optional">(optional)</span></label>
-      <textarea class="field-input rows-3" id="box-message"></textarea>
-    </div>
-    <div class="buttons">
-      <button class="button" type="submit">Send</button>
-      <button class="button fill-tint text-ink" type="button" disabled>Save draft</button>
-    </div>
-  </div>
-  <p class="paragraph">In a box, the fields, the squares and circles of the choices, and the second button have the colour of the page. Thus they show as openings in the grey. The padding at the sides is the same as in each other box: one column on the right and one unit less on the left. A field has a hard edge, and a narrower band of grey beside it looks like a thin frame.</p>
-  <p class="paragraph">Below its last text field or button, the box adds two lines of grey. Below its last choice, it adds one and a half lines. Thus the padding below is never less than the padding above the first line of the box. The bottom edge of the box stays on a grid line.</p>
-  <h2 class="heading size-phi-1 ratio-3-5" id="effects">Each part of the page is on one grid: <br>the&nbsp;effects</h2>
-  <!-- a hanging stack left of its paragraph comes before it: the grid places left to right, so after it it'd drop a row -->
-  <div class="figure-stack figure-hanging col-start-1 col-span-1 keep-start pull-left-1 hide-unpulled">
-    <p class="text-up size-phi-2 text-grey">Each part of the page is on one grid</p>
-  </div>
-  <p class="paragraph">An effect is an ornament on the grid. The effects are in a separate style sheet, and each effect keeps the lines and the columns of the grid. Text can run up, at a right angle to the lines, as on Swiss posters. Its baseline is on the right edge of a column, and its end is at the cap line of the paragraph beside it, as the top edge of a picture. The title of the page runs up in the page margin, beside this paragraph, in grey and in a heavier weight than a heading. Its baseline is one gutter to the left of the type area, as if the grid continued into the page margin. A different class turns the text the other way, so that it runs down. When the page margin is too narrow, a class hides the text.</p>
-  <p class="paragraph">A colour area can also have a hatch: thin lines at 45 degrees, in black, red or grey. Along a baseline, the distance between two lines is one unit. The hatch starts at the top-left corner of the type area, not at the corner of the colour area. Thus each line goes through the edge of each column on every second baseline, and the hatches of two colour areas continue each other. A class turns the lines the other way, from the top left to the bottom right, as in the red hatch.</p>
-
-  <p class="paragraph">A colour area can also hold a grid that is turned, as on a concert poster by Josef Müller-Brockmann from 1955. The turned grid is the grid of the page: columns of three units, gutters of two units, and a line between two grid lines. It turns around the first grid line at the left edge of the area, so that it goes one line down for each three units to the right. Each word, bar and rule starts at a crossing of the turned grid, a number of units along it and a number of grid lines across it. The words stand on its grid lines, and the bars fill its columns or go along its lines. Thus each part is on the turned columns.</p>
-  <div class="figure-stack figure-hanging hang-up side-by-side-on-7 col-start-8 col-span-3 col-span-6-on-7">
-    <figure class="figure aspect-1-1 fill-hatch">
-      <div class="figure-image"></div>
-    </figure>
-    <figure class="figure aspect-1-1 fill-hatch-red hatch-falling">
-      <div class="figure-image"></div>
-    </figure>
-    <figure class="figure aspect-1-1 fill-hatch-tint">
-      <div class="figure-image"></div>
-    </figure>
-  </div>
+  <h2 class="heading size-phi-1 ratio-3-5" id="after-mueller-brockmann">Three posters after Müller-Brockmann</h2>
+  <p class="paragraph">The three examples below follow posters by Josef Müller-Brockmann. Each example uses the grid of this page, in CSS, with no pictures.</p>
+  <p class="paragraph">The first example follows a concert poster from 1955. Its grid is the grid of the page, turned so that it goes one line down for each three units to the right. Each word, bar and rule starts at a crossing of the turned grid.</p>
   <!-- each part, set in its style, on the composition's grid (the page's grid again, turned with turn-1-2):
        --x  units from the left edge (a column's left edge every 5, its right edge 3 later)
        --y  grid lines below the first grid line (the first is the cap height below the top edge)
@@ -647,33 +227,8 @@ the grid arrived. Could you send the second volume as well?</textarea>
       <p class="composition-text" style="--x: 45; --y: -5">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>line 24 pixels</p>
     </div>
   </figure>
-  <p class="paragraph">Two colours can overprint, as two inks on a printed poster. Where a red part is on black, the black shows through. Where it is on the grey, it stays red. In the area below, the red bar goes across the black word, and the word stays easy to read on it. The red word goes across a grey bar, and its letters are dark red there: the two colours together.</p>
-  <figure class="figure col-span-12 fill-tint" style="--depth: 16">
-    <div class="figure-image composition turn-rise-1-2 text-ink">
-      <span class="composition-word size-phi-4 hang-round" style="--x: -5; --y: 13">overprint</span>
-      <span class="composition-rule" style="--x: -5; --y: 15; --w: 20"></span>
-      <!-- the red bar over "nt", the grey bar over "k": shifted off the grid to the letters' ink, measured
-           ("nt" 17.4 to 23.5 units, "k" 40.8 to 44.35, the same in Chromium and Firefox to 0.07) -->
-      <span class="composition-bar text-red overprint" style="--x: 17; --y: -30; --w: 6; --h: 70; --shift-x: 0.4; --shift-w: 0.1"></span>
-      <span class="composition-bar text-mid" style="--x: 41; --y: -30; --w: 4; --h: 70; --shift-x: -0.2; --shift-w: -0.45"></span>
-      <span class="composition-word size-phi-4 text-red overprint" style="--x: 35; --y: 22">ink</span>
-    </div>
-  </figure>
-  <p class="paragraph">A colour area can also hold words at a very large size, as on the poster “der Film” by Josef Müller-Brockmann from 1960. There the grid is not turned. The first word is grey. It ends on the right edge of the seventh column, and the left edge of the area cuts its first letter. The second word has the colour of the page. The second word is partly clear, so where the two words cross, the first word shows through. The small red text starts at the same column edge as the second word, and each of its baselines is on a grid line.</p>
-  <figure class="figure col-span-12 fill-ink" style="--depth: 32">
-    <div class="figure-image composition">
-      <p class="composition-text weight-semibold text-red" style="--heading-ratio: 1.25; --x: 15; --y: 2.5">Typographic<br>Grid Effects</p>
-      <!-- 372px (23.25 units): the size at which the ink of "Grid" ends on the area's right edge, the right edge of column 12 -->
-      <!-- the size of "Grid": the h of "the" on the cap line, as high as the G to the eye (the G overshoots it, as round letters do);
-           moved left off the grid (--shift-x, 15px), so that its ink ends on the right edge of column 7 -->
-      <span class="composition-word text-mid" style="--heading-ratio: 23.25; --x: 0; --shift-x: -0.9375; --y: 24">the</span>
-      <span class="composition-word hang-round see-through" style="--heading-ratio: 23.25; --x: 15; --y: 24">Grid</span>
-      <p class="composition-text weight-semibold text-red" style="--heading-ratio: 1.25; --x: 15; --y: 27">Unit 16, baseline grid 24 pixels<br><br>Column 48, gutter 32 pixels<br>Twelve columns, 928 pixels</p>
-    </div>
-  </figure>
 
-  <p class="paragraph">A colour area can also hold a polar grid, as on a concert poster for Beethoven by Josef Müller-Brockmann from 1955. Its rings are around one point, one line apart, and its rays divide the circle into 48 steps of 7.5 degrees. The point is on a crossing of the grid. The arcs are parts of rings, a hairline apart and each in one colour.</p>
-  <p class="paragraph">From the inside out, the arcs are ½, 1, 2, 4, 4 and 8 lines thick, and they end in steps. The edges of the area cut the circle. The text is inside the innermost ring and stands straight on the grid and the columns of the area, from the sixth column. When the grid shows, both grids show.</p>
+  <p class="paragraph">The second example follows his concert poster for Beethoven, also from 1955. Its rings are one line apart around one point, and the arcs end in steps.</p>
   <!-- a polar composition: its point --cx units from the left edge, --cy grid lines down; the whole polar grid turned by --polar-turn;
        an arc from ring --r, --h lines thick, from ray --a over --span steps of 7.5 degrees (0 the ray to the right, -12 straight up,
        -24 straight left): the arcs a hairline apart, ½, 1, 2, 4, 4 and 8 lines thick (the ½ on a half line), each in one colour, each ring starting on its own ray;
@@ -693,9 +248,7 @@ the grid arrived. Could you send the second volume as well?</textarea>
     </div>
   </figure>
 
-  <h2 class="heading size-phi-1 ratio-3-5" id="full-width">Each part of the page is on one grid: <br>a full-width&nbsp;example</h2>
-  <p class="paragraph">The grid of the page can also hold a layout as on a poster, over the full width of the twelve columns. The example below follows a concert poster by Josef Müller-Brockmann from 1957. The red areas are colour areas, a number of columns wide and a number of lines deep, and some move down by whole lines.</p>
-  <p class="paragraph">Each area also fills the gutter after it, so that only a hairline is between two areas. The names are on the red area, in the colour of the page. The small names are aligned on the right, against the gutter before the large names, and each of them is on a baseline of a large name. The details below start at the same column edge as the large names.</p>
+  <p class="paragraph">The third example follows a concert poster from 1957 and uses all twelve columns of the page. The red areas are a number of columns wide and a number of lines deep, and some move down by whole lines. The names are on the red area, in the colour of the page.</p>
   <!-- the colour areas hang in the row after the paragraph above: each its columns, --lines-above lower, --depth lines deep -->
   <!-- the poster's paper: all twelve columns, from the block's top edge to the lowest bar's end, behind the other areas -->
   <figure class="figure figure-side figure-hanging hang-always col-start-1 col-span-12 fill-tint" style="--depth: 32">
@@ -724,33 +277,63 @@ the grid arrived. Could you send the second volume as well?</textarea>
   <p class="paragraph col-start-4 col-span-4 keep-start narrow-col-rest weight-semibold">unit 16 pixels<br>column 48 pixels<br>gutter 32 pixels<br>baseline grid 24 pixels<br>twelve columns<br>type area 928 pixels</p>
   <p class="paragraph col-start-4 col-span-4 keep-start narrow-col-rest weight-semibold">made with css<br>text-box, round, mod<br>no pictures</p>
 
-  <!-- set lower by the lines the poster's paper hangs past its last paragraph; half a line less, as the poster's details
-       stand on half baselines: from here the page is on its full lines again -->
-  <h2 class="heading size-phi-1 ratio-3-5" id="narrow-screens" style="--lines-above: 1.5">Each part of the page is on one grid: <br>the narrow&nbsp;screens</h2>
-  <p class="paragraph">The other sections of this page describe the grid on a wide screen, with twelve columns. On a narrower screen, the grid has fewer columns. The columns and the gutters keep their widths, and only the number of columns changes. Thus each baseline stays on a grid line.</p>
-  <table class="table">
+  <!-- set lower by the lines the poster's paper hangs past its last paragraph, as in reference.html -->
+  <h2 class="heading size-phi-1 ratio-3-5" id="timeline" style="--lines-above: 1.5">Timeline</h2>
+  <table class="table row-gap-1">
     <colgroup>
-      <col class="col-span-3">
-      <col class="col-span-2">
-      <col class="col-span-2">
+      <col class="col-span-1">
+      <col class="col-span-6">
     </colgroup>
     <thead>
-      <tr><th>Screen width</th><th class="align-right">Columns</th><th class="align-right">Type area</th></tr>
+      <tr><th>Year</th><th>Event</th></tr>
     </thead>
     <tbody>
-      <tr><td>992 or more</td><td class="align-right">12</td><td class="align-right">928</td></tr>
-      <tr><td>592 to 991</td><td class="align-right">7</td><td class="align-right">528</td></tr>
-      <tr><td>432 to 591</td><td class="align-right">5</td><td class="align-right">368</td></tr>
-      <tr><td>Less than 432</td><td class="align-right">4</td><td class="align-right">288</td></tr>
+      <tr><td>1942</td><td>Emil Ruder starts to teach typography in Basel.</td></tr>
+      <tr><td>1957</td><td>Adrian Frutiger designs Univers. Max Miedinger and Eduard Hoffmann design Neue Haas Grotesk, later called Helvetica.</td></tr>
+      <tr><td>1958</td><td>The first issue of the magazine Neue Grafik.</td></tr>
+      <tr><td>1962</td><td>Karl Gerstner makes the grid of 58 units for the magazine Capital.</td></tr>
+      <tr><td>1964</td><td>Karl Gerstner, Designing Programmes.</td></tr>
+      <tr><td>1967</td><td>Emil Ruder, Typographie.</td></tr>
+      <tr><td>1981</td><td>Josef Müller-Brockmann, Grid Systems in Graphic Design.</td></tr>
     </tbody>
   </table>
-  <p class="paragraph">The values are in pixels, for a text size of 16 pixels. The type area is in the middle of the screen, and the page margins at its left and right get the width that is left. Each page margin is at least one gutter wide. With four columns, it is at least one unit wide.</p>
-  <p class="paragraph">With seven columns or fewer, no columns are beside the text. A picture or a note beside a paragraph then goes below the paragraph, with the margin of a paragraph above it. A note that refers to a word goes into the line, directly after that word. It is in parentheses and keeps its italic style. In the full-width example, the paper and the red area stay behind the text. With seven columns, the red area is five columns wide, and two of the bars are in the last two columns: one from the top edge, one to the bottom edge. The small names are in the first column, and the large names and the details are in the other columns. With five columns or fewer, the bars are not shown, and with four columns, the large names are one size smaller.</p>
-  <p class="paragraph">A pull quote moves into the page margin only when the page margin is wide enough for its columns and one gutter. When the page margin is narrower, the quote moves by fewer columns, or it stays in the text width. Text that runs up or down in the page margin then goes above its paragraph, in the first column, or a class hides it.</p>
-  <p class="paragraph">With five columns or fewer, a picture inside a paragraph is not wider than two columns, so the text beside it has at least half of the columns. The columns of a table are not on the columns of the page. Their widths come from their content, and one unit is between two columns. Fields and buttons that are side by side go to the next row when they do not fit. A box with no field and no button has a padding of two units at its left and at its right. In a box, the marks of a list go into the padding, as they go into the page margin outside a box. A colour area with words, bars and rules becomes smaller as a whole. Its grid, its words and its small text get smaller with the width of the area, so that the layout and all of the text stay the same. A class can show a box as a dashed outline, with no background. The box with the table has this class, with a black outline.</p>
+
+  <h2 class="heading size-phi-1 ratio-3-5" id="order">Order the posters</h2>
+  <p class="paragraph">Three of the compositions on this page are available as posters: Swiss, Zürich and Counter <span class="badge fill-red text-light">New</span>. Each poster is printed in two colours, red and black, on white paper.</p>
+  <div class="box">
+    <h3 class="heading size-phi-0 ratio-2-3">Your order</h3>
+    <div class="field">
+      <label class="field-label" for="order-name">Name</label>
+      <input class="field-input" id="order-name" type="text" placeholder="Emil Ruder">
+    </div>
+    <div class="field">
+      <label class="field-label" for="order-email">Email</label>
+      <p class="field-description" id="order-email-description">We use it only to send you the invoice.</p>
+      <input class="field-input" id="order-email" type="email" placeholder="name@example.com" aria-describedby="order-email-description">
+    </div>
+    <div class="field" role="group" aria-labelledby="order-posters-label">
+      <p class="field-label" id="order-posters-label">Posters</p>
+      <div class="choices">
+        <label class="choice"><input class="choice-input" type="checkbox" name="posters" value="swiss" checked>Swiss</label>
+        <label class="choice"><input class="choice-input" type="checkbox" name="posters" value="zurich">Zürich</label>
+        <label class="choice"><input class="choice-input" type="checkbox" name="posters" value="counter">Counter</label>
+      </div>
+    </div>
+    <div class="field" role="radiogroup" aria-labelledby="order-size-label">
+      <p class="field-label" id="order-size-label">Size</p>
+      <label class="choice"><input class="choice-input" type="radio" name="size" value="a2">A2, 420 by 594 millimetres</label>
+      <label class="choice"><input class="choice-input" type="radio" name="size" value="f4" checked>F4, 895 by 1280 millimetres, the Swiss poster size</label>
+    </div>
+    <div class="buttons">
+      <button class="button" type="submit">Order</button>
+      <button class="button fill-tint text-ink" type="button">Save</button>
+    </div>
+  </div>
+
+  <hr class="rule">
+  <p class="paragraph">This page is an example for the <a href="reference.html"><span class="icon icon-arrow-right">typographic</span> grid</a>. It has no pictures: each picture is a colour area, and each poster is text and shapes in CSS.</p>
 </main>
 
-<!-- shows the columns and the grid lines over the page; pure CSS, read with :has() -->
 <label class="grid-toggle"><input class="choice-input" type="checkbox">Grid</label>
 
 <script src="typographic-grid/grid.js"></script>

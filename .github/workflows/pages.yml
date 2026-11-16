@@ -1,4 +1,4 @@
-# Deploys the page to GitHub Pages on every push to main.
+# Deploys the pages to GitHub Pages on every push to main.
 # GitHub Pages lets browsers keep each file for 10 minutes: the stylesheets and the script get the commit
 # in their URL, so a new version of either is loaded at once. The repository itself keeps the plain links.
 name: Deploy to GitHub Pages
@@ -27,16 +27,19 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Copy the page and version its stylesheets and script
+      - name: Copy the pages and version their stylesheets and script
         run: |
           version="${GITHUB_SHA::8}"
+          pages="index.html reference.html"
           mkdir _site
-          cp -r index.html typographic-grid _site/
-          # every local stylesheet and script: a relative href or src (no scheme) ending in .css or .js
-          sed -i -E "s#(href|src)=\"([^\":?\#]+\.(css|js))\"#\1=\"\2?v=$version\"#g" _site/index.html
-          # stop if a file that ships isn't linked with the version: the page would load a stale one, or none
-          for file in typographic-grid/*.css typographic-grid/*.js; do
-            grep -q "=\"$file?v=$version\"" _site/index.html || { echo "not versioned: $file"; exit 1; }
+          cp -r $pages typographic-grid _site/
+          for page in $pages; do
+            # every local stylesheet and script: a relative href or src (no scheme) ending in .css or .js
+            sed -i -E "s#(href|src)=\"([^\":?\#]+\.(css|js))\"#\1=\"\2?v=$version\"#g" "_site/$page"
+            # stop if a file that ships isn't linked with the version: the page would load a stale one, or none
+            for file in typographic-grid/*.css typographic-grid/*.js; do
+              grep -q "=\"$file?v=$version\"" "_site/$page" || { echo "not versioned in $page: $file"; exit 1; }
+            done
           done
 
       - uses: actions/configure-pages@v6
