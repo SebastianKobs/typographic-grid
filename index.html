@@ -670,6 +670,26 @@ the grid arrived. Could you send the second volume as well?</textarea>
     </div>
   </figure>
 
+  <p class="paragraph">A colour area can also hold a polar grid, as on a concert poster for Beethoven by Josef Müller-Brockmann from 1955. Its rings are around one point, one line apart, and its rays divide the circle into 48 steps of 7.5 degrees. The point is on a crossing of the grid. Each arc is a part of a ring: it starts on a ring and on a ray, and it is a number of lines thick and a number of steps long. The arcs are a hairline apart. From the inside out, the rings are 1, 2, 4, 4 and 8 lines thick, and each arc has one colour. Each ring starts and ends on a different ray, so that the rings end in steps, as bars of different heights. The text is inside the innermost ring, and the rings go round it, each to its own ray. The circle is larger than the area, so the edges of the area cut it. The text stands straight on the grid and the columns of the area, from the sixth column, against the curves.</p>
+  <!-- a polar composition: its point --cx units from the left edge, --cy grid lines down; the whole polar grid turned by --polar-turn;
+       an arc from ring --r, --h lines thick, from ray --a over --span steps of 7.5 degrees (0 the ray to the right, -12 straight up,
+       -24 straight left): the arcs a hairline apart, 1, 2, 4, 4 and 8 lines thick, each in one colour, each ring starting on its own ray;
+       --cut-below ends an arc straight on a line of the flat grid, as the baseline of a text. The text stands straight on the flat grid -->
+  <figure class="figure col-span-12 fill-tint" style="--depth: 29">
+    <div class="figure-image composition polar text-ink" style="--cx: 37; --cy: 16; --polar-turn: 173deg">
+      <span class="composition-arc" style="--r: 12; --h: 1; --a: -8; --span: 21"></span>
+      <span class="composition-arc" style="--r: 13; --h: 2; --a: -5; --span: 20"></span>
+      <span class="composition-arc" style="--r: 15; --h: 4; --a: -4; --span: 22"></span>
+      <span class="composition-arc text-red" style="--r: 19; --h: 4; --a: -9; --span: 19"></span>
+      <span class="composition-arc" style="--r: 23; --h: 8; --a: -10; --span: 21"></span>
+      <span class="composition-arc" style="--r: 12; --h: 1; --a: 19; --span: 11"></span>
+      <span class="composition-arc" style="--r: 13; --h: 2; --a: 17; --span: 9; --cut-below: 17"></span>
+      <span class="composition-arc" style="--r: 11.5; --h: 0.5; --a: -21; --span: 7"></span>
+      <span class="composition-word size-phi-4" style="--x: 25; --y: 14">polar</span>
+      <p class="composition-text" style="--x: 25; --y: 17">rings one line apart<br>around one point<br>rays 7.5 degrees apart<br>each ring ends on its own ray</p>
+    </div>
+  </figure>
+
   <h2 class="heading size-phi-1 ratio-3-5" id="full-width">Each part of the page is on one grid: <br>a full-width&nbsp;example</h2>
   <p class="paragraph">The grid of the page can also hold a layout as on a poster, over the full width of the twelve columns. The example below follows a concert poster by Josef Müller-Brockmann from 1957. The red areas are colour areas, a number of columns wide and a number of lines deep, and some move down by whole lines. Each area also fills the gutter after it, so that only a hairline is between two areas. The names are on the red area, in the colour of the page. The small names are aligned on the right, against the gutter before the large names, and each of them is on a baseline of a large name. The details below start at the same column edge as the large names.</p>
   <!-- the colour areas hang in the row after the paragraph above: each its columns, --lines-above lower, --depth lines deep -->

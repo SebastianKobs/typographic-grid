@@ -146,6 +146,61 @@
   transform: rotate(var(--turn)) translateY(-1cap);
 }
 
+/* A polar grid, a polar class, after Müller-Brockmann's Beethoven poster (1955): rings around one point and rays from it.
+   The point on a crossing of the composition's grid, --cx units from the left edge and --cy grid lines below the first one;
+   the rings a line apart, the rays 48 steps of 7.5° round the circle. Angles in steps, 0 the ray to the right, counted
+   clockwise (so -12 is straight up), as rotate() counts them; the whole polar grid turned round its point by --polar-turn
+   (degrees, clockwise; whole steps keep its rays where they were). */
+.composition.polar {
+  --step-angle: 7.5deg;
+  --polar-turn: 0deg;
+  --cpx: calc(var(--cx, 0) * var(--unit));
+  --cpy: calc(var(--body-cap) + var(--cy, 0) * var(--line));
+}
+/* an arc: a part of a ring, from radius --r lines, --h lines thick, from ray --a over --span steps. The whole area, cut down
+   to the ring and to the sector by two masks that only leave what both keep; edges softened by a pixel, as a curve's.
+   Arcs side by side keep a hairline apart, as the fields of a poster (a sixteenth of the unit): the ring narrowed by half
+   a hairline at each edge, the sector by the angle that is half a hairline at the ring's middle radius (in radians,
+   half a hairline over that radius: a sixteenth of the unit over the radius in units, numbers only) */
+.composition.polar > .composition-arc {
+  --hairline: calc(var(--unit) / 16);
+  --r1: calc(var(--r, 0) * var(--line) + var(--hairline) / 2);
+  --r2: calc((var(--r, 0) + var(--h, 1)) * var(--line) - var(--hairline) / 2);
+  --hair-angle: calc(1rad / (32 * var(--line-height) * (var(--r, 0) + var(--h, 1) / 2)));
+  --from: calc(var(--a, 0) * var(--step-angle) + var(--polar-turn) + 90deg + var(--hair-angle));
+  --sweep: calc(var(--span, 1) * var(--step-angle) - 2 * var(--hair-angle));
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  background: currentColor;
+  mask-image:
+    radial-gradient(circle at var(--cpx) var(--cpy),
+      transparent calc(var(--r1) - 0.5px), #000 calc(var(--r1) + 0.5px) calc(var(--r2) - 0.5px), transparent calc(var(--r2) + 0.5px)),
+    conic-gradient(from var(--from) at var(--cpx) var(--cpy), #000 0 var(--sweep), transparent var(--sweep)),
+    linear-gradient(#000 var(--cut), transparent var(--cut));
+  mask-composite: intersect;
+  /* --cut-below: a grid line of the flat grid (as --y); the arc ends straight on it, the part below it cut off */
+  --cut: calc(var(--body-cap) + var(--cut-below, 999) * var(--line));
+}
+/* a word, a small text or a rule on a ray, an on-ray class: --r lines out from the point on ray --a, along it; a rule --len
+   lines long. Without it a part stands straight on the composition's flat grid, --x and --y, against the rings */
+.composition.polar > .on-ray:is(.composition-word, .composition-text, .composition-rule) {
+  --ray: rotate(calc(var(--a, 0) * var(--step-angle) + var(--polar-turn))) translateX(calc(var(--r, 0) * var(--line)));
+  left: var(--cpx);
+  top: var(--cpy);
+  transform-origin: 0 0;
+}
+.composition.polar > .composition-word.on-ray {
+  transform: var(--ray) translateX(calc(-1 * (var(--side-bearing) + var(--hang, 0em)))) translateY(-100%);
+}
+.composition.polar > .composition-text.on-ray { transform: var(--ray) translateY(-1cap); }
+.composition.polar > .composition-rule.on-ray {
+  width: calc(var(--len, 1) * var(--line));
+  transform: var(--ray) translateY(-50%);
+}
+
 /* Overprint: a part printed over another as a second ink, not covering it. Multiplied with what is below: on the page's ground
    a red part stays red, on black it is black, so the black shows through it, as where two inks overlap on a poster. */
 .overprint { mix-blend-mode: multiply; }
@@ -180,5 +235,20 @@
   transform: rotate(var(--turn));
 }
 :root:has(.grid-toggle input:checked) .composition::after { display: block; }
+/* over a polar composition: its rings (red, a line apart) and rays (blue, a step apart) round its point */
+.composition.polar::after {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  background:
+    repeating-radial-gradient(circle at var(--cpx) var(--cpy) in srgb,
+      transparent 0 calc(var(--line) - 1px),
+      color-mix(in srgb, var(--color-guide) 60%, transparent) calc(var(--line) - 1px) var(--line)),
+    repeating-conic-gradient(from calc(90deg + var(--polar-turn)) at var(--cpx) var(--cpy) in srgb,
+      color-mix(in srgb, var(--color-guide-half) 70%, transparent) 0 0.15deg,
+      transparent 0.15deg var(--step-angle));
+}
 /* above the page's overlay: over a composition only its own grid shows */
 :root:has(.grid-toggle input:checked) .composition { z-index: 11; }
