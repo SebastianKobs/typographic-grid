@@ -1345,7 +1345,8 @@ textarea.field-input {
    20px from a 1240px window (the 1160px type area at 20px and a gutter each side), 24px from 1488px: the sizes whose line
    (1.5 units) and half baseline (0.75) are whole pixels; every distance follows --font-size, as a page printed larger.
    Switched on by the page, a text-steps class on the root (html), or by the reader, a floating checkbox above the grid's,
-   which shows the size in use; where the page has the checkbox, it decides (checked, to start on).
+   which shows the size in use; where the page has the checkbox, it decides (checked, to start on). Its input with
+   autocomplete="off": Firefox otherwise restores it on a reload, and the page starts in the steps the reader left.
    The widths are for those sizes: a media query can't read --font-size. */
 @media (width >= 1240px) {
   :root:is(.text-steps:not(:has(.steps-toggle)), :has(.steps-toggle input:checked)) { --font-size: 20; }

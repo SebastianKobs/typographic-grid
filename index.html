@@ -34,8 +34,11 @@
       <span class="composition-bar text-ink" style="--x: 40; --y: -30; --w: 3; --h: 70"></span>
       <span class="composition-word size-phi-4 text-ink" style="--x: 5; --y: 4">swiss</span>
       <span class="composition-rule text-ink" style="--x: 5; --y: 5; --w: 50"></span>
-      <span class="composition-word size-phi-4" style="--x: 10; --y: 10">typography</span>
-      <span class="composition-bar text-ink" style="--x: 10; --y: 12; --w: 13; --h: 1"></span>
+      <!-- the h of "typography" on the column of the black bar (units 40 to 43): the size at which its ink is three units
+           wide (99px at a 16px unit; Inter Bold's h is 0.483 of the size, its ink 0.051 after its origin, measured from its
+           pixels in Chromium and Firefox), from the crossing at 13 so the font keeps nearly its own spacing (about 1px more) -->
+      <span class="composition-word" style="--heading-ratio: 6.1875; letter-spacing: 0.0131em; --x: 13; --y: 9">typography</span>
+      <span class="composition-bar text-ink" style="--x: 13; --y: 11; --w: 15; --h: 1"></span>
       <p class="composition-text text-ink" style="--x: 45; --y: -14">Basel and Zürich<br>1950 to 1970</p>
       <p class="composition-text" style="--x: 45; --y: -9">Müller-Brockmann<br>Gerstner<br>Ruder</p>
     </div>
@@ -337,7 +340,7 @@
   <p class="paragraph">This page is an example for the <a href="reference.html"><span class="icon icon-arrow-right">typographic</span> grid</a>. It has no pictures: each picture is a colour area, and each poster is text and shapes in CSS.</p>
 </main>
 
-<label class="steps-toggle"><input class="choice-input" type="checkbox">Steps</label>
+<label class="steps-toggle"><input class="choice-input" type="checkbox" autocomplete="off">Steps</label>
 <label class="grid-toggle"><input class="choice-input" type="checkbox">Grid</label>
 
 <script src="typographic-grid/grid.js"></script>

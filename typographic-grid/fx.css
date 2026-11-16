@@ -223,16 +223,20 @@
   pointer-events: none;
   --grid-strength: 60%;
   --column-strength: 15%;
+  /* the guides' colours: the page's red and blue, unless the area's fill hides them (below) */
+  --guide-line: var(--color-guide);
+  --guide-half: var(--color-guide-half);
+  --guide-column: var(--color-guide);
   /* each a period as a tile, repeated, as the page's overlay: Chromium blurs a repeating gradient's hard stops */
   --grid-lines: linear-gradient(in srgb to bottom,
       transparent calc(var(--line) - 1px),
-      color-mix(in srgb, var(--color-guide) var(--grid-strength), transparent) 0) 0 0 / 100% var(--line);
+      color-mix(in srgb, var(--guide-line) var(--grid-strength), transparent) 0) 0 0 / 100% var(--line);
   --grid-halves: linear-gradient(in srgb to bottom,
       transparent calc(var(--line) / 2 - 1px),
-      color-mix(in srgb, var(--color-guide-half) var(--grid-strength), transparent) 0 calc(var(--line) / 2),
+      color-mix(in srgb, var(--guide-half) var(--grid-strength), transparent) 0 calc(var(--line) / 2),
       transparent 0) 0 0 / 100% var(--line);
   --grid-columns: linear-gradient(in srgb to right,
-      color-mix(in srgb, var(--color-guide) var(--column-strength), transparent) calc(3 * var(--unit)),
+      color-mix(in srgb, var(--guide-column) var(--column-strength), transparent) calc(3 * var(--unit)),
       transparent 0) 0 0 / calc(5 * var(--unit)) 100%;
   background: var(--grid-lines), var(--grid-halves), var(--grid-columns);
   left: calc(-20 * 5 * var(--unit));
@@ -243,6 +247,10 @@
   transform: rotate(var(--turn));
 }
 :root:has(.grid-toggle input:checked) .composition::after { display: block; }
+/* on a red area the red guides vanish: grid lines in the page's colour, half baselines and columns in ink;
+   on a black area the red columns are lost in it: in the page's colour */
+.fill-red > .composition::after { --guide-line: var(--color-ground); --guide-half: var(--color-ink); --guide-column: var(--color-ink); }
+.fill-ink > .composition::after { --guide-column: var(--color-ground); }
 /* over a polar composition both grids: its rings (red, a line apart) and rays (blue, a step apart) round its point, and the
    flat grid its text stands on (grid lines and half baselines from its first grid line, columns from its left edge), fainter,
    so that the two grids stay apart */
@@ -257,12 +265,14 @@
   background:
     repeating-radial-gradient(circle at var(--cpx) var(--cpy) in srgb,
       transparent 0 calc(var(--line) - 1px),
-      color-mix(in srgb, var(--color-guide) 60%, transparent) calc(var(--line) - 1px) var(--line)),
+      color-mix(in srgb, var(--guide-line) 60%, transparent) calc(var(--line) - 1px) var(--line)),
     repeating-conic-gradient(from calc(90deg + var(--polar-turn)) at var(--cpx) var(--cpy) in srgb,
-      color-mix(in srgb, var(--color-guide-half) 70%, transparent) 0 0.15deg,
+      color-mix(in srgb, var(--guide-half) 70%, transparent) 0 0.15deg,
       transparent 0.15deg var(--step-angle)),
     var(--grid-lines), var(--grid-halves), var(--grid-columns);
   background-position: 0 0, 0 0, 0 var(--body-cap), 0 var(--body-cap), 0 0;
 }
+/* on black its faint columns get lost: stronger */
+.fill-ink > .composition.polar::after { --column-strength: 12%; }
 /* above the page's overlay: over a composition only its own grid shows */
 :root:has(.grid-toggle input:checked) .composition { z-index: 11; }
