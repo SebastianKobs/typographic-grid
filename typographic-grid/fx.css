@@ -222,16 +222,17 @@
   pointer-events: none;
   --grid-strength: 60%;
   --column-strength: 15%;
-  --grid-lines: repeating-linear-gradient(in srgb to bottom,
-      transparent 0 calc(var(--line) - 1px),
-      color-mix(in srgb, var(--color-guide) var(--grid-strength), transparent) calc(var(--line) - 1px) var(--line));
-  --grid-halves: repeating-linear-gradient(in srgb to bottom,
-      transparent 0 calc(var(--line) / 2 - 1px),
-      color-mix(in srgb, var(--color-guide-half) var(--grid-strength), transparent) calc(var(--line) / 2 - 1px) calc(var(--line) / 2),
-      transparent calc(var(--line) / 2) var(--line));
-  --grid-columns: repeating-linear-gradient(in srgb to right,
-      color-mix(in srgb, var(--color-guide) var(--column-strength), transparent) 0 calc(3 * var(--unit)),
-      transparent calc(3 * var(--unit)) calc(5 * var(--unit)));
+  /* each a period as a tile, repeated, as the page's overlay: Chromium blurs a repeating gradient's hard stops */
+  --grid-lines: linear-gradient(in srgb to bottom,
+      transparent calc(var(--line) - 1px),
+      color-mix(in srgb, var(--color-guide) var(--grid-strength), transparent) 0) 0 0 / 100% var(--line);
+  --grid-halves: linear-gradient(in srgb to bottom,
+      transparent calc(var(--line) / 2 - 1px),
+      color-mix(in srgb, var(--color-guide-half) var(--grid-strength), transparent) 0 calc(var(--line) / 2),
+      transparent 0) 0 0 / 100% var(--line);
+  --grid-columns: linear-gradient(in srgb to right,
+      color-mix(in srgb, var(--color-guide) var(--column-strength), transparent) calc(3 * var(--unit)),
+      transparent 0) 0 0 / calc(5 * var(--unit)) 100%;
   background: var(--grid-lines), var(--grid-halves), var(--grid-columns);
   left: calc(-20 * 5 * var(--unit));
   top: calc(var(--body-cap) - 40 * var(--line));

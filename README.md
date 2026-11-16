@@ -58,7 +58,7 @@ Classes are named for their effect, for example:
 
 ## Browsers
 
-Tested in Chromium 153 and Firefox 155. It needs `text-box`, `font-size-adjust: cap-height`, `round()`, `mod()`, `:has()` and registered custom properties (`@property`). Safari on the iPhone is checked by eye; Safari on the desktop and the iPad is untested.
+Tested in Chromium 153 and Firefox 155. It needs `text-box`, `font-size-adjust: cap-height`, `round()`, `mod()`, `:has()`, registered custom properties (`@property`), container style queries (`@container style()`, for what is pulled into the page margin) and anchor positioning (for the menu on fewer columns). Safari on the iPhone is checked by eye; Safari on the desktop and the iPad is untested.
 
 ## License
 
