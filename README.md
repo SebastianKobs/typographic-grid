@@ -14,7 +14,7 @@ A web page where every part sits on one grid: text, headings, pictures, rules, b
 - **Pictures:** a number of columns wide; the top edge on a cap line, the depth whole lines, cropped to the nearest ratio.
 - **Boxes:** padding of one column on the right and one unit less on the left; the background starts and stops on grid lines, adding half a baseline when the content ends between two.
 
-The "Grid" checkbox at the bottom right shows the columns and the grid lines over the page.
+The "Grid" checkbox at the bottom right shows the columns and the grid lines over the page; the "Steps" checkbox above it (from a 1240px window) switches the text steps on.
 
 Change `--font-size` or `--line-height` in `:root` and every distance follows. The page is tuned for 16px / 1.5; at other settings Chromium can drift by a fraction of a pixel.
 
@@ -35,6 +35,20 @@ The grid steps down by whole columns; columns and gutters keep their widths, the
 
 The breakpoints are for 16px text: a media query can't read `--font-size`.
 
+## Text steps
+
+On wide screens the text can grow in whole steps, and every distance grows with it, as a page printed larger: the line length in characters stays the same.
+
+| Viewport | Text | Line | Type area |
+|---|---|---|---|
+| below 1240px | 16px | 24px | 928px (or fewer columns, as above) |
+| 1240–1487px | 20px | 30px | 1160px |
+| 1488px or more | 24px | 36px | 1392px |
+
+These are the sizes whose line and half baseline are whole pixels. The steps are off by default. A page switches them on with `class="text-steps"` on `html`; the reader with the "Steps" checkbox, which shows the size in use. Where a page has the checkbox, the checkbox decides; give it `checked` to start with the steps on.
+
+Pulled quotes and stacks take their room in the page margin from the window, so they fit at every step.
+
 ## Files
 
 | File | Content |
@@ -51,7 +65,7 @@ The breakpoints are for 16px text: a media query can't read `--font-size`.
 
 Classes are named for their effect, for example:
 
-- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`, `hang-up`, `side-by-side-on-7`, `hide-unpulled`, `hang-always`, `hide-below-12`, `hide-below-7`, `col-span-n-on-7`, `keep-start`, `narrow-col-1`, `narrow-col-rest`, `size-down-on-4`, `size-phi-1-on-5`, `shift-left-n`, `shift-right-n` (n = 1–3 units, also `-on-12`, `-on-7`, `-on-5`, `-on-4`); in a style: `--depth` (a colour area's depth in lines), `--lines-above` (a heading, paragraph or hanging figure set lower by whole lines)
+- Layout: `col-start-n`, `col-span-n`, `aspect-w-h`, `pull-left-n`, `pull-right-n`, `figure-hanging`, `figure-stack`, `hang-up`, `side-by-side-on-7`, `hide-unpulled`, `hang-always`, `hide-below-12`, `hide-below-7`, `col-span-n-on-7`, `keep-start`, `narrow-col-1`, `narrow-col-rest`, `size-down-on-4`, `size-phi-1-on-5`, `text-steps` (on `html`), `shift-left-n`, `shift-right-n` (n = 1–3 units, also `-on-12`, `-on-7`, `-on-5`, `-on-4`); in a style: `--depth` (a colour area's depth in lines), `--lines-above` (a heading, paragraph or hanging figure set lower by whole lines)
 - Headings: `size-phi-n` (golden-section sizes, up to `size-phi-6`), `ratio-a-b` (margins below : above, in half baselines), `rule-left`
 - Colour: `fill-red`, `fill-ink`, `fill-tint`, `fill-gutter`, `fill-hatch`, `fill-hatch-red`, `fill-hatch-tint`, `hatch-falling`, `text-up`, `text-down`, `composition` (`composition-word`, `composition-bar`, `composition-rule`, `composition-text`, `composition-steep`, `turn-1-2`, `turn-rise-1-2`, `polar` (`composition-arc`, `on-ray`; `--cx`, `--cy`, `--polar-turn`; on an arc `--r`, `--h`, `--a`, `--span`, and `--cut-below` to end it straight on a grid line), `hang-round`; in a style: `--x`, `--y`, `--w`, `--h`, and `--shift-x`, `--shift-w` for a visual shift off the grid), `overprint`, `see-through` (`--see-through`), `text-light`, `text-ink`, `text-right`, `weight-semibold`, `text-red`, `text-grey`, `text-mid`, `outline-ink`, `outline-red`, `outline-tint`
 - Elements: `paragraph`, `heading`, `quote`, `figure`, `float-left`, `box` (`outline-narrow`), `note`, `rule`, `list`, `table` (`row-gap-1`, `row-gap-2`), `code`, `icon` (`icon-arrow-right`, `icon-arrow-down`, `icon-plus`, `icon-after`), `dropcap`, `badge`, `menu`, `field`, `fields`, `choice`, `choices`, `button`, `buttons`

@@ -1323,7 +1323,8 @@ textarea.field-input {
       transparent 0) 0 0 / calc(var(--column) + var(--gutter)) 100%;
 }
 :root:has(.grid-toggle input:checked) .type-area::after { display: block; }
-.grid-toggle {
+.grid-toggle,
+.steps-toggle {
   position: fixed;
   right: var(--unit);
   bottom: var(--unit);
@@ -1337,7 +1338,26 @@ textarea.field-input {
   cursor: pointer;
   user-select: none;
 }
-.grid-toggle .choice-input { --choice-fill: var(--color-ground); margin: 0 calc(var(--unit) / 2) 0 0; vertical-align: 0; }
+.grid-toggle .choice-input,
+.steps-toggle .choice-input { --choice-fill: var(--color-ground); margin: 0 calc(var(--unit) / 2) 0 0; vertical-align: 0; }
+
+/* ---------- Text steps: the text size up in whole steps on wide screens ----------
+   20px from a 1240px window (the 1160px type area at 20px and a gutter each side), 24px from 1488px: the sizes whose line
+   (1.5 units) and half baseline (0.75) are whole pixels; every distance follows --font-size, as a page printed larger.
+   Switched on by the page, a text-steps class on the root (html), or by the reader, a floating checkbox above the grid's,
+   which shows the size in use; where the page has the checkbox, it decides (checked, to start on).
+   The widths are for those sizes: a media query can't read --font-size. */
+@media (width >= 1240px) {
+  :root:is(.text-steps:not(:has(.steps-toggle)), :has(.steps-toggle input:checked)) { --font-size: 20; }
+}
+@media (width >= 1488px) {
+  :root:is(.text-steps:not(:has(.steps-toggle)), :has(.steps-toggle input:checked)) { --font-size: 24; }
+}
+/* the size in use after its name: --font-size, a number, shown through a counter */
+.steps-toggle { bottom: calc(var(--unit) * 4); counter-reset: text-size var(--font-size); }
+.steps-toggle::after { content: counter(text-size) "px"; margin-left: calc(var(--unit) / 2); font-weight: 400; }
+/* below the first step the checkbox would switch nothing */
+@media (width < 1240px) { .steps-toggle { display: none; } }
 
 /* ---------- Shifts: an element moved left or right by whole units, at every width or on one step of the grid ----------
    shift-left-n, shift-right-n (n = 1 to 3 units), or with -on-12, -on-7, -on-5, -on-4 only where the grid has that many columns.
