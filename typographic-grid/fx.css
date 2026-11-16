@@ -216,17 +216,19 @@
   z-index: 10;
   display: none;
   pointer-events: none;
-  background:
-    repeating-linear-gradient(in srgb to bottom,
+  --grid-strength: 60%;
+  --column-strength: 15%;
+  --grid-lines: repeating-linear-gradient(in srgb to bottom,
       transparent 0 calc(var(--line) - 1px),
-      color-mix(in srgb, var(--color-guide) 60%, transparent) calc(var(--line) - 1px) var(--line)),
-    repeating-linear-gradient(in srgb to bottom,
+      color-mix(in srgb, var(--color-guide) var(--grid-strength), transparent) calc(var(--line) - 1px) var(--line));
+  --grid-halves: repeating-linear-gradient(in srgb to bottom,
       transparent 0 calc(var(--line) / 2 - 1px),
-      color-mix(in srgb, var(--color-guide-half) 60%, transparent) calc(var(--line) / 2 - 1px) calc(var(--line) / 2),
-      transparent calc(var(--line) / 2) var(--line)),
-    repeating-linear-gradient(in srgb to right,
-      color-mix(in srgb, var(--color-guide) 15%, transparent) 0 calc(3 * var(--unit)),
+      color-mix(in srgb, var(--color-guide-half) var(--grid-strength), transparent) calc(var(--line) / 2 - 1px) calc(var(--line) / 2),
+      transparent calc(var(--line) / 2) var(--line));
+  --grid-columns: repeating-linear-gradient(in srgb to right,
+      color-mix(in srgb, var(--color-guide) var(--column-strength), transparent) 0 calc(3 * var(--unit)),
       transparent calc(3 * var(--unit)) calc(5 * var(--unit)));
+  background: var(--grid-lines), var(--grid-halves), var(--grid-columns);
   left: calc(-20 * 5 * var(--unit));
   top: calc(var(--body-cap) - 40 * var(--line));
   width: calc(60 * 5 * var(--unit));
@@ -235,8 +237,12 @@
   transform: rotate(var(--turn));
 }
 :root:has(.grid-toggle input:checked) .composition::after { display: block; }
-/* over a polar composition: its rings (red, a line apart) and rays (blue, a step apart) round its point */
+/* over a polar composition both grids: its rings (red, a line apart) and rays (blue, a step apart) round its point, and the
+   flat grid its text stands on (grid lines and half baselines from its first grid line, columns from its left edge), fainter,
+   so that the two grids stay apart */
 .composition.polar::after {
+  --grid-strength: 25%;
+  --column-strength: 7%;
   left: 0;
   top: 0;
   width: 100%;
@@ -248,7 +254,9 @@
       color-mix(in srgb, var(--color-guide) 60%, transparent) calc(var(--line) - 1px) var(--line)),
     repeating-conic-gradient(from calc(90deg + var(--polar-turn)) at var(--cpx) var(--cpy) in srgb,
       color-mix(in srgb, var(--color-guide-half) 70%, transparent) 0 0.15deg,
-      transparent 0.15deg var(--step-angle));
+      transparent 0.15deg var(--step-angle)),
+    var(--grid-lines), var(--grid-halves), var(--grid-columns);
+  background-position: 0 0, 0 0, 0 var(--body-cap), 0 var(--body-cap), 0 0;
 }
 /* above the page's overlay: over a composition only its own grid shows */
 :root:has(.grid-toggle input:checked) .composition { z-index: 11; }
