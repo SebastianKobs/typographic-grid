@@ -6,7 +6,7 @@
   --font-weight: 300;
   --caption-weight: 220;
 
-  --line: calc(var(--font-size) * var(--line-height) * 1px);
+  --line: calc(var(--unit) * var(--line-height));
   --half: calc(var(--line) / 2);
   /* Gerstner's Capital grid: 58 units, here 12 columns of 3, gutters of 2;
      every 2, 3, 4 or 6 of them make his 6-, 4-, 3- and 2-column versions.
@@ -67,7 +67,7 @@ body {
   column-gap: var(--gutter);
   width: max-content;
   margin: 48px auto;
-  font-size: calc(var(--font-size) * 1px);
+  font-size: var(--unit);
   line-height: var(--line);
   font-weight: var(--font-weight);
   /* the body's cap height, for the headings' margin below: rounded to Chromium's layout step (1/64px) as its trim rounds
@@ -332,7 +332,7 @@ code {
    so every line of a multi-line heading lands n steps below the last. */
 .heading,
 .quote {
-  --heading-size: round(nearest, calc(var(--font-size) * var(--heading-ratio, 1) * 1px), 1px);
+  --heading-size: round(nearest, calc(var(--unit) * var(--heading-ratio, 1)), 1px);
   grid-column: var(--col-start, 1) / span var(--col-span, var(--text-span));
   font-size: var(--heading-size);
   line-height: round(up, calc(var(--heading-size) * var(--heading-leading)), var(--heading-step));
@@ -1296,69 +1296,27 @@ textarea.field-input {
   .col-span-5, .col-span-6, .col-span-7, .col-span-8, .col-span-9, .col-span-10, .col-span-11, .col-span-12 { --col-span: 4; }
 }
 
-/* ---------- The grid shown: an overlay of the columns and the grid lines, switched by a floating checkbox ----------
-   Drawn from the grid's own measures, so it follows the steps on narrow screens; it doesn't catch the pointer.
-   Columns as fields in a tint of the red, a grid line (a baseline's place) as a thin red line, each a line apart from the
-   type area's top, and the half baseline between two as a thin blue line. No script: the checkbox's state is read with :has().
-   The gradients are interpolated in srgb: with a color-mix() colour Firefox otherwise fills their transparent parts. */
-.type-area::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: none;
-  pointer-events: none;
-  /* one period of each pattern as a tile, repeated: Chromium blurs a repeating gradient's hard stops over about 2px,
-     so its 1px lines came out in bands, some missing */
-  background:
-    linear-gradient(in srgb to bottom,
-      transparent calc(var(--line) - 1px),
-      color-mix(in srgb, var(--color-guide) 60%, transparent) 0) 0 0 / 100% var(--line),
-    linear-gradient(in srgb to bottom,
-      transparent calc(var(--half) - 1px),
-      color-mix(in srgb, var(--color-guide-half) 50%, transparent) 0 var(--half),
-      transparent 0) 0 0 / 100% var(--line),
-    linear-gradient(in srgb to right,
-      color-mix(in srgb, var(--color-guide) 12%, transparent) var(--column),
-      transparent 0) 0 0 / calc(var(--column) + var(--gutter)) 100%;
+/* ---------- The text size on wide screens: fixed, in steps, or fluid ----------
+   16px by default. Every distance follows the unit, as a page printed larger: the line length in characters stays.
+   Steps, a text-steps class on the root (html): 20px from a 1240px window (the 1160px type area at 20px and a gutter each
+   side), 24px from 1488px, the sizes whose line (1.5 units) and half baseline (0.75) are whole pixels.
+   Fluid, a text-fluid class on the root: the unit a 72nd of the window, so the type area (58 units) keeps a column and two
+   gutters of page margin each side, for what is pulled into it; from 16px (a 1152px window) to 24px (1728px). Rounded down
+   to a third of a pixel, so the line and the half baseline are whole quarter pixels, a step both Chromium's (1/64px) and
+   Firefox's (1/60px) layout hold exactly: in between, each line is rounded and the rounding adds up down the page (5px
+   over the reference page in Firefox at 21.25px). Fluid sets the unit itself, so with both classes it wins.
+   Each size kept in a variable of its own, so tools.css can switch them too. The steps' widths are for those sizes:
+   a media query can't read --font-size. */
+:root {
+  --steps-size: 16;
+  /* 0.02px: a window of exactly 72 times a step (1176px) gives a hair less, a step too few: in floating point in Chromium,
+     in Firefox's 1/60px, which a smaller margin would vanish in */
+  --fluid-unit: clamp(16px, round(down, 100vw / 72 + 0.02px, 1px / 3), 24px);
 }
-:root:has(.grid-toggle input:checked) .type-area::after { display: block; }
-.grid-toggle,
-.steps-toggle {
-  position: fixed;
-  right: var(--unit);
-  bottom: var(--unit);
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  padding: calc(var(--unit) / 2) var(--unit);
-  font: 700 calc(var(--font-size) * 1px) / 1 "Inter", sans-serif;
-  color: var(--color-ink);
-  background: var(--color-tint);
-  cursor: pointer;
-  user-select: none;
-}
-.grid-toggle .choice-input,
-.steps-toggle .choice-input { --choice-fill: var(--color-ground); margin: 0 calc(var(--unit) / 2) 0 0; vertical-align: 0; }
-
-/* ---------- Text steps: the text size up in whole steps on wide screens ----------
-   20px from a 1240px window (the 1160px type area at 20px and a gutter each side), 24px from 1488px: the sizes whose line
-   (1.5 units) and half baseline (0.75) are whole pixels; every distance follows --font-size, as a page printed larger.
-   Switched on by the page, a text-steps class on the root (html), or by the reader, a floating checkbox above the grid's,
-   which shows the size in use; where the page has the checkbox, it decides (checked, to start on). Its input with
-   autocomplete="off": Firefox otherwise restores it on a reload, and the page starts in the steps the reader left.
-   The widths are for those sizes: a media query can't read --font-size. */
-@media (width >= 1240px) {
-  :root:is(.text-steps:not(:has(.steps-toggle)), :has(.steps-toggle input:checked)) { --font-size: 20; }
-}
-@media (width >= 1488px) {
-  :root:is(.text-steps:not(:has(.steps-toggle)), :has(.steps-toggle input:checked)) { --font-size: 24; }
-}
-/* the size in use after its name: --font-size, a number, shown through a counter */
-.steps-toggle { bottom: calc(var(--unit) * 4); counter-reset: text-size var(--font-size); }
-.steps-toggle::after { content: counter(text-size) "px"; margin-left: calc(var(--unit) / 2); font-weight: 400; }
-/* below the first step the checkbox would switch nothing */
-@media (width < 1240px) { .steps-toggle { display: none; } }
+@media (width >= 1240px) { :root { --steps-size: 20; } }
+@media (width >= 1488px) { :root { --steps-size: 24; } }
+:root.text-steps { --font-size: var(--steps-size); }
+:root.text-fluid { --unit: var(--fluid-unit); }
 
 /* ---------- Shifts: an element moved left or right by whole units, at every width or on one step of the grid ----------
    shift-left-n, shift-right-n (n = 1 to 3 units), or with -on-12, -on-7, -on-5, -on-4 only where the grid has that many columns.

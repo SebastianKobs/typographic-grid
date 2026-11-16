@@ -1,0 +1,131 @@
+/* Tools for looking at the grid, not for a page in production: leave this file out, and a page loses only them.
+   The grid shown over the page and over each composition, and the floating checkboxes at the bottom right: Grid, and
+   Steps and Fluid, which switch the text sizes of grid.css on, to compare (tools.js keeps them one at a time).
+   Load it after grid.css and fx.css. */
+
+/* ---------- The grid shown: an overlay of the columns and the grid lines, switched by a floating checkbox ----------
+   Drawn from the grid's own measures, so it follows the steps on narrow screens; it doesn't catch the pointer.
+   Columns as fields in a tint of the red, a grid line (a baseline's place) as a thin red line, each a line apart from the
+   type area's top, and the half baseline between two as a thin blue line. No script: the checkbox's state is read with :has().
+   The gradients are interpolated in srgb: with a color-mix() colour Firefox otherwise fills their transparent parts. */
+.type-area::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  pointer-events: none;
+  /* one period of each pattern as a tile, repeated: Chromium blurs a repeating gradient's hard stops over about 2px,
+     so its 1px lines came out in bands, some missing */
+  background:
+    linear-gradient(in srgb to bottom,
+      transparent calc(var(--line) - 1px),
+      color-mix(in srgb, var(--color-guide) 60%, transparent) 0) 0 0 / 100% var(--line),
+    linear-gradient(in srgb to bottom,
+      transparent calc(var(--half) - 1px),
+      color-mix(in srgb, var(--color-guide-half) 50%, transparent) 0 var(--half),
+      transparent 0) 0 0 / 100% var(--line),
+    linear-gradient(in srgb to right,
+      color-mix(in srgb, var(--color-guide) 12%, transparent) var(--column),
+      transparent 0) 0 0 / calc(var(--column) + var(--gutter)) 100%;
+}
+:root:has(.grid-toggle input:checked) .type-area::after { display: block; }
+/* the floating checkboxes, one above the other at the bottom right, one width, so they line up on both edges */
+.grid-toggle,
+.steps-toggle,
+.fluid-toggle {
+  position: fixed;
+  right: var(--unit);
+  bottom: var(--unit);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  /* the widest, "Steps", is 6.3 units */
+  width: calc(var(--unit) * 6.5);
+  padding: calc(var(--unit) / 2) var(--unit);
+  font: 700 var(--unit) / 1 "Inter", sans-serif;
+  color: var(--color-ink);
+  background: var(--color-tint);
+  cursor: pointer;
+  user-select: none;
+}
+.grid-toggle .choice-input,
+.steps-toggle .choice-input,
+.fluid-toggle .choice-input { --choice-fill: var(--color-ground); margin: 0 calc(var(--unit) / 2) 0 0; vertical-align: 0; }
+
+/* Steps and Fluid, switched by the reader, as the classes text-steps and text-fluid switch them for a page (grid.css):
+   a checkbox switches its way on; a page's class stays on with its checkbox unticked */
+:root:has(.steps-toggle input:checked) { --font-size: var(--steps-size); }
+:root:has(.fluid-toggle input:checked) { --unit: var(--fluid-unit); }
+.fluid-toggle { bottom: calc(var(--unit) * 4); }
+.steps-toggle { bottom: calc(var(--unit) * 7); }
+/* below the first size up the unit stays 16px: the checkbox would switch nothing. Its input with autocomplete="off":
+   Firefox otherwise restores it on a reload */
+@media (width < 1176px) { .fluid-toggle { display: none; } }
+@media (width < 1240px) { .steps-toggle { display: none; } }
+
+/* The grid shown over a composition, with the page's grid (the "Grid" checkbox): its own columns (fields), grid lines (red,
+   from its first grid line) and half baselines (blue), scaled with it; turned with it where it's turned: a layer far larger
+   than the area, its corner moved back by whole periods from the grid's origin, so the pattern stays in phase; the area cuts it.
+   In srgb: with a color-mix() colour Firefox otherwise fills the gradients' transparent parts. */
+.composition::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  display: none;
+  pointer-events: none;
+  --grid-strength: 60%;
+  --column-strength: 15%;
+  /* the guides' colours: the page's red and blue, unless the area's fill hides them (below) */
+  --guide-line: var(--color-guide);
+  --guide-half: var(--color-guide-half);
+  --guide-column: var(--color-guide);
+  /* each a period as a tile, repeated, as the page's overlay: Chromium blurs a repeating gradient's hard stops */
+  --grid-lines: linear-gradient(in srgb to bottom,
+      transparent calc(var(--line) - 1px),
+      color-mix(in srgb, var(--guide-line) var(--grid-strength), transparent) 0) 0 0 / 100% var(--line);
+  --grid-halves: linear-gradient(in srgb to bottom,
+      transparent calc(var(--line) / 2 - 1px),
+      color-mix(in srgb, var(--guide-half) var(--grid-strength), transparent) 0 calc(var(--line) / 2),
+      transparent 0) 0 0 / 100% var(--line);
+  --grid-columns: linear-gradient(in srgb to right,
+      color-mix(in srgb, var(--guide-column) var(--column-strength), transparent) calc(3 * var(--unit)),
+      transparent 0) 0 0 / calc(5 * var(--unit)) 100%;
+  background: var(--grid-lines), var(--grid-halves), var(--grid-columns);
+  left: calc(-20 * 5 * var(--unit));
+  top: calc(var(--body-cap) - 40 * var(--line));
+  width: calc(60 * 5 * var(--unit));
+  height: calc(100 * var(--line));
+  transform-origin: calc(20 * 5 * var(--unit)) calc(40 * var(--line));
+  transform: rotate(var(--turn));
+}
+:root:has(.grid-toggle input:checked) .composition::after { display: block; }
+/* on a red area the red guides vanish: grid lines in the page's colour, half baselines and columns in ink;
+   on a black area the red columns are lost in it: in the page's colour */
+.fill-red > .composition::after { --guide-line: var(--color-ground); --guide-half: var(--color-ink); --guide-column: var(--color-ink); }
+.fill-ink > .composition::after { --guide-column: var(--color-ground); }
+/* over a polar composition both grids: its rings (red, a line apart) and rays (blue, a step apart) round its point, and the
+   flat grid its text stands on (grid lines and half baselines from its first grid line, columns from its left edge), fainter,
+   so that the two grids stay apart */
+.composition.polar::after {
+  --grid-strength: 25%;
+  --column-strength: 7%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  background:
+    repeating-radial-gradient(circle at var(--cpx) var(--cpy) in srgb,
+      transparent 0 calc(var(--line) - 1px),
+      color-mix(in srgb, var(--guide-line) 60%, transparent) calc(var(--line) - 1px) var(--line)),
+    repeating-conic-gradient(from calc(90deg + var(--polar-turn)) at var(--cpx) var(--cpy) in srgb,
+      color-mix(in srgb, var(--guide-half) 70%, transparent) 0 0.15deg,
+      transparent 0.15deg var(--step-angle)),
+    var(--grid-lines), var(--grid-halves), var(--grid-columns);
+  background-position: 0 0, 0 0, 0 var(--body-cap), 0 var(--body-cap), 0 0;
+}
+/* on black its faint columns get lost: stronger */
+.fill-ink > .composition.polar::after { --column-strength: 12%; }
+/* above the page's overlay: over a composition only its own grid shows */
+:root:has(.grid-toggle input:checked) .composition { z-index: 11; }
