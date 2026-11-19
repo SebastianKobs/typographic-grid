@@ -5,6 +5,10 @@
   --line-height: 1.5;
   --font-weight: 300;
   --caption-weight: 220;
+  /* small text, a step down the √2 scale from the body size (about 11.3px at 16px), on the body's lines; the ratio on
+     its own too, for a picture drawn in its own units that scales with the unit already */
+  --small-ratio: 1.414;
+  --small-size: calc(var(--unit) / var(--small-ratio));
 
   --line: calc(var(--unit) * var(--line-height));
   --half: calc(var(--line) / 2);
@@ -1020,6 +1024,8 @@ textarea.field-input {
 .size-sqrt2-2 { --heading-ratio: 2; }
 .size-sqrt2-3 { --heading-ratio: 2.828; }
 .size-sqrt2-4 { --heading-ratio: 4; }
+/* small text in a line of the body's, as HTML's small element: side comments, fine print, a figure's labels */
+small, .size-small { font-size: var(--small-size); }
 
 /* a pull quote moved whole columns to the left or right of the text's, past the type area if need be */
 .pull-left-1 { --pull-left: 1; }
